@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
-import { forwardRef } from 'react';
 // third-party
 import { motion, useCycle } from 'framer-motion';
+import PropTypes from 'prop-types';
+import { forwardRef } from 'react';
 
 // ==============================|| ANIMATION BUTTON ||============================== //
 

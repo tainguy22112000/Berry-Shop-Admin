@@ -1,4 +1,5 @@
 import { createStore } from 'redux';
+
 import reducer from './reducer';
 
 // ==============================|| REDUX - MAIN STORE ||============================== //
@@ -6,4 +7,4 @@ import reducer from './reducer';
 const store = createStore(reducer);
 const persister = 'Free';
 
-export { store, persister };
+export { persister,store };

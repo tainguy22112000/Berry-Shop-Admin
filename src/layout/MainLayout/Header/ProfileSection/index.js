@@ -1,10 +1,3 @@
-import { useState, useRef, useEffect } from 'react';
-
-import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-
-// material-ui
-import { useTheme } from '@mui/material/styles';
 import {
     Avatar,
     Box,
@@ -26,18 +19,21 @@ import {
     Switch,
     Typography
 } from '@mui/material';
-
+// material-ui
+import { useTheme } from '@mui/material/styles';
+// assets
+import { IconLogout, IconSearch, IconSettings, IconUser } from '@tabler/icons';
+import User1 from 'assets/images/users/user-round.svg';
+import { useEffect,useRef, useState } from 'react';
 // third-party
 import PerfectScrollbar from 'react-perfect-scrollbar';
-
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
 import Transitions from 'ui-component/extended/Transitions';
-import UpgradePlanCard from './UpgradePlanCard';
-import User1 from 'assets/images/users/user-round.svg';
 
-// assets
-import { IconLogout, IconSearch, IconSettings, IconUser } from '@tabler/icons';
+import UpgradePlanCard from './UpgradePlanCard';
 
 // ==============================|| PROFILE MENU ||============================== //
 

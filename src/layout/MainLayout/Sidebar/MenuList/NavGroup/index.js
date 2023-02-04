@@ -1,12 +1,11 @@
-import PropTypes from 'prop-types';
-
+import { Divider, List, Typography } from '@mui/material';
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Divider, List, Typography } from '@mui/material';
+import PropTypes from 'prop-types';
 
+import NavCollapse from '../NavCollapse';
 // project imports
 import NavItem from '../NavItem';
-import NavCollapse from '../NavCollapse';
 
 // ==============================|| SIDEBAR MENU LIST GROUP ||============================== //
 

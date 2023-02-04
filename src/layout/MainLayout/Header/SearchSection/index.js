@@ -1,19 +1,15 @@
-import PropTypes from 'prop-types';
-import { useState } from 'react';
-
-// material-ui
-import { useTheme, styled } from '@mui/material/styles';
 import { Avatar, Box, ButtonBase, Card, Grid, InputAdornment, OutlinedInput, Popper } from '@mui/material';
-
-// third-party
-import PopupState, { bindPopper, bindToggle } from 'material-ui-popup-state';
-
-// project imports
-import Transitions from 'ui-component/extended/Transitions';
-
+// material-ui
+import { styled,useTheme } from '@mui/material/styles';
+import { shouldForwardProp } from '@mui/system';
 // assets
 import { IconAdjustmentsHorizontal, IconSearch, IconX } from '@tabler/icons';
-import { shouldForwardProp } from '@mui/system';
+// third-party
+import PopupState, { bindPopper, bindToggle } from 'material-ui-popup-state';
+import PropTypes from 'prop-types';
+import { useState } from 'react';
+// project imports
+import Transitions from 'ui-component/extended/Transitions';
 
 // styles
 const PopperStyle = styled(Popper, { shouldForwardProp })(({ theme }) => ({
