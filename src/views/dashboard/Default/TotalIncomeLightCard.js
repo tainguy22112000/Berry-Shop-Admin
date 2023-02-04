@@ -1,15 +1,12 @@
-import PropTypes from 'prop-types';
-
-// material-ui
-import { useTheme, styled } from '@mui/material/styles';
+// assets
+import StorefrontTwoToneIcon from '@mui/icons-material/StorefrontTwoTone';
 import { Avatar, Box, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material';
-
+// material-ui
+import { styled,useTheme } from '@mui/material/styles';
+import PropTypes from 'prop-types';
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
 import TotalIncomeCard from 'ui-component/cards/Skeleton/TotalIncomeCard';
-
-// assets
-import StorefrontTwoToneIcon from '@mui/icons-material/StorefrontTwoTone';
 
 // styles
 const CardWrapper = styled(MainCard)(({ theme }) => ({

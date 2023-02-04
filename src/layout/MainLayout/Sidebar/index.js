@@ -1,18 +1,16 @@
-import PropTypes from 'prop-types';
-
+import { Box, Drawer, useMediaQuery } from '@mui/material';
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Box, Drawer, useMediaQuery } from '@mui/material';
-
+import PropTypes from 'prop-types';
+import { BrowserView, MobileView } from 'react-device-detect';
 // third-party
 import PerfectScrollbar from 'react-perfect-scrollbar';
-import { BrowserView, MobileView } from 'react-device-detect';
+import { drawerWidth } from 'store/constant';
 
-// project imports
-import MenuList from './MenuList';
 import LogoSection from '../LogoSection';
 import MenuCard from './MenuCard';
-import { drawerWidth } from 'store/constant';
+// project imports
+import MenuList from './MenuList';
 
 // ==============================|| SIDEBAR DRAWER ||============================== //
 

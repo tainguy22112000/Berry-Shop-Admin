@@ -1,16 +1,15 @@
-import { useEffect, useState } from 'react';
-
 // material-ui
 import { Grid } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { gridSpacing } from 'store/constant';
 
 // project imports
 import EarningCard from './EarningCard';
 import PopularCard from './PopularCard';
-import TotalOrderLineChartCard from './TotalOrderLineChartCard';
+import TotalGrowthBarChart from './TotalGrowthBarChart';
 import TotalIncomeDarkCard from './TotalIncomeDarkCard';
 import TotalIncomeLightCard from './TotalIncomeLightCard';
-import TotalGrowthBarChart from './TotalGrowthBarChart';
-import { gridSpacing } from 'store/constant';
+import TotalOrderLineChartCard from './TotalOrderLineChartCard';
 
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 

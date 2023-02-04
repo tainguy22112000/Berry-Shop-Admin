@@ -1,19 +1,16 @@
-import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-
+import { Grid, MenuItem, TextField, Typography } from '@mui/material';
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Grid, MenuItem, TextField, Typography } from '@mui/material';
-
 // third-party
 import ApexCharts from 'apexcharts';
+import PropTypes from 'prop-types';
+import { useEffect,useState } from 'react';
 import Chart from 'react-apexcharts';
-
+import { useSelector } from 'react-redux';
+import { gridSpacing } from 'store/constant';
+import MainCard from 'ui-component/cards/MainCard';
 // project imports
 import SkeletonTotalGrowthBarChart from 'ui-component/cards/Skeleton/TotalGrowthBarChart';
-import MainCard from 'ui-component/cards/MainCard';
-import { gridSpacing } from 'store/constant';
 
 // chart data
 import chartData from './chart-data/total-growth-bar-chart';

@@ -1,8 +1,6 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-
-// material-ui
-import { useTheme } from '@mui/material/styles';
+// assets
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import {
     Box,
     Button,
@@ -20,20 +18,17 @@ import {
     Typography,
     useMediaQuery
 } from '@mui/material';
-
-// third party
-import * as Yup from 'yup';
+// material-ui
+import { useTheme } from '@mui/material/styles';
+import Google from 'assets/images/icons/social-google.svg';
 import { Formik } from 'formik';
-
 // project imports
 import useScriptRef from 'hooks/useScriptRef';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import AnimateButton from 'ui-component/extended/AnimateButton';
-
-// assets
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-
-import Google from 'assets/images/icons/social-google.svg';
+// third party
+import * as Yup from 'yup';
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 

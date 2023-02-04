@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
-import { useTheme } from '@mui/material/styles';
 import { ButtonBase, Link, Tooltip } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import PropTypes from 'prop-types';
 
 // project imports
 import Avatar from '../extended/Avatar';
