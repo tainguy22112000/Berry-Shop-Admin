@@ -15,7 +15,7 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
-import { styled,useTheme } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 // assets
 import { IconBrandTelegram, IconBuildingStore, IconMailbox, IconPhoto } from '@tabler/icons';
 import User1 from 'assets/images/users/user-round.svg';
