@@ -20,7 +20,7 @@ const USER_PAGE = {
   Products: 'Products',
   Orders: 'Orders',
   OrderList: 'Order List',
-  DiscountCoupon: 'Discount Coupon',
+  DiscountCoupon: 'Tạo mã giảm giá',
   OrderDetails: 'Order Details',
   ProductDetails: 'Product Details',
 };
