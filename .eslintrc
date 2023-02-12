@@ -9,7 +9,7 @@
         "import/resolver": {
             "node": {
                 "moduleDirectory": ["node_modules", "src/"],
-                "extensions": [".js", ".jsx"]
+                "extensions": [".js", ".ts", "tsx", ".jsx"]
             }
         }
     },
@@ -23,7 +23,7 @@
     },
     "plugins": ["prettier", "react-hooks", "simple-import-sort"],
     "rules": {
-        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".ts", "tsx", ".jsx"] }],
           // suppress errors for missing 'import React' in files
         "react/react-in-jsx-scope": "off",
         "no-param-reassign": 0,
