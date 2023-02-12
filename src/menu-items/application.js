@@ -1,6 +1,19 @@
 // assets
-import { IconKey, IconNotes, IconShoppingCart, IconUser, IconWindmill } from '@tabler/icons';
-import { ODERS_PATH, ORDERS_PAGE_ROUTER, PRODUCTS_PAGE_ROUTER, PRODUCTS_PATH, USERS_PAGE_ROUTER, USERS_PATH } from 'constants/routes';
+import {
+  IconKey,
+  IconNotes,
+  IconShoppingCart,
+  IconUser,
+  IconWindmill,
+} from '@tabler/icons';
+import {
+  ODERS_PATH,
+  ORDERS_PAGE_ROUTER,
+  PRODUCTS_PAGE_ROUTER,
+  PRODUCTS_PATH,
+  USERS_PAGE_ROUTER,
+  USERS_PATH,
+} from 'constants/routes';
 
 // constant
 const icons = {
@@ -15,7 +28,7 @@ const icons = {
 const USER_PAGE = {
   Details: 'Thông tin chi tiết',
   Profile: 'Thông tin khách hàng',
-  Account: 'Tài khoản khách hàng',
+  Account: 'Tài khoản cá nhân',
   Users: 'Khách hàng',
   Products: 'Sản phẩm',
   Orders: 'Đơn hàng',

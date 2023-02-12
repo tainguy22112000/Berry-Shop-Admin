@@ -8,12 +8,12 @@ const ConfirmButton = () => {
         direction="row"
         spacing={2}
         justifyContent="center"
-        sx={{ mb: 10, mt: 5 }}
+        sx={{ mb: 10, mt: 5, color: '#fff' }}
       >
-        <Button variant="contained" size="large">
+        <Button variant="contained" size="large" color="dark">
           Tạo mã giảm giá
         </Button>
-        <Button variant="outlined" size="large">
+        <Button variant="outlined" size="large" color="dark">
           Huỷ bỏ
         </Button>
       </Stack>

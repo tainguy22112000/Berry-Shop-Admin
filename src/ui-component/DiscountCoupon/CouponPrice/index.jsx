@@ -29,9 +29,10 @@ const CouponPrice = () => {
           label="Phần trăm"
         />
         <FormControlLabel value="male" control={<Radio />} label="Tiền mặt" />
+        <FormControlLabel value="male" control={<Radio />} label="Free Ship" />
       </RadioGroup>
       <Stack direction="row" spacing={2} fullWidth>
-        <FormControl sx={{ width: '40%' }}>
+        <FormControl sx={{ width: '40%' }} size="small">
           <InputLabel htmlFor="outlined-adornment-amount">Phần trăm</InputLabel>
           <OutlinedInput
             id="outlined-adornment-amount"
@@ -40,7 +41,7 @@ const CouponPrice = () => {
             value=""
           />
         </FormControl>
-        <FormControl sx={{ width: '60%' }}>
+        <FormControl sx={{ width: '60%' }} size="small">
           <InputLabel htmlFor="outlined-adornment-amount">Tiền mặt</InputLabel>
           <OutlinedInput
             id="outlined-adornment-amount"

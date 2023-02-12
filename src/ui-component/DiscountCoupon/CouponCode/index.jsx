@@ -35,12 +35,12 @@ const CouponCode = () => {
       </RadioGroup>
       <Stack spacing={1}>
         <div>
-          <FormControl sx={{ width: '50%' }}>
+          <FormControl sx={{ width: '50%' }} size="small">
             <OutlinedInput
               id="outlined-adornment-amount"
               endAdornment={
                 <InputAdornment position="start">
-                  <IconButton aria-label="copy" size="small" color="primary">
+                  <IconButton aria-label="copy" size="small" color="dark">
                     <IconCopy />
                   </IconButton>
                 </InputAdornment>
@@ -54,15 +54,15 @@ const CouponCode = () => {
           </FormControl>
           <Button
             variant="contained"
-            color="primary"
+            color="dark"
             disableElevation
-            sx={{ marginLeft: '10px', height: 50 }}
-            size="large"
+            sx={{ marginLeft: '10px', height: 40, color: '#fff' }}
+            size="medium"
           >
             Tạo mã mới
           </Button>
         </div>
-        <FormControl sx={{ width: '50%' }}>
+        <FormControl sx={{ width: '50%' }} size="small">
           <InputLabel htmlFor="outlined-adornment-amount">
             Nhập mã giảm giá
           </InputLabel>
@@ -70,7 +70,7 @@ const CouponCode = () => {
             id="outlined-adornment-amount"
             endAdornment={
               <InputAdornment position="start">
-                <IconButton aria-label="copy" size="small" color="primary">
+                <IconButton aria-label="copy" size="small" color="dark">
                   <IconCopy />
                 </IconButton>
               </InputAdornment>

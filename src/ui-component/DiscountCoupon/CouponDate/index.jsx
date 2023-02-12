@@ -21,6 +21,7 @@ const CouponDate = () => {
             </Typography>
             <TextField
               inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+              size="small"
             />
           </Stack>
         </FormControl>
@@ -37,7 +38,7 @@ const CouponDate = () => {
                 value=""
                 onChange={() => {}}
                 renderInput={(params) => (
-                  <TextField {...params} sx={{ width: '50%' }} />
+                  <TextField {...params} sx={{ width: '50%' }} size="small" />
                 )}
               />
               <DesktopDatePicker
@@ -46,7 +47,7 @@ const CouponDate = () => {
                 value=""
                 onChange={() => {}}
                 renderInput={(params) => (
-                  <TextField {...params} sx={{ width: '50%' }} />
+                  <TextField {...params} sx={{ width: '50%' }} size="small" />
                 )}
               />
             </Stack>
