@@ -13,9 +13,9 @@ const icons = {
 
 // application constants
 const USER_PAGE = {
-  Application: 'Application',
-  Profile: 'Profile',
-  Account: 'Account',
+  Details: 'Thông tin chi tiết',
+  Profile: 'Thông tin khách hàng',
+  Account: 'Tài khoản khách hàng',
   Users: 'Khách hàng',
   Products: 'Sản phẩm',
   Orders: 'Đơn hàng',
@@ -28,8 +28,8 @@ const USER_PAGE = {
 // ==============================|| EXTRA PAGES MENU ITEMS ||============================== //
 
 const application = {
-  id: USER_PAGE.Application,
-  title: USER_PAGE.Application,
+  id: USER_PAGE.Details,
+  title: USER_PAGE.Details,
   type: 'group',
   children: [
     {
