@@ -16,13 +16,13 @@ const USER_PAGE = {
   Application: 'Application',
   Profile: 'Profile',
   Account: 'Account',
-  Users: 'Users',
-  Products: 'Products',
-  Orders: 'Orders',
-  OrderList: 'Order List',
+  Users: 'Khách hàng',
+  Products: 'Sản phẩm',
+  Orders: 'Đơn hàng',
+  OrderList: 'Danh sách đơn hàng',
   DiscountCoupon: 'Tạo mã giảm giá',
-  OrderDetails: 'Order Details',
-  ProductDetails: 'Product Details',
+  OrderDetails: 'Chi tiết đơn hàng',
+  ProductDetails: 'Chi tiết sản phẩm',
 };
 
 // ==============================|| EXTRA PAGES MENU ITEMS ||============================== //
