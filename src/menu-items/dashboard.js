@@ -6,7 +6,8 @@ import { BASE_ROUTER, DASHBOARD_PATH } from 'constants/routes';
 const icons = { IconDashboard };
 
 const DASHBOARD_PAGE = {
-  Dashboard: 'Dashboard',
+  Dashboard: 'Bảng điều khiển',
+  HomePage: 'Trang chủ',
 };
 
 // ==============================|| DASHBOARD MENU ITEMS ||============================== //
@@ -18,7 +19,7 @@ const dashboard = {
   children: [
     {
       id: DASHBOARD_PAGE.Dashboard,
-      title: DASHBOARD_PAGE.Dashboard,
+      title: DASHBOARD_PAGE.HomePage,
       type: 'item',
       url: `${BASE_ROUTER}${DASHBOARD_PATH.Dashboard}`,
       icon: icons.IconDashboard,

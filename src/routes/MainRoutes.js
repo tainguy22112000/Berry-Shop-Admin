@@ -3,9 +3,6 @@ import MainLayout from 'layout/MainLayout';
 import { lazy } from 'react';
 import Loadable from 'ui-component/Loadable';
 
-// dashboard routing
-const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
-
 // utilities routing
 const UtilsTypography = Loadable(lazy(() => import('views/utilities/Typography')));
 const UtilsColor = Loadable(lazy(() => import('views/utilities/Color')));
