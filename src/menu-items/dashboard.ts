@@ -1,12 +1,13 @@
 // assets
 import { IconDashboard } from '@tabler/icons';
+import { BASE_ROUTER, DASHBOARD_PATH } from '../constants/routes';
 
 // constant
 const icons = { IconDashboard };
 
-// dashboard constants
 const DASHBOARD_PAGE = {
-  Dashboard: 'Dashboard',
+  Dashboard: 'Bảng điều khiển',
+  HomePage: 'Trang chủ',
 };
 
 // ==============================|| DASHBOARD MENU ITEMS ||============================== //
@@ -18,9 +19,9 @@ const dashboard = {
   children: [
     {
       id: DASHBOARD_PAGE.Dashboard,
-      title: DASHBOARD_PAGE.Dashboard,
+      title: DASHBOARD_PAGE.HomePage,
       type: 'item',
-      url: '/dashboard/default',
+      url: `${BASE_ROUTER}${DASHBOARD_PATH.Dashboard}`,
       icon: icons.IconDashboard,
       breadcrumbs: false,
     },

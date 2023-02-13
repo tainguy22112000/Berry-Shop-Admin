@@ -1,5 +1,6 @@
 // assets
 import { IconKey, IconNotes, IconShoppingCart, IconUser, IconWindmill } from '@tabler/icons';
+import { ODERS_PATH, ORDERS_PAGE_ROUTER, PRODUCTS_PAGE_ROUTER, PRODUCTS_PATH, USERS_PAGE_ROUTER, USERS_PATH } from '../constants/routes';
 
 // constant
 const icons = {
@@ -10,25 +11,25 @@ const icons = {
   IconNotes,
 };
 
-// router constants
+// application constants
 const USER_PAGE = {
-  Application: 'Application',
-  Profile: 'Profile',
-  Account: 'Account',
-  Users: 'Users',
-  Products: 'Products',
-  Orders: 'Orders',
-  OrderList: 'Order List',
-  DiscountCoupon: 'Discount Coupon',
-  OrderDetails: 'Order Details',
-  ProductDetails: 'Product Details',
+  Details: 'Thông tin chi tiết',
+  Profile: 'Thông tin khách hàng',
+  Account: 'Tài khoản khách hàng',
+  Users: 'Khách hàng',
+  Products: 'Sản phẩm',
+  Orders: 'Đơn hàng',
+  OrderList: 'Danh sách đơn hàng',
+  DiscountCoupon: 'Tạo mã giảm giá',
+  OrderDetails: 'Chi tiết đơn hàng',
+  ProductDetails: 'Chi tiết sản phẩm',
 };
 
 // ==============================|| EXTRA PAGES MENU ITEMS ||============================== //
 
 const application = {
-  id: USER_PAGE.Application,
-  title: USER_PAGE.Application,
+  id: USER_PAGE.Details,
+  title: USER_PAGE.Details,
   type: 'group',
   children: [
     {
@@ -42,15 +43,15 @@ const application = {
           id: USER_PAGE.Profile,
           title: USER_PAGE.Profile,
           type: 'item',
-          url: '/pages/login/login3',
-          target: true,
+          url: `${USERS_PAGE_ROUTER}/${USERS_PATH.Profile}`,
+          breadcrumbs: true,
         },
         {
           id: USER_PAGE.Account,
           title: USER_PAGE.Account,
           type: 'item',
-          url: '/pages/register/register3',
-          target: true,
+          url: `${USERS_PAGE_ROUTER}/${USERS_PATH.Account}`,
+          breadcrumbs: true,
         },
       ],
     },
@@ -64,22 +65,22 @@ const application = {
           id: USER_PAGE.OrderList,
           title: USER_PAGE.OrderList,
           type: 'item',
-          url: '/icons/tabler-icons',
-          breadcrumbs: false,
+          url: `${ORDERS_PAGE_ROUTER}/${ODERS_PATH.OrderList}`,
+          breadcrumbs: true,
         },
         {
           id: USER_PAGE.OrderDetails,
           title: USER_PAGE.OrderDetails,
           type: 'item',
-          url: '/icons/material-icons',
-          breadcrumbs: false,
+          url: `${ORDERS_PAGE_ROUTER}/${ODERS_PATH.OrderDetails}`,
+          breadcrumbs: true,
         },
         {
           id: USER_PAGE.DiscountCoupon,
           title: USER_PAGE.DiscountCoupon,
           type: 'item',
-          url: '/icons/material-icons',
-          breadcrumbs: false,
+          url: `${ORDERS_PAGE_ROUTER}/${ODERS_PATH.DiscountCoupon}`,
+          breadcrumbs: true,
         },
       ],
     },
@@ -93,8 +94,8 @@ const application = {
           id: USER_PAGE.ProductDetails,
           title: USER_PAGE.ProductDetails,
           type: 'item',
-          url: '/icons/tabler-icons',
-          breadcrumbs: false,
+          url: `${PRODUCTS_PAGE_ROUTER}/${PRODUCTS_PATH.ProductDetails}`,
+          breadcrumbs: true,
         },
       ],
     },
