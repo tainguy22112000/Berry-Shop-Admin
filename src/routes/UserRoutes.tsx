@@ -1,12 +1,13 @@
 // project imports
-import { USERS_PAGE_ROUTER, USERS_PATH } from 'constants/routes';
-import MainLayout from 'layout/MainLayout';
+import React from 'react';
+import { USERS_PAGE_ROUTER, USERS_PATH } from '../constants/routes';
+import MainLayout from '../layout/MainLayout';
 import { lazy } from 'react';
-import Loadable from 'ui-component/Loadable';
+import Loadable from '../ui-component/Loadable';
 
 // user page routing
-const UserProfilePage = Loadable(lazy(() => import('views/users/userProfile')));
-const UserAccountPage = Loadable(lazy(() => import('views/users/userProfile')));
+const UserProfilePage = Loadable(lazy(() => import('../views/users/userProfile')));
+const UserAccountPage = Loadable(lazy(() => import('../views/users/userProfile')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 

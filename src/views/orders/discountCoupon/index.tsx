@@ -1,6 +1,6 @@
+import React from 'react';
 import { Stack, Typography } from '@mui/material';
-import * as React from 'react';
-import MainCard from 'ui-component/cards/MainCard';
+import MainCard from '../../../ui-component/cards/MainCard';
 import {
   ConfirmButton,
   CouponCode,
@@ -8,7 +8,7 @@ import {
   CouponDescription,
   CouponPrice,
   CouponProductType,
-} from 'ui-component/DiscountCoupon';
+} from '../../../ui-component/DiscountCoupon';
 
 const DiscountCoupon = () => {
   return (

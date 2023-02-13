@@ -1,13 +1,14 @@
 // project imports
-import { ODERS_PATH, ORDERS_PAGE_ROUTER } from 'constants/routes';
-import MainLayout from 'layout/MainLayout';
+import React from 'react';
+import { ODERS_PATH, ORDERS_PAGE_ROUTER } from '../constants/routes';
+import MainLayout from '../layout/MainLayout';
 import { lazy } from 'react';
-import Loadable from 'ui-component/Loadable';
+import Loadable from '../ui-component/Loadable';
 
 // user page routing
-const OrderListPage = Loadable(lazy(() => import('views/orders/orderList')));
-const OrderDetailsPage = Loadable(lazy(() => import('views/orders/orderDetails')));
-const DiscountCouponPage = Loadable(lazy(() => import('views/orders/discountCoupon')));
+const OrderListPage = Loadable(lazy(() => import('../views/orders/orderList')));
+const OrderDetailsPage = Loadable(lazy(() => import('../views/orders/orderDetails')));
+const DiscountCouponPage = Loadable(lazy(() => import('../views/orders/discountCoupon')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
