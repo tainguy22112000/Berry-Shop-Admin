@@ -8,12 +8,11 @@ import PictureAsPdfTwoToneIcon from '@mui/icons-material/PictureAsPdfOutlined';
 import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
 import { styled, useTheme } from '@mui/material/styles';
 // import EarningIcon from 'assets/images/icons/earning.svg';
-import PropTypes from 'prop-types';
 import { useState } from 'react';
 import MainCard from '../../../ui-component/cards/MainCard';
 import SkeletonEarningCard from '../../../ui-component/cards/Skeleton/EarningCard';
 
-const CardWrapper = styled(MainCard)(({ theme }: any) => ({
+const CardWrapper = styled(MainCard)(({ theme }) => ({
   backgroundColor: theme.palette.secondary.dark,
   color: '#fff',
   overflow: 'hidden',
@@ -23,6 +22,7 @@ const CardWrapper = styled(MainCard)(({ theme }: any) => ({
     position: 'absolute',
     width: 210,
     height: 210,
+    // @ts-ignore
     background: theme.palette.secondary[800],
     borderRadius: '50%',
     top: -85,
@@ -37,6 +37,7 @@ const CardWrapper = styled(MainCard)(({ theme }: any) => ({
     position: 'absolute',
     width: 210,
     height: 210,
+    // @ts-ignore
     background: theme.palette.secondary[800],
     borderRadius: '50%',
     top: -125,
@@ -187,10 +188,6 @@ const EarningCard = ({ isLoading }: Props) => {
       )}
     </>
   );
-};
-
-EarningCard.propTypes = {
-  isLoading: PropTypes.bool,
 };
 
 export default EarningCard;

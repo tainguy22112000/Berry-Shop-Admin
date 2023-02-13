@@ -19,8 +19,6 @@ import { useState } from 'react';
 import { gridSpacing } from '../../../store/constant';
 import MainCard from '../../../ui-component/cards/MainCard';
 import SkeletonPopularCard from '../../../ui-component/cards/Skeleton/PopularCard';
-
-// project imports
 import BajajAreaChartCard from './BajajAreaChartCard';
 
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //

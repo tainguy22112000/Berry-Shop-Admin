@@ -22,6 +22,8 @@ import React from 'react';
 
 // import User1 from '../../../../assets/images/users/user-round.svg';
 
+const User1 = '../../../../assets/images/users/user-round.svg';
+
 // styles
 const ListItemWrapper = styled('div')(({ theme }) => ({
   cursor: 'pointer',
@@ -89,7 +91,7 @@ const NotificationList = () => {
       <ListItemWrapper>
         <ListItem alignItems="center">
           <ListItemAvatar>
-            {/* <Avatar alt="John Doe" src={User1} /> */}
+            <Avatar alt="John Doe" src={User1} />
           </ListItemAvatar>
           <ListItemText primary="John Doe" />
           <ListItemSecondaryAction>

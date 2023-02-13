@@ -53,7 +53,7 @@ const FirebaseLogin = ({ ...others }) => {
     <>
       <Grid container direction="column" justifyContent="center" spacing={2}>
         <Grid item xs={12}>
-          <AnimateButton>
+          <AnimateButton type={'scale'} direction={'right'} offset={10} scale={{ hover: 1, tap: 0.9 }}>
             <Button
               disableElevation
               fullWidth
@@ -257,7 +257,7 @@ const FirebaseLogin = ({ ...others }) => {
             )}
 
             <Box sx={{ mt: 2 }}>
-              <AnimateButton>
+              <AnimateButton type={'scale'} direction={'right'} offset={10} scale={{ hover: 1, tap: 0.9 }}>
                 <Button
                   disableElevation
                   disabled={isSubmitting}

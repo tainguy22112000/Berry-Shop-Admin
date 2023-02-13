@@ -94,7 +94,7 @@ const Customization = () => {
             zIndex: theme.zIndex.speedDial,
           }}
         >
-          <AnimateButton type="rotate">
+          <AnimateButton type="rotate" direction={'right'} offset={10} scale={{ hover: 1, tap: 0.9 }}>
             <IconButton color="inherit" size="large" disableRipple>
               <IconSettings />
             </IconButton>

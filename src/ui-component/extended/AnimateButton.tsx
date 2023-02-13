@@ -5,10 +5,10 @@ const { div: MotionDiv } = motion;
 
 type Props = {
   children?: any;
-  type: any;
-  direction: any;
-  offset: any;
-  scale: any;
+  type?: any;
+  direction?: any;
+  offset?: any;
+  scale?: any;
 } & typeof defaultProps;
 
 const defaultProps = {

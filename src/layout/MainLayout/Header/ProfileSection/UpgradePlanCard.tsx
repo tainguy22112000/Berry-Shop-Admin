@@ -59,7 +59,7 @@ const UpgradePlanCard = () => (
         </Grid>
         <Grid item>
           <Stack direction="row">
-            <AnimateButton>
+            <AnimateButton type={'scale'} direction={'right'} offset={10} scale={{ hover: 1, tap: 0.9 }}>
               <Button variant="contained" color="warning" sx={{ boxShadow: 'none' }}>
                 Go Premium
               </Button>

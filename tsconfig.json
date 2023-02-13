@@ -46,8 +46,10 @@
     "src/**/*.tsx",
     "src/**/*.yaml",
     "src/**/*.json",
-    // "tests/**/*.ts",
-    // "tests/**/*.tsx"
+    "src/**/*.module.scss",
+    "src/**/*.scss",
+    "tests/**/*.ts",
+    "tests/**/*.tsx"
   ],
   "exclude": [
     "node_modules",
@@ -57,7 +59,7 @@
   "typeRoots": [
     "../node_modules/@types",
     "../@types"
-  ]
+  ],
 }
 
 

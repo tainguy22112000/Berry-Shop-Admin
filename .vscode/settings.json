@@ -1,10 +1,10 @@
 {
   "eslint.validate": [
-    "vue",
-    "html",
     "javascript",
-    "typescript",
     "javascriptreact",
+    "typescript",
     "typescriptreact"
   ]
 }
+
+

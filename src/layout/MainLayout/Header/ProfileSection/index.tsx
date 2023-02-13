@@ -33,6 +33,8 @@ import MainCard from '../../../../ui-component/cards/MainCard';
 import Transitions from '../../../../ui-component/extended/Transitions';
 import UpgradePlanCard from './UpgradePlanCard';
 
+const User1 = '../../../../assets/images/users/user-round.svg';
+
 // ==============================|| PROFILE MENU ||============================== //
 
 const ProfileSection = () => {

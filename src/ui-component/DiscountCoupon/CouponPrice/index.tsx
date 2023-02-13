@@ -30,7 +30,7 @@ const CouponPrice = () => {
         />
         <FormControlLabel value="male" control={<Radio />} label="Tiền mặt" />
       </RadioGroup>
-      <Stack direction="row" spacing={2} fullWidth>
+      <Stack direction="row" spacing={2}>
         <FormControl sx={{ width: '40%' }}>
           <InputLabel htmlFor="outlined-adornment-amount">Phần trăm</InputLabel>
           <OutlinedInput
