@@ -1,4 +1,3 @@
-import React from 'react';
 import { 
   Button,
   Card,
@@ -8,6 +7,8 @@ import {
   Typography
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import React from 'react';
+
 import AnimateButton from '../../../../ui-component/extended/AnimateButton';
 
 // styles

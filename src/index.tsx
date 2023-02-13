@@ -1,16 +1,17 @@
 // style + assets
 import './assets/scss/style.scss';
 
+import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 // third party
 import { BrowserRouter } from 'react-router-dom';
+
+import App from './App';
+import config from './config';
 // project imports
 import * as serviceWorker from './serviceWorker';
 import { store } from './store';
-import config from './config';
-import React from 'react';
-import App from './App';
 
 // ==============================|| REACT DOM RENDER  ||============================== //
 

@@ -21,7 +21,7 @@ import { useState } from 'react';
 import Transitions from '../../../../ui-component/extended/Transitions';
 
 // styles
-const PopperStyle = styled(Popper, { shouldForwardProp })(({ theme }: any) => ({
+const PopperStyle = styled(Popper, { shouldForwardProp })(({ theme }) => ({
   zIndex: 1100,
   width: '99%',
   top: '-55px !important',

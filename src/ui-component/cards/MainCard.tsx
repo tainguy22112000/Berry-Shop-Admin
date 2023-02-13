@@ -8,22 +8,23 @@ const headerSX = {
 };
 
 type Props = {
-  border: Boolean,
-  boxShadow: any,
-  content: boolean,
-  contentClass: string,
-  contentSX: any,
-  darkTitle: any,
-  secondary: any, 
-  shadow: any,
-  sx: any,
-  title: any,
+  border: Boolean;
+  boxShadow: any;
+  content: boolean;
+  contentClass: string;
+  contentSX: any;
+  darkTitle: any;
+  secondary: any; 
+  shadow: any;
+  sx: any;
+  title: any;
+  children?: any;
 }
 
 type Ref = HTMLElement | any;
 // ==============================|| CUSTOM MAIN CARD ||============================== //
 
-const MainCard = forwardRef<Props, Ref>(
+const MainCard = forwardRef<Ref, Props>(
   ({ border = true, boxShadow, children, content = true, contentClass = '', contentSX = {}, darkTitle, secondary, shadow, sx = {}, title, ...others }, ref) => {
     const theme = useTheme();
 

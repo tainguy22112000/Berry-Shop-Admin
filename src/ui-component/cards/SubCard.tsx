@@ -1,23 +1,22 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { Card, CardContent, CardHeader, Divider, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { forwardRef } from 'react';
 
 // ==============================|| CUSTOM SUB CARD ||============================== //
 type Props = {
-  children?: JSX.Element,
-  content?: boolean,
-  contentClass?: string,
-  darkTitle?: boolean,
-  secondary?: (JSX.Element | string | Record<any, string>) & React.ReactNode,
-  sx?: Record<any, string>,
-  contentSX?: Record<any, string>,
-  title?: JSX.Element | string | Record<any, string> | React.ReactNode | any,
+  children?: JSX.Element;
+  content?: boolean;
+  contentClass?: string;
+  darkTitle?: boolean;
+  secondary?: (JSX.Element | string | Record<any, string>) & React.ReactNode;
+  sx?: Record<any, string>;
+  contentSX?: Record<any, string>;
+  title?: JSX.Element | string | Record<any, string> | React.ReactNode | any;
 } & typeof defaultProps;
 
 const defaultProps = {
   content: true,
-}
+};
 
 type Ref = any;
 

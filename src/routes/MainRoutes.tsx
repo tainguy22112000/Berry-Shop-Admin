@@ -1,5 +1,6 @@
 // project imports
 import React, { lazy } from 'react';
+
 import MainLayout from '../layout/MainLayout';
 import Loadable from '../ui-component/Loadable';
 

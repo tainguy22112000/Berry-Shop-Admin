@@ -1,7 +1,8 @@
-import React from 'react';
 import { ButtonBase } from '@mui/material';
-import config from '../../../config';
+import React from 'react';
 import { Link } from 'react-router-dom';
+
+import config from '../../../config';
 import Logo from '../../../ui-component/Logo';
 
 // ==============================|| MAIN LOGO ||============================== //

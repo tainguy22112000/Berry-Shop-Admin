@@ -13,11 +13,9 @@ import { gridSpacing } from '../../store/constant';
 import SubCard from '../../ui-component/cards/SubCard';
 import AnimateButton from '../../ui-component/extended/AnimateButton';
 
-// concat 'px'
-function valueText(value: number) {
+function valueText(value: any) {
   return `${value}px`;
-}
-
+};
 // ==============================|| LIVE CUSTOMIZATION ||============================== //
 
 const Customization = () => {

@@ -135,8 +135,4 @@ const TotalGrowthBarChart = ({ isLoading }: Props) => {
     );
 };
 
-TotalGrowthBarChart.propTypes = {
-    isLoading: PropTypes.bool
-};
-
 export default TotalGrowthBarChart;

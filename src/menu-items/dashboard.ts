@@ -1,5 +1,6 @@
 // assets
 import { IconDashboard } from '@tabler/icons';
+
 import { BASE_ROUTER, DASHBOARD_PATH } from '../constants/routes';
 
 // constant

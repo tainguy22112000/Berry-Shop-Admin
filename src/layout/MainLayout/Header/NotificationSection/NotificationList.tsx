@@ -1,11 +1,10 @@
-import React from 'react';
 import {
   Avatar,
   Button,
-  CardContent,
   Card,
-  Divider,
+  CardContent,
   Chip,
+  Divider,
   Grid,
   List,
   ListItem,
@@ -18,6 +17,7 @@ import {
 import { styled, useTheme } from '@mui/material/styles';
 // assets
 import { IconBrandTelegram, IconBuildingStore, IconMailbox, IconPhoto } from '@tabler/icons';
+import React from 'react';
 // import User1 from '../../..assets/images/users/user-round.svg';
 
 // import User1 from '../../../../assets/images/users/user-round.svg';

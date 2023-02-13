@@ -1,5 +1,6 @@
-import React from 'react';
 import { Stack, Typography } from '@mui/material';
+import React from 'react';
+
 import MainCard from '../../../ui-component/cards/MainCard';
 import {
   ConfirmButton,

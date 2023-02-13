@@ -1,8 +1,8 @@
-import React from 'react';
 import { Grid } from '@mui/material';
+import React from 'react';
 import { useEffect, useState } from 'react';
-import { gridSpacing } from '../../../store/constant';
 
+import { gridSpacing } from '../../../store/constant';
 // project imports
 import EarningCard from './EarningCard';
 import PopularCard from './PopularCard';

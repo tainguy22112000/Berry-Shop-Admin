@@ -1,11 +1,11 @@
-import React from 'react';
 import { Divider, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
 // material-ui
 import { useTheme } from '@mui/material/styles';
+import React from 'react';
 import { Link } from 'react-router-dom';
+
 import AuthFooter from '../../../../ui-component/cards/AuthFooter';
 import Logo from '../../../../ui-component/Logo';
-
 import AuthLogin from '../auth-forms/AuthLogin';
 import AuthCardWrapper from '../AuthCardWrapper';
 // project imports

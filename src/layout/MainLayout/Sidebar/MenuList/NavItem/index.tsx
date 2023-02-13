@@ -12,7 +12,6 @@ import {
 } from '@mui/material';
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import PropTypes from 'prop-types';
 import { forwardRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -141,11 +140,6 @@ const NavItem = ({ item, level }: Props) => {
       )}
     </ListItemButton>
   );
-};
-
-NavItem.propTypes = {
-  item: PropTypes.object,
-  level: PropTypes.number,
 };
 
 export default NavItem;
