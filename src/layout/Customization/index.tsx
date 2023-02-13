@@ -1,4 +1,16 @@
-import { Drawer, Fab, FormControl, FormControlLabel, Grid, IconButton, Radio, RadioGroup, Slider, Tooltip, Typography } from '@mui/material';
+import {
+  Drawer,
+  Fab,
+  FormControl,
+  FormControlLabel,
+  Grid,
+  IconButton,
+  Radio,
+  RadioGroup,
+  Slider,
+  Tooltip,
+  Typography,
+} from '@mui/material';
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import { IconSettings } from '@tabler/icons';
@@ -15,7 +27,7 @@ import AnimateButton from '../../ui-component/extended/AnimateButton';
 
 function valueText(value: any) {
   return `${value}px`;
-};
+}
 // ==============================|| LIVE CUSTOMIZATION ||============================== //
 
 const Customization = () => {
@@ -94,7 +106,12 @@ const Customization = () => {
             zIndex: theme.zIndex.speedDial,
           }}
         >
-          <AnimateButton type="rotate" direction={'right'} offset={10} scale={{ hover: 1, tap: 0.9 }}>
+          <AnimateButton
+            type="rotate"
+            direction={'right'}
+            offset={10}
+            scale={{ hover: 1, tap: 0.9 }}
+          >
             <IconButton color="inherit" size="large" disableRipple>
               <IconSettings />
             </IconButton>
@@ -118,14 +135,21 @@ const Customization = () => {
               {/* font family */}
               <SubCard title="Font Family" content={false}>
                 <FormControl>
-                  <RadioGroup aria-label="font-family" value={fontFamily} onChange={(e) => setFontFamily(e.target.value)} name="row-radio-buttons-group">
+                  <RadioGroup
+                    aria-label="font-family"
+                    value={fontFamily}
+                    onChange={(e) => setFontFamily(e.target.value)}
+                    name="row-radio-buttons-group"
+                  >
                     <FormControlLabel
                       value="Roboto"
                       control={<Radio />}
                       label="Roboto"
                       sx={{
                         '& .MuiSvgIcon-root': { fontSize: 28 },
-                        '& .MuiFormControlLabel-label': { color: theme.palette.grey[900] },
+                        '& .MuiFormControlLabel-label': {
+                          color: theme.palette.grey[900],
+                        },
                       }}
                     />
                     <FormControlLabel
@@ -134,7 +158,9 @@ const Customization = () => {
                       label="Poppins"
                       sx={{
                         '& .MuiSvgIcon-root': { fontSize: 28 },
-                        '& .MuiFormControlLabel-label': { color: theme.palette.grey[900] },
+                        '& .MuiFormControlLabel-label': {
+                          color: theme.palette.grey[900],
+                        },
                       }}
                     />
                     <FormControlLabel
@@ -143,7 +169,9 @@ const Customization = () => {
                       label="Inter"
                       sx={{
                         '& .MuiSvgIcon-root': { fontSize: 28 },
-                        '& .MuiFormControlLabel-label': { color: theme.palette.grey[900] },
+                        '& .MuiFormControlLabel-label': {
+                          color: theme.palette.grey[900],
+                        },
                       }}
                     />
                   </RadioGroup>
@@ -153,7 +181,14 @@ const Customization = () => {
             <Grid item xs={12}>
               {/* border radius */}
               <SubCard title="Border Radius" content={false}>
-                <Grid item xs={12} container spacing={2} alignItems="center" sx={{ mt: 2.5 }}>
+                <Grid
+                  item
+                  xs={12}
+                  container
+                  spacing={2}
+                  alignItems="center"
+                  sx={{ mt: 2.5 }}
+                >
                   <Grid item>
                     <Typography variant="h6" color="secondary">
                       4px
