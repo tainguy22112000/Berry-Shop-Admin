@@ -7,9 +7,9 @@ import Avatar from '../extended/Avatar';
 
 // ==============================|| CARD SECONDARY ACTION ||============================== //
 type Props = {
-  icon?: JSX.Element,
-  link?: string,
-  title?: string,
+  icon?: JSX.Element;
+  link?: string;
+  title?: string;
 }
 
 const CardSecondaryAction = ({ title, link, icon }: Props) => {

@@ -1,4 +1,4 @@
-import *  as React from 'react';
+import * as React from 'react';
 import {
   Avatar,
   Box,
@@ -22,17 +22,12 @@ import {
 } from '@mui/material';
 // material-ui
 import { useTheme } from '@mui/material/styles';
-// assets
 import { IconLogout, IconSearch, IconSettings, IconUser } from '@tabler/icons';
 // import User1 from 'assets/images/users/user-round.svg';
 import { useEffect, useRef, useState } from 'react';
-// third-party
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-// // project imports
-// import MainCard from '@/ui-component/cards/MainCard';
-// import Transitions from '@/ui-component/extended/Transitions';
 
 import MainCard from '../../../../ui-component/cards/MainCard';
 import Transitions from '../../../../ui-component/extended/Transitions';
@@ -125,7 +120,13 @@ const ProfileSection = () => {
             color="inherit"
           />
         }
-        label={<IconSettings stroke={1.5} size="1.5rem" color={theme.palette.primary.main} />}
+        label={
+          <IconSettings
+            stroke={1.5}
+            size="1.5rem"
+            color={theme.palette.primary.main}
+          />
+        }
         variant="outlined"
         ref={anchorRef}
         aria-controls={open ? 'menu-list-grow' : undefined}
@@ -155,12 +156,22 @@ const ProfileSection = () => {
           <Transitions in={open} {...TransitionProps}>
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
-                <MainCard border={false} elevation={16} content={false} boxShadow shadow={theme.shadows[16]}>
+                <MainCard
+                  border={false}
+                  elevation={16}
+                  content={false}
+                  boxShadow
+                  shadow={theme.shadows[16]}
+                >
                   <Box sx={{ p: 2 }}>
                     <Stack>
                       <Stack direction="row" spacing={0.5} alignItems="center">
                         <Typography variant="h4">Good Morning,</Typography>
-                        <Typography component="span" variant="h4" sx={{ fontWeight: 400 }}>
+                        <Typography
+                          component="span"
+                          variant="h4"
+                          sx={{ fontWeight: 400 }}
+                        >
                           Johne Doe
                         </Typography>
                       </Stack>
@@ -174,7 +185,11 @@ const ProfileSection = () => {
                       placeholder="Search profile options"
                       startAdornment={
                         <InputAdornment position="start">
-                          <IconSearch stroke={1.5} size="1rem" color={theme.palette.grey[500]} />
+                          <IconSearch
+                            stroke={1.5}
+                            size="1rem"
+                            color={theme.palette.grey[500]}
+                          />
                         </InputAdornment>
                       }
                       aria-describedby="search-helper-text"
@@ -184,7 +199,13 @@ const ProfileSection = () => {
                     />
                     <Divider />
                   </Box>
-                  <PerfectScrollbar style={{ height: '100%', maxHeight: 'calc(100vh - 250px)', overflowX: 'hidden' }}>
+                  <PerfectScrollbar
+                    style={{
+                      height: '100%',
+                      maxHeight: 'calc(100vh - 250px)',
+                      overflowX: 'hidden',
+                    }}
+                  >
                     <Box sx={{ p: 2 }}>
                       <UpgradePlanCard />
                       <Divider />
@@ -197,22 +218,49 @@ const ProfileSection = () => {
                         <CardContent>
                           <Grid container spacing={3} direction="column">
                             <Grid item>
-                              <Grid item container alignItems="center" justifyContent="space-between">
+                              <Grid
+                                item
+                                container
+                                alignItems="center"
+                                justifyContent="space-between"
+                              >
                                 <Grid item>
-                                  <Typography variant="subtitle1">Start DND Mode</Typography>
+                                  <Typography variant="subtitle1">
+                                    Start DND Mode
+                                  </Typography>
                                 </Grid>
                                 <Grid item>
-                                  <Switch color="primary" checked={sdm} onChange={(e) => setSdm(e.target.checked)} name="sdm" size="small" />
+                                  <Switch
+                                    color="primary"
+                                    checked={sdm}
+                                    onChange={(e) => setSdm(e.target.checked)}
+                                    name="sdm"
+                                    size="small"
+                                  />
                                 </Grid>
                               </Grid>
                             </Grid>
                             <Grid item>
-                              <Grid item container alignItems="center" justifyContent="space-between">
+                              <Grid
+                                item
+                                container
+                                alignItems="center"
+                                justifyContent="space-between"
+                              >
                                 <Grid item>
-                                  <Typography variant="subtitle1">Allow Notifications</Typography>
+                                  <Typography variant="subtitle1">
+                                    Allow Notifications
+                                  </Typography>
                                 </Grid>
                                 <Grid item>
-                                  <Switch checked={notification} onChange={(e) => setNotification(e.target.checked)} name="sdm" size="small" />
+                                  <Switch
+                                    checked={notification}
+                                    onChange={(e) =>
+                                      setNotification(e.target.checked)
+                                    }
+                                    name="sdm"
+                                    size="small"
+                                  />
                                 </Grid>
                               </Grid>
                             </Grid>
@@ -237,28 +285,56 @@ const ProfileSection = () => {
                         }}
                       >
                         <ListItemButton
-                          sx={{ borderRadius: `${customization.borderRadius}px` }}
+                          sx={{
+                            borderRadius: `${customization.borderRadius}px`,
+                          }}
                           selected={selectedIndex === 0}
-                          onClick={(event) => handleListItemClick(event, 0, '/user/account-profile/profile1')}
+                          onClick={(event) =>
+                            handleListItemClick(
+                              event,
+                              0,
+                              '/user/account-profile/profile1',
+                            )
+                          }
                         >
                           <ListItemIcon>
                             <IconSettings stroke={1.5} size="1.3rem" />
                           </ListItemIcon>
-                          <ListItemText primary={<Typography variant="body2">Account Settings</Typography>} />
+                          <ListItemText
+                            primary={
+                              <Typography variant="body2">
+                                Account Settings
+                              </Typography>
+                            }
+                          />
                         </ListItemButton>
                         <ListItemButton
-                          sx={{ borderRadius: `${customization.borderRadius}px` }}
+                          sx={{
+                            borderRadius: `${customization.borderRadius}px`,
+                          }}
                           selected={selectedIndex === 1}
-                          onClick={(event) => handleListItemClick(event, 1, '/user/social-profile/posts')}
+                          onClick={(event) =>
+                            handleListItemClick(
+                              event,
+                              1,
+                              '/user/social-profile/posts',
+                            )
+                          }
                         >
                           <ListItemIcon>
                             <IconUser stroke={1.5} size="1.3rem" />
                           </ListItemIcon>
                           <ListItemText
                             primary={
-                              <Grid container spacing={1} justifyContent="space-between">
+                              <Grid
+                                container
+                                spacing={1}
+                                justifyContent="space-between"
+                              >
                                 <Grid item>
-                                  <Typography variant="body2">Social Profile</Typography>
+                                  <Typography variant="body2">
+                                    Social Profile
+                                  </Typography>
                                 </Grid>
                                 <Grid item>
                                   <Chip
@@ -274,11 +350,21 @@ const ProfileSection = () => {
                             }
                           />
                         </ListItemButton>
-                        <ListItemButton sx={{ borderRadius: `${customization.borderRadius}px` }} selected={selectedIndex === 4} onClick={handleLogout}>
+                        <ListItemButton
+                          sx={{
+                            borderRadius: `${customization.borderRadius}px`,
+                          }}
+                          selected={selectedIndex === 4}
+                          onClick={handleLogout}
+                        >
                           <ListItemIcon>
                             <IconLogout stroke={1.5} size="1.3rem" />
                           </ListItemIcon>
-                          <ListItemText primary={<Typography variant="body2">Logout</Typography>} />
+                          <ListItemText
+                            primary={
+                              <Typography variant="body2">Logout</Typography>
+                            }
+                          />
                         </ListItemButton>
                       </List>
                     </Box>

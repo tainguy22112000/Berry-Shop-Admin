@@ -8,18 +8,19 @@ const headerSX = {
 };
 
 type Props = {
-  border: Boolean;
-  boxShadow: any;
-  content: boolean;
-  contentClass: string;
-  contentSX: any;
-  darkTitle: any;
-  secondary: any; 
-  shadow: any;
-  sx: any;
-  title: any;
+  border?: Boolean;
+  boxShadow?: any;
+  content?: boolean;
+  contentClass?: string;
+  contentSX?: any;
+  darkTitle?: any;
+  secondary?: any; 
+  shadow?: any;
+  sx?: any;
+  title?: any;
+  elevation?: number;
   children?: any;
-}
+};
 
 type Ref = HTMLElement | any;
 // ==============================|| CUSTOM MAIN CARD ||============================== //

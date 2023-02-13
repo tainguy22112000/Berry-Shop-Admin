@@ -67,10 +67,11 @@ const HeaderAvatarStyle = styled(Avatar, { shouldForwardProp })(
 
 // ==============================|| SEARCH INPUT - MOBILE||============================== //
 type Props = {
-  value: string,
-  setValue(input?: any): void,
-  popupState: any,
+  value: string;
+  setValue(input?: any): void;
+  popupState: any;
 }
+
 const MobileSearch = ({ value, setValue, popupState }: Props) => {
   const theme = useTheme() as any;
 

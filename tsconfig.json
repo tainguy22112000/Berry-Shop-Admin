@@ -1,41 +1,63 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "allowJs": false,
-    "skipLibCheck": true,
-    "esModuleInterop": false,
-    "allowSyntheticDefaultImports": true,
+    "outDir": "./2.0",
+    "target": "esnext",
+    "module": "esnext",
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "ESNext",
-    "moduleResolution": "Node",
+    "allowJs": true,
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react", 
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "strictFunctionTypes": false,
+    "forceConsistentCasingInFileNames": false,
+    "typeRoots": [
+      "src/@types",
+      "node_modules/@types",
+    ],
+    "jsx": "react",
+    "types": [
+      "node",
+      "webpack-env",
+      "mocha",
+      "chai",
+      "jest"
+    ],
     "paths": {
-      "routes/*": ["./src/routes/*"],
-      "components/*": ["./src/components/*"],
-      "hooks/*": ["./src/hooks/*"],
-      "context/*": ["./src/context/*"],
-      "interface/*": ["./src/interface/*"],
-      "utils/*": ["./src/utils/*"],
-      "pages/*": ["./src/pages/*"],
-      "constants/*": ["./src/constants/*"],
-      "public/*": ["./src/assets/*"],
-      "photo/*": ["./src/assets/photo/*"],
-      "video/*": ["./src/assets/video/*"],
-      "music/*": ["./src/assets/music/*"],
-      "svg/*": ["./src/assets/svg/*"],
-      "api/*": ["./src/api/*"]
-    }
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "lib": [
+      "esnext",
+      "dom",
+      "dom.iterable",
+      "scripthost"
+    ]
   },
-  "include": ["src", "global.d.ts"],
-  // "references": [
-  //   {
-  //     "path": "./tsconfig.node.json"
-  //   }
-  // ]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.js",
+    "src/**/*.tsx",
+    "src/**/*.yaml",
+    "src/**/*.json",
+    // "tests/**/*.ts",
+    // "tests/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "./node_modules",
+    "./node_modules/*",
+  ],
+  "typeRoots": [
+    "../node_modules/@types",
+    "../@types"
+  ]
 }
+
+

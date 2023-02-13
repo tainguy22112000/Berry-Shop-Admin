@@ -4,12 +4,12 @@ import { useTheme } from '@mui/material/styles';
 
 // ==============================|| AVATAR ||============================== //
 type Props = {
-  component?: any,
+  component?: any;
   children?: any;
-	href?: string,
+	href?: string;
   className?: string;
-	target?: string,
-	alt?: string,
+	target?: string;
+	alt?: string;
   color: string;
   outline?: boolean;
   size?: string;

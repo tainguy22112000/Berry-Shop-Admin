@@ -6,7 +6,7 @@ const { div: MotionDiv } = motion;
 // ==============================|| ANIMATION FOR CONTENT ||============================== //
 
 type Props = {
-  children?: JSX.Element | any,
+  children?: JSX.Element | any;
 }
 
 const NavMotion = ({ children }: Props) => {

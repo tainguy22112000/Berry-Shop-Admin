@@ -12,7 +12,6 @@ export const initialState = {
 };
 
 // ==============================|| CUSTOMIZATION REDUCER ||============================== //
-
 const customizationReducer = (
   state = initialState,
   action: Record<string, any>,
