@@ -1,10 +1,11 @@
-import React from 'react';
 import { Box } from '@mui/material';
+import React from 'react';
+
 import MainCard from '../../../ui-component/cards/MainCard';
 
 // ==============================|| AUTHENTICATION CARD WRAPPER ||============================== //
 type Props = {
-  children?: JSX.Element | React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const AuthCardWrapper = ({ children, ...other }: Props) => (

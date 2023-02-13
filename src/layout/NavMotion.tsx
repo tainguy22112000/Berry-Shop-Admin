@@ -1,12 +1,12 @@
-import React from 'react';
 import { motion } from 'framer-motion';
+import React from 'react';
 
 const { div: MotionDiv } = motion;
 
 // ==============================|| ANIMATION FOR CONTENT ||============================== //
 
 type Props = {
-  children?: JSX.Element | any;
+  children?: any;
 }
 
 const NavMotion = ({ children }: Props) => {

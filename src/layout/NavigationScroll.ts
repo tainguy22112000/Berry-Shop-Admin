@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 // ==============================|| NAVIGATION SCROLL TO TOP ||============================== //
 type Props = {
-  children?: JSX.Element;
+  children?: any;
 };
 
 const NavigationScroll = ({ children }: Props) => {

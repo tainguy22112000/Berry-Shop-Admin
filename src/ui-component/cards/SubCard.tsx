@@ -1,17 +1,17 @@
-import React, { forwardRef } from 'react';
 import { Card, CardContent, CardHeader, Divider, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import React, { forwardRef } from 'react';
 
 // ==============================|| CUSTOM SUB CARD ||============================== //
 type Props = {
-  children?: JSX.Element;
+  children?: any;
   content?: boolean;
   contentClass?: string;
   darkTitle?: boolean;
-  secondary?: (JSX.Element | string | Record<any, string>) & React.ReactNode;
+  secondary?: (Record<any, string>) & React.ReactNode;
   sx?: Record<any, string>;
   contentSX?: Record<any, string>;
-  title?: JSX.Element | string | Record<any, string> | React.ReactNode | any;
+  title?: any | string | Record<any, string> | React.ReactNode | any;
 } & typeof defaultProps;
 
 const defaultProps = {
