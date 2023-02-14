@@ -7,7 +7,7 @@ import Avatar from '../extended/Avatar';
 
 // ==============================|| CARD SECONDARY ACTION ||============================== //
 type Props = {
-  icon?: JSX.Element;
+  icon?: any;
   link?: string;
   title?: string;
 }

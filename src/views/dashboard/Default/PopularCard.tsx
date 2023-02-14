@@ -1,4 +1,3 @@
-import React from 'react';
 import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined';
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
@@ -15,7 +14,7 @@ import {
   Typography,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { gridSpacing } from '../../../store/constant';
 import MainCard from '../../../ui-component/cards/MainCard';
 import SkeletonPopularCard from '../../../ui-component/cards/Skeleton/PopularCard';

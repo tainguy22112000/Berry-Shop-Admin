@@ -11,5 +11,12 @@ import UserRoutes from './UserRoutes';
 // ==============================|| ROUTING RENDER ||============================== //
 
 export default function ThemeRoutes() {
-  return useRoutes([MainRoutes, AuthenticationRoutes, OrderRoutes, ProductRoutes, UserRoutes, DashboardRoutes]);
+  return useRoutes([
+    MainRoutes,
+    AuthenticationRoutes,
+    OrderRoutes,
+    ProductRoutes,
+    UserRoutes,
+    DashboardRoutes,
+  ]);
 }

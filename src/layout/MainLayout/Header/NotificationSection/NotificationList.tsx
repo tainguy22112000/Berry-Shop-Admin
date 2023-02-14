@@ -204,7 +204,7 @@ const NotificationList = () => {
       <ListItemWrapper>
         <ListItem alignItems="center">
           <ListItemAvatar>
-            {/* <Avatar alt="John Doe" src={User1} /> */}
+            <Avatar alt="John Doe" src={User1} />
           </ListItemAvatar>
           <ListItemText primary={<Typography variant="subtitle1">John Doe</Typography>} />
           <ListItemSecondaryAction>
@@ -254,7 +254,7 @@ const NotificationList = () => {
       <ListItemWrapper>
         <ListItem alignItems="center">
           <ListItemAvatar>
-            {/* <Avatar alt="John Doe" src={User1} /> */}
+            <Avatar alt="John Doe" src={User1} />
           </ListItemAvatar>
           <ListItemText primary={<Typography variant="subtitle1">John Doe</Typography>} />
           <ListItemSecondaryAction>

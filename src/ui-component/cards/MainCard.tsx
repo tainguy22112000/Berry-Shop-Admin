@@ -1,5 +1,11 @@
 import React, { forwardRef } from 'react';
-import { Card, CardContent, CardHeader, Divider, Typography } from '@mui/material';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  Divider,
+  Typography,
+} from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
 // constant
@@ -14,7 +20,7 @@ type Props = {
   contentClass?: string;
   contentSX?: any;
   darkTitle?: any;
-  secondary?: any; 
+  secondary?: any;
   shadow?: any;
   sx?: any;
   title?: any;
@@ -26,7 +32,23 @@ type Ref = HTMLElement | any;
 // ==============================|| CUSTOM MAIN CARD ||============================== //
 
 const MainCard = forwardRef<Ref, Props>(
-  ({ border = true, boxShadow, children, content = true, contentClass = '', contentSX = {}, darkTitle, secondary, shadow, sx = {}, title, ...others }, ref) => {
+  (
+    {
+      border = true,
+      boxShadow,
+      children,
+      content = true,
+      contentClass = '',
+      contentSX = {},
+      darkTitle,
+      secondary,
+      shadow,
+      sx = {},
+      title,
+      ...others
+    },
+    ref,
+  ) => {
     const theme = useTheme();
 
     return (
@@ -38,14 +60,24 @@ const MainCard = forwardRef<Ref, Props>(
           // @ts-ignore
           borderColor: theme.palette.primary[200] + 75,
           ':hover': {
-            boxShadow: boxShadow ? shadow || '0 2px 14px 0 rgb(32 40 45 / 8%)' : 'inherit',
+            boxShadow: boxShadow
+              ? shadow || '0 2px 14px 0 rgb(32 40 45 / 8%)'
+              : 'inherit',
           },
           ...sx,
         }}
       >
         {/* card header and action */}
-        {!darkTitle && title && <CardHeader sx={headerSX} title={title} action={secondary} />}
-        {darkTitle && title && <CardHeader sx={headerSX} title={<Typography variant="h3">{title}</Typography>} action={secondary} />}
+        {!darkTitle && title && (
+          <CardHeader sx={headerSX} title={title} action={secondary} />
+        )}
+        {darkTitle && title && (
+          <CardHeader
+            sx={headerSX}
+            title={<Typography variant="h3">{title}</Typography>}
+            action={secondary}
+          />
+        )}
 
         {/* content & header divider */}
         {title && <Divider />}

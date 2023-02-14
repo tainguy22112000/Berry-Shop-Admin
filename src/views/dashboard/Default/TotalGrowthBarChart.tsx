@@ -9,6 +9,7 @@ import MainCard from '../../../ui-component/cards/MainCard';
 import SkeletonTotalGrowthBarChart from '../../../ui-component/cards/Skeleton/TotalGrowthBarChart';
 import chartData from './chart-data/total-growth-bar-chart';
 
+// eslint-disable-next-line no-redeclare
 const status = [
   {
     value: 'today',
