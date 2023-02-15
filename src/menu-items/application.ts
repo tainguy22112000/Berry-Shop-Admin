@@ -95,7 +95,7 @@ const application = {
           id: USER_PAGE.ProductDetails,
           title: USER_PAGE.ProductDetails,
           type: 'item',
-          url: `${PRODUCTS_PAGE_ROUTER}/${PRODUCTS_PATH.ProductDetails}`,
+          url: `${PRODUCTS_PAGE_ROUTER}/${PRODUCTS_PATH.ProductList}`,
           breadcrumbs: true,
         },
       ],

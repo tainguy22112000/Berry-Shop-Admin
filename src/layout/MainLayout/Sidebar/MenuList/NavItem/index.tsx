@@ -55,8 +55,6 @@ const NavItem = ({ item, level }: Props) => {
   }
 
   let listItemProps = {
-    // eslint-disable-next-line react/display-name
-    // @ts-ignore
     component: forwardRef<any>((props, ref) => (
       <Link ref={ref} {...props} to={item.url} target={itemTarget} />
     )),
