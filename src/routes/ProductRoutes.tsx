@@ -1,10 +1,9 @@
 // project imports
-import React, { lazy, useEffect } from 'react';
+import React, { lazy } from 'react';
 
 import { PRODUCTS_PAGE_ROUTER, PRODUCTS_PATH } from '../constants/routes';
 import MainLayout from '../layout/MainLayout';
 import Loadable from '../ui-component/Loadable';
-import { useSelector } from 'react-redux';
 
 // user page routing
 const ProductDetailsPage = Loadable(lazy(() => import('../views/products/productList')));
@@ -21,7 +20,7 @@ const ProductRoutes = {
       element: <ProductDetailsPage />,
     },
     {
-      path: `${PRODUCTS_PATH.ProductList}/04FSB7rWFlyQTdxphZ5k`,
+      path: `${PRODUCTS_PATH.ProductList}/:id`,
       element: <ProductDetails data={{}}/>
     }
   ],

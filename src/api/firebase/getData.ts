@@ -1,6 +1,7 @@
 
 import { db } from './firebaseConfig';
 import { collection, getDocs } from "firebase/firestore";
+// import ProductDetailsCache from '../../cache/productDetailsCache';
 
 export function get() {
   return new Promise((resolve, reject) => {
