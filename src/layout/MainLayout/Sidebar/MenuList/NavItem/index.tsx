@@ -1,5 +1,4 @@
 // assets
-import React from 'react';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import {
   Avatar,
@@ -12,9 +11,11 @@ import {
 } from '@mui/material';
 // material-ui
 import { useTheme } from '@mui/material/styles';
+import React from 'react';
 import { forwardRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+
 // project imports
 import { MENU_OPEN, SET_MENU } from '../../../../../store/actions';
 // ==============================|| SIDEBAR MENU LIST ITEMS ||============================== //

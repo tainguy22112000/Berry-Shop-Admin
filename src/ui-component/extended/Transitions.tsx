@@ -1,6 +1,5 @@
-import React, { ReactNode } from 'react';
-// material-ui
 import { Box, Collapse, Fade, Grow, Slide, Zoom } from '@mui/material';
+import React, { ReactNode } from 'react';
 import { forwardRef } from 'react';
 
 // ==============================|| TRANSITIONS ||============================== //

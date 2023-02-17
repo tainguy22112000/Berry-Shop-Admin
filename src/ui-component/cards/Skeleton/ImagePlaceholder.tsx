@@ -1,5 +1,5 @@
-import React from 'react';
 import Skeleton from '@mui/material/Skeleton';
+import React from 'react';
 
 // ==============================|| SKELETON IMAGE CARD ||============================== //
 

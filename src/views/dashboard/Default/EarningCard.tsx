@@ -1,4 +1,3 @@
-import React from 'react';
 import ArchiveTwoToneIcon from '@mui/icons-material/ArchiveOutlined';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import FileCopyTwoToneIcon from '@mui/icons-material/FileCopyOutlined';
@@ -7,8 +6,10 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import PictureAsPdfTwoToneIcon from '@mui/icons-material/PictureAsPdfOutlined';
 import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
 import { styled, useTheme } from '@mui/material/styles';
+import React from 'react';
 // import EarningIcon from 'assets/images/icons/earning.svg';
 import { useState } from 'react';
+
 import MainCard from '../../../ui-component/cards/MainCard';
 import SkeletonEarningCard from '../../../ui-component/cards/Skeleton/EarningCard';
 

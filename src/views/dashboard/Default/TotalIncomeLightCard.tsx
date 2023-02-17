@@ -1,4 +1,3 @@
-import React from 'react';
 import StorefrontTwoToneIcon from '@mui/icons-material/StorefrontTwoTone';
 import {
   Avatar,
@@ -10,6 +9,8 @@ import {
   Typography,
 } from '@mui/material';
 import { styled, useTheme } from '@mui/material/styles';
+import React from 'react';
+
 import MainCard from '../../../ui-component/cards/MainCard';
 import TotalIncomeCard from '../../../ui-component/cards/Skeleton/TotalIncomeCard';
 

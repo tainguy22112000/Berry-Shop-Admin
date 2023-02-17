@@ -8,7 +8,7 @@ const ConfirmButton = () => {
         direction="row"
         spacing={2}
         justifyContent="center"
-        sx={{ mb: 10, mt: 5 }}
+        sx={{ mb: 10, mt: 5, color: '#fff' }}
       >
         <Button variant="contained" size="large">
           Tạo mã giảm giá

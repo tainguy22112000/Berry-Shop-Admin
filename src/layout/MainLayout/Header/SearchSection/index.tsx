@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Avatar,
   Box,
@@ -16,7 +15,9 @@ import { shouldForwardProp } from '@mui/system';
 import { IconAdjustmentsHorizontal, IconSearch, IconX } from '@tabler/icons';
 // third-party
 import PopupState, { bindPopper, bindToggle } from 'material-ui-popup-state';
+import React from 'react';
 import { useState } from 'react';
+
 // project imports
 import Transitions from '../../../../ui-component/extended/Transitions';
 
@@ -70,7 +71,7 @@ type Props = {
   value: string;
   setValue(input?: any): void;
   popupState: any;
-}
+};
 
 const MobileSearch = ({ value, setValue, popupState }: Props) => {
   const theme = useTheme() as any;

@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import {
@@ -18,17 +17,16 @@ import {
   Typography,
   useMediaQuery,
 } from '@mui/material';
-// material-ui
 import { useTheme } from '@mui/material/styles';
-// import Google from 'assets/images/icons/social-google.svg';
 import { Formik } from 'formik';
-import useScriptRef from '../../../../hooks/useScriptRef';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import * as Yup from 'yup';
+
+import useScriptRef from '../../../../hooks/useScriptRef';
 import AnimateButton from '../../../../ui-component/extended/AnimateButton';
 import { strengthColor, strengthIndicator } from '../../../../utils/password-strength';
-// third party
-import * as Yup from 'yup';
 
 // ===========================|| FIREBASE - REGISTER ||=========================== //
 

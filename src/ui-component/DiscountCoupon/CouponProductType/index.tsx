@@ -19,7 +19,7 @@ const CouponProductType = () => {
             <Typography variant="subtitle1" component="h2">
               Loại sản phẩm
             </Typography>
-            <FormControl size="medium" fullWidth>
+            <FormControl size="small" fullWidth>
               <InputLabel id="demo-select-small">Chọn</InputLabel>
               <Select
                 labelId="demo-select-small"
@@ -45,7 +45,7 @@ const CouponProductType = () => {
             <Typography variant="subtitle1" component="h2">
               Sản phẩm cụ thể
             </Typography>
-            <TextField />
+            <TextField size="small" />
           </Stack>
         </FormControl>
       </Stack>

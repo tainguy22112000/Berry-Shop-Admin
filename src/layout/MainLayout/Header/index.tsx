@@ -1,7 +1,7 @@
-import React from 'react';
 import { Avatar, Box, ButtonBase } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { IconMenu2 } from '@tabler/icons';
+import React from 'react';
 
 import LogoSection from '../LogoSection';
 import NotificationSection from './NotificationSection';

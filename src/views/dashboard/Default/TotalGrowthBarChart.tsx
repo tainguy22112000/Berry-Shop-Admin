@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
 import { Grid, MenuItem, TextField, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import ApexCharts from 'apexcharts';
+import React, { useEffect, useState } from 'react';
 import Chart from 'react-apexcharts';
 import { useSelector } from 'react-redux';
+
 import { gridSpacing } from '../../../store/constant';
 import MainCard from '../../../ui-component/cards/MainCard';
 import SkeletonTotalGrowthBarChart from '../../../ui-component/cards/Skeleton/TotalGrowthBarChart';

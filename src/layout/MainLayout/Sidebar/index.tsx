@@ -1,12 +1,12 @@
-import React from 'react';
 import { Box, Drawer, useMediaQuery } from '@mui/material';
 // material-ui
 import { useTheme } from '@mui/material/styles';
+import React from 'react';
 import { BrowserView, MobileView } from 'react-device-detect';
 // third-party
 import PerfectScrollbar from 'react-perfect-scrollbar';
-import { drawerWidth } from '../../../store/constant';
 
+import { drawerWidth } from '../../../store/constant';
 import LogoSection from '../LogoSection';
 import MenuCard from './MenuCard';
 // project imports

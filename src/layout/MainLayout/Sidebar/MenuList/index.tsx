@@ -1,7 +1,7 @@
-import React from 'react';
 import { Typography } from '@mui/material';
-import menuItems from '../../../../menu-items';
+import React from 'react';
 
+import menuItems from '../../../../menu-items';
 // project imports
 import NavGroup from './NavGroup';
 

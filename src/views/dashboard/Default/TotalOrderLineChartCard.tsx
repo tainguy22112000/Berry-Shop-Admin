@@ -1,13 +1,13 @@
-import React from 'react';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import { Avatar, Box, Button, Grid, Typography } from '@mui/material';
 import { styled, useTheme } from '@mui/material/styles';
+import React from 'react';
 import { useState } from 'react';
 import Chart from 'react-apexcharts';
+
 import MainCard from '../../../ui-component/cards/MainCard';
 import SkeletonTotalOrderCard from '../../../ui-component/cards/Skeleton/EarningCard';
-
 import ChartDataMonth from './chart-data/total-order-month-line-chart';
 import ChartDataYear from './chart-data/total-order-year-line-chart';
 

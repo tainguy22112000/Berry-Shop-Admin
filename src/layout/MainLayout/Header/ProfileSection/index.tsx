@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {
   Avatar,
   Box,
@@ -23,6 +22,7 @@ import {
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import { IconLogout, IconSearch, IconSettings, IconUser } from '@tabler/icons';
+import * as React from 'react';
 // import User1 from 'assets/images/users/user-round.svg';
 import { useEffect, useRef, useState } from 'react';
 import PerfectScrollbar from 'react-perfect-scrollbar';
@@ -32,8 +32,6 @@ import { useNavigate } from 'react-router-dom';
 import MainCard from '../../../../ui-component/cards/MainCard';
 import Transitions from '../../../../ui-component/extended/Transitions';
 import UpgradePlanCard from './UpgradePlanCard';
-
-const User1 = '../../../../assets/images/users/user-round.svg';
 
 // ==============================|| PROFILE MENU ||============================== //
 

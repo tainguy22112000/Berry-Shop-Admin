@@ -1,7 +1,7 @@
-import React from 'react';
 import { Divider, List, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import PropTypes from 'prop-types';
+import React from 'react';
 
 import NavCollapse from '../NavCollapse';
 import NavItem from '../NavItem';

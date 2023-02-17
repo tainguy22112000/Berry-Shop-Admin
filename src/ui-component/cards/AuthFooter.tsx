@@ -1,6 +1,6 @@
-import React from 'react';
 // material-ui
 import { Link, Stack,Typography } from '@mui/material';
+import React from 'react';
 
 // ==============================|| FOOTER - AUTHENTICATION 2 & 3 ||============================== //
 

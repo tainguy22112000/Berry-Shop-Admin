@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import {
@@ -20,12 +18,13 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-// import Google from 'assets/images/icons/social-google.svg';
 import { Formik } from 'formik';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import * as Yup from 'yup';
+
 import useScriptRef from '../../../../hooks/useScriptRef';
 import AnimateButton from '../../../../ui-component/extended/AnimateButton';
-// third party
-import * as Yup from 'yup';
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 

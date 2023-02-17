@@ -1,6 +1,6 @@
-import React from 'react';
 import MuiAvatar from '@mui/material/Avatar';
 import { useTheme } from '@mui/material/styles';
+import React from 'react';
 
 // ==============================|| AVATAR ||============================== //
 type Props = {
