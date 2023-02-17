@@ -52,7 +52,7 @@ export const OrderList = () => {
               onRequestSort={handleRequestSort}
               rowCount={rowOrderData.length}
             />
-            <OrderTableRow {...rowOrderData} />
+            <OrderTableRow rowOrderData={rowOrderData} />
           </Table>
         </TableContainer>
         <OrderTablePagination total={rowOrderData.length} />

@@ -13,7 +13,11 @@ import { IRowUserDataProps, Order } from '@/types';
 import { getSortComparator } from '../../../views/utilities/getSortComparator';
 import { stableSort } from '../../../views/utilities/stableSort';
 
-const UserTableRow = (rowUserData: IRowUserDataProps[]) => {
+interface IUserTableRowProps {
+  rowUserData: IRowUserDataProps[];
+}
+
+const UserTableRow = ({ rowUserData }: IUserTableRowProps) => {
   const [order, setOrder] = useState<Order>('asc');
   const [orderBy, setOrderBy] = useState<keyof IRowUserDataProps>('id');
   const [selected, setSelected] = useState<Array<any>>([]);
@@ -58,7 +62,7 @@ const UserTableRow = (rowUserData: IRowUserDataProps[]) => {
           return (
             <TableRow
               hover
-              onClick={(event) => handleClick(event, row.name)}
+              // onClick={(event) => handleClick(event, row.name)}
               role="checkbox"
               aria-checked={isItemSelected}
               tabIndex={-1}

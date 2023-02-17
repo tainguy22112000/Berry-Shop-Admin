@@ -52,7 +52,7 @@ export const UserTable = () => {
               onRequestSort={handleRequestSort}
               rowCount={rowUserData.length}
             />
-            <UserTableRow {...rowUserData} />
+            <UserTableRow rowUserData={rowUserData} />
           </Table>
         </TableContainer>
         <UserTablePagination total={rowUserData.length} />

@@ -8,7 +8,7 @@ import Loadable from '../ui-component/Loadable';
 
 // user page routing
 const UserProfilePage = Loadable(lazy(() => import('../views/users/userProfile')));
-const UserAccountPage = Loadable(lazy(() => import('../views/users/userProfile')));
+const UserAccountPage = Loadable(lazy(() => import('../views/users/userAccount')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 

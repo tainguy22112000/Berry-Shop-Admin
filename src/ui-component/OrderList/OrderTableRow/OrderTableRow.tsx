@@ -14,7 +14,11 @@ import { IRowOrderDataProps, Order } from '@/types';
 import { getSortComparator } from '../../../views/utilities/getSortComparator';
 import { stableSort } from '../../../views/utilities/stableSort';
 
-const OrderTableRow = (rowOrderData: IRowOrderDataProps[]) => {
+interface IOderTableRow {
+  rowOrderData: IRowOrderDataProps[];
+}
+
+const OrderTableRow = ({ rowOrderData }: IOderTableRow) => {
   const [order, setOrder] = useState<Order>('asc');
   const [orderBy, setOrderBy] = useState<keyof IRowOrderDataProps>('id');
   const [selected, setSelected] = useState<Array<any>>([]);
