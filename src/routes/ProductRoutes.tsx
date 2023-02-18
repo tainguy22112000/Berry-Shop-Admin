@@ -21,7 +21,7 @@ const ProductRoutes = {
     },
     {
       path: `${PRODUCTS_PATH.ProductList}/:id`,
-      element: <ProductDetails data={{}}/>
+      element: <ProductDetails />
     }
   ],
 };
