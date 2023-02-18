@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import {
   AppBar,
   Box,
@@ -8,9 +7,11 @@ import {
 } from '@mui/material';
 import { styled, useTheme } from '@mui/material/styles';
 import { IconChevronRight } from '@tabler/icons';
-import navigation from '../../menu-items';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
+
+import navigation from '../../menu-items';
 import { SET_MENU } from '../../store/actions';
 import { drawerWidth } from '../../store/constant';
 import Breadcrumbs from '../../ui-component/extended/Breadcrumbs';

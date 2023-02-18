@@ -1,5 +1,4 @@
 // material-ui
-import React from 'react';
 import { 
     Card,
     List,
@@ -8,6 +7,7 @@ import {
     ListItemText,
     Skeleton,
 } from '@mui/material';
+import React from 'react';
 
 // ==============================|| SKELETON - TOTAL INCOME DARK/LIGHT CARD ||============================== //
 

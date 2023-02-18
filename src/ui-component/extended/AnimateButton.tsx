@@ -1,5 +1,5 @@
-import React, { forwardRef } from 'react';
 import { motion, useCycle } from 'framer-motion';
+import React, { forwardRef } from 'react';
 
 const { div: MotionDiv } = motion;
 

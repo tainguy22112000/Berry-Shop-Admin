@@ -1,6 +1,6 @@
+import { Box, Card, Grid } from '@mui/material';
 import React from 'react';
 
-import { Box, Card, Grid } from '@mui/material';
 import { gridSpacing } from '../../store/constant';
 import SecondaryAction from '../../ui-component/cards/CardSecondaryAction';
 import MainCard from '../../ui-component/cards/MainCard';

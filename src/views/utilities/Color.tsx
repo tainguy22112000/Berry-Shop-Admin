@@ -1,9 +1,10 @@
 import { Box, Card, Grid, Typography } from '@mui/material';
 import React from 'react';
+
 import { gridSpacing } from '../../store/constant';
+import SecondaryAction from '../../ui-component/cards/CardSecondaryAction';
 import MainCard from '../../ui-component/cards/MainCard';
 import SubCard from '../../ui-component/cards/SubCard';
-import SecondaryAction from '../../ui-component/cards/CardSecondaryAction';
 
 // ===============================|| COLOR BOX ||=============================== //
 type Props = {

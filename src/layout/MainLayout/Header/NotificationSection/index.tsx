@@ -1,4 +1,4 @@
-import React from 'react';
+/* eslint-disable no-redeclare */
 import {
   Avatar,
   Box,
@@ -20,9 +20,11 @@ import {
 import { useTheme } from '@mui/material/styles';
 // assets
 import { IconBell } from '@tabler/icons';
+import React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { Link } from 'react-router-dom';
+
 // project imports
 import MainCard from '../../../../ui-component/cards/MainCard';
 import Transitions from '../../../../ui-component/extended/Transitions';

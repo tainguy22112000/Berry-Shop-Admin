@@ -1,4 +1,3 @@
-import React from 'react';
 import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined';
 import {
   Avatar,
@@ -15,6 +14,7 @@ import {
 } from '@mui/material';
 // material-ui
 import { styled, useTheme } from '@mui/material/styles';
+import React from 'react';
 
 // styles
 const BorderLinearProgress = styled(LinearProgress)(({ theme }: any) => ({

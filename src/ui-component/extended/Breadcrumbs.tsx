@@ -1,17 +1,14 @@
-import React, { useEffect, useState } from 'react';
 import AccountTreeTwoToneIcon from '@mui/icons-material/AccountTreeTwoTone';
 import HomeIcon from '@mui/icons-material/Home';
 import HomeTwoToneIcon from '@mui/icons-material/HomeTwoTone';
-// import SeparatorIcon from '@mui/icons-material/SeparatorIcon';
 import { Box, Card, Divider, Grid, Typography } from '@mui/material';
 import MuiBreadcrumbs from '@mui/material/Breadcrumbs';
-// material-ui
 import { useTheme } from '@mui/material/styles';
-// assets
 import { IconTallymark1 } from '@tabler/icons';
-// project imports
-import config from '../../config';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+
+import config from '../../config';
 import { gridSpacing } from '../../store/constant';
 
 const linkSX = {

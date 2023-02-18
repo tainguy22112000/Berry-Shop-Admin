@@ -1,5 +1,6 @@
-import React from 'react';
 import { CardContent, Grid, Skeleton, Stack } from '@mui/material';
+import React from 'react';
+
 import MainCard from '../MainCard';
 
 // ===========================|| SKELETON TOTAL GROWTH BAR CHART ||=========================== //

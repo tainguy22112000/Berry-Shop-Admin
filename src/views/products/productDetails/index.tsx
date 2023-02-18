@@ -1,7 +1,7 @@
 // import MainCard from "@/ui-component/cards/MainCard";
-import MainCard from '../../../ui-component/cards/MainCard';
+// import MainCard from '../../../ui-component/cards/MainCard';
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import ProductAbouts from '../productAbouts';
 import { ProductAboutsType } from '../productType';
 import { Box, Grid } from '@mui/material';

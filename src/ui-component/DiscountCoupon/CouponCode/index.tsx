@@ -40,7 +40,7 @@ const CouponCode = () => {
               id="outlined-adornment-amount"
               endAdornment={
                 <InputAdornment position="start">
-                  <IconButton aria-label="copy" size="small" color="primary">
+                  <IconButton aria-label="copy" size="small" color="secondary">
                     <IconCopy />
                   </IconButton>
                 </InputAdornment>
@@ -54,7 +54,7 @@ const CouponCode = () => {
           </FormControl>
           <Button
             variant="contained"
-            color="primary"
+            color="secondary"
             disableElevation
             sx={{ marginLeft: '10px', height: 50 }}
             size="large"

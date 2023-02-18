@@ -1,6 +1,6 @@
-import React from 'react';
 import LinearProgress from '@mui/material/LinearProgress';
 import { styled } from '@mui/material/styles';
+import React from 'react';
 
 // styles
 const LoaderWrapper = styled('div')({
