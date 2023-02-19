@@ -1,56 +1,61 @@
 import {
+  Checkbox,
   Divider,
-  FormControl,
   FormControlLabel,
-  InputAdornment,
-  InputLabel,
-  OutlinedInput,
-  Radio,
-  RadioGroup,
+  FormGroup,
   Stack,
   Typography,
 } from '@mui/material';
-import * as React from 'react';
+import React from 'react';
+
+import { PriceOptions } from '../../../constants/enum';
+import { useCouponPrice } from '../../../hooks/useCouponPrice';
+import CouponPriceOptions from './CouponPriceOptions/CouponPriceOptions';
+import { styles } from './index.styles';
+
+const priceContent = [
+  {
+    value: PriceOptions.PERCENTAGE,
+    label: 'Phần trăm',
+    unit: '%',
+  },
+  {
+    value: PriceOptions.CASH,
+    label: 'Tiền mặt',
+    unit: 'VND',
+  },
+];
 
 const CouponPrice = () => {
+  const { option, setOption, freeShip, handleFreeShipClick } = useCouponPrice();
+
   return (
     <Stack spacing={2}>
       <Typography variant="subtitle1" component="h2">
         Giá trị khuyến mãi
       </Typography>
-      <RadioGroup
-        row
-        aria-labelledby="demo-row-radio-buttons-group-label"
-        name="row-radio-buttons-group"
-      >
-        <FormControlLabel
-          value="percent"
-          control={<Radio />}
-          label="Phần trăm"
-        />
-        <FormControlLabel value="male" control={<Radio />} label="Tiền mặt" />
-      </RadioGroup>
-      <Stack direction="row" spacing={2}>
-        <FormControl sx={{ width: '40%' }} size="small">
-          <InputLabel htmlFor="outlined-adornment-amount">Phần trăm</InputLabel>
-          <OutlinedInput
-            id="outlined-adornment-amount"
-            endAdornment={<InputAdornment position="start">%</InputAdornment>}
-            label="percent"
-            value=""
+
+      <Stack spacing={2}>
+        {priceContent.map((items, index) => (
+          <CouponPriceOptions
+            {...items}
+            key={index}
+            options={option}
+            setOption={setOption}
           />
-        </FormControl>
-        <FormControl sx={{ width: '60%' }}>
-          <InputLabel htmlFor="outlined-adornment-amount">Tiền mặt</InputLabel>
-          <OutlinedInput
-            id="outlined-adornment-amount"
-            endAdornment={<InputAdornment position="start">VND</InputAdornment>}
-            label="price"
-            value=""
-          />
-        </FormControl>
+        ))}
       </Stack>
 
+      <FormGroup>
+        <FormControlLabel
+          control={
+            <Checkbox defaultChecked sx={styles.radioColor} value={freeShip} />
+          }
+          label="Miễn phí giao hàng"
+          sx={{ width: 'fit-content' }}
+          onChange={() => handleFreeShipClick}
+        />
+      </FormGroup>
       <Divider />
     </Stack>
   );

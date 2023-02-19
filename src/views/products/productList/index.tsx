@@ -1,4 +1,3 @@
-
 import {
   Paper,
   Table,
@@ -7,22 +6,24 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-} from '@mui/material'
+} from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { ItemType } from '../../../api/firebase/dataType';
-import { addItem,getAllItems } from '../../../api/firebase/handleData';
+import { get } from '../../../api/firebase/getData';
+import { addItem, getAllItems } from '../../../api/firebase/handleData';
+// import MainCard from '../../../ui-component/cards/MainCard';
+import productDetailsCache from '../../../cache/productDetailsCache';
+import { convertDateFireBase } from '../../../helper/date-utils';
 // import data
 import { clone } from '../../../helper/object-utils';
 import { PRODUCT_DETAILS_OPEN } from '../../../store/actions';
 
 // ==============================|| SAMPLE PAGE ||============================== //
 
-type ProductList = {
-
-}
+type ProductList = {};
 
 type ProductDetail = {
   address: string;
@@ -34,7 +35,7 @@ type ProductDetail = {
   productList: ProductList;
   recipientName: string;
   status: boolean;
-}
+};
 
 type PureProductData = {
   id: string | number;
@@ -44,7 +45,7 @@ type PureProductData = {
   phone: string;
   recipientName: string;
   status: boolean;
-}
+};
 
 const getPureData = (data: PureProductData) => {
   const cloneData = clone(data);
@@ -66,24 +67,24 @@ const getPureData = (data: PureProductData) => {
     phone,
     paymentMethods,
     status,
-  }
-}
+  };
+};
 
 const ProductsList = () => {
   const navigate = useNavigate();
-  const [datas, setDatas]= useState<any>([]);
+  const [datas, setDatas] = useState<any>([]);
   const [pureDatas, setPureDatas] = useState<PureProductData[]>([]);
   const dispatch = useDispatch();
 
   const selectProductDetail = (data: Record<string, any>) => {
-    dispatch( {type: PRODUCT_DETAILS_OPEN, data });
+    dispatch({ type: PRODUCT_DETAILS_OPEN, data });
     navigate(`/products/lists/${data.id}`);
   };
 
   useEffect(() => {
     const fetchData = async () => {
       setDatas(await getAllItems(ItemType.ORDERS));
-    }
+    };
     fetchData().catch(console.error);
   }, []);
 
@@ -110,26 +111,27 @@ const ProductsList = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {pureDatas && pureDatas.map((pureData: PureProductData, index: number) => (
-            <TableRow
-              key={index}
-              onClick={() => selectProductDetail(datas[index])}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {pureData.recipientName}
-              </TableCell>
-              <TableCell align="right">{pureData.address}</TableCell>
-              <TableCell align="right">{pureData.phone}</TableCell>
-              <TableCell align="right">{pureData.createdTime}</TableCell>
-              <TableCell align="right">{pureData.status}</TableCell>
-              <TableCell align="right">{pureData.paymentMethods}</TableCell>
-            </TableRow>
-          ))}
+          {pureDatas &&
+            pureDatas.map((pureData: PureProductData, index: number) => (
+              <TableRow
+                key={index}
+                onClick={() => selectProductDetail(datas[index])}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {pureData.recipientName}
+                </TableCell>
+                <TableCell align="right">{pureData.address}</TableCell>
+                <TableCell align="right">{pureData.phone}</TableCell>
+                <TableCell align="right">{pureData.createdTime}</TableCell>
+                <TableCell align="right">{pureData.status}</TableCell>
+                <TableCell align="right">{pureData.paymentMethods}</TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </TableContainer>
   );
-}
+};
 
 export default ProductsList;

@@ -1,14 +1,24 @@
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import ShareIcon from '@mui/icons-material/Share';
+import {} from '@mui/material';
+import Avatar from '@mui/material/Avatar';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
+import Collapse from '@mui/material/Collapse';
+import { red } from '@mui/material/colors';
+import IconButton, { IconButtonProps } from '@mui/material/IconButton';
+import { styled } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import React, { useEffect, useState } from 'react';
 
-import { PropsProductAbout } from '../productType'
-
+import { ProductAboutsType } from '../productType';
+import { PropsProductAbout } from '../productType';
 
 const ProductAbouts = (props: PropsProductAbout) => {
   const [aboutData, setAboutData] = useState(props.data);
