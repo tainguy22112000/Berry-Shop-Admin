@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { ItemType } from '../../../api/firebase/dataType';
 import { getEachItem } from '../../../api/firebase/handleData';
 import { clone } from '../../../helper/object-utils';
 import { PRODUCT_DETAILS_OPEN } from '../../../store/actions';
@@ -12,6 +13,7 @@ import ButtonUpdateProduct from '../buttonUpdateProduct';
 import ProductAbouts from '../productAbouts';
 import ProductOverview from '../productOverviews';
 import { ProductAboutsType } from '../productType';
+
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -40,7 +42,7 @@ const ProductDetails = () => {
     const fetchData = async () => {
       if (Object.keys(selector.productDetails).length === 0) {
         // @ts-ignore
-        const data = (await getEachItem(productId)) as ProductAboutsType;
+        const data = (await getEachItem(ItemType.ORDERS, productId)) as ProductAboutsType;
         setProductDetail(data);
         dispatch({ type: PRODUCT_DETAILS_OPEN, data });
         return;

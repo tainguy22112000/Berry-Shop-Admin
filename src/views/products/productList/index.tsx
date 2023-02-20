@@ -12,10 +12,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import { ItemType } from '../../../api/firebase/dataType';
 import { addItem,getAllItems } from '../../../api/firebase/handleData';
-// import MainCard from '../../../ui-component/cards/MainCard';
-import productDetailsCache from '../../../cache/productDetailsCache';
-import { convertDateFireBase } from '../../../helper/date-utils';
 // import data
 import { clone } from '../../../helper/object-utils';
 import { PRODUCT_DETAILS_OPEN } from '../../../store/actions';
@@ -84,7 +82,7 @@ const ProductsList = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setDatas(await getAllItems());
+      setDatas(await getAllItems(ItemType.ORDERS));
     }
     fetchData().catch(console.error);
   }, []);

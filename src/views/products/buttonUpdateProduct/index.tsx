@@ -2,14 +2,15 @@ import SaveIcon from '@mui/icons-material/Save';
 import { LoadingButton } from '@mui/lab';
 import React, { useState } from 'react';
 
-import { addItem,updateItem } from '../../../api/firebase/handleData';
+import { ItemType } from '../../../api/firebase/dataType';
+import { addItem, updateItem } from '../../../api/firebase/handleData';
 // import { updateData } from '../../../api/firebase/staticData';
 const ButtonUpdateProduct = (props: any) => {
   const [loading, setLoading] = useState(false);
   function handleClick() {
     // console.log(data, 'data');
     setLoading(true);
-    updateItem(props.data, props.id);
+    updateItem(ItemType.ORDERS, props.data, props.id);
     setLoading(false);
   }
   return (

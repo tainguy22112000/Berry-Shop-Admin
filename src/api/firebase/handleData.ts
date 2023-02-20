@@ -1,15 +1,17 @@
-import { db } from './firebaseConfig';
 import {
   addDoc,
   collection,
-  getDocs,
-  getDoc,
   doc,
+  getDoc,
+  getDocs,
   updateDoc,
 } from 'firebase/firestore';
 
-export function addItem(data: any) {
-  const docRef = collection(db, 'orders');
+import { ItemType } from './dataType';
+import { db } from './firebaseConfig';
+
+export function addItem(itemType: ItemType, data: any) {
+  const docRef = collection(db, itemType);
   addDoc(docRef, data)
     .then((docRef) => {
       console.log('Product has been added successfully');
@@ -19,12 +21,12 @@ export function addItem(data: any) {
     });
 }
 
-export function deleteItem(id: any) {
+export function deleteItem(itemType: ItemType, id: any) {
   console.log('deleteItem');
 }
 
-export function updateItem(data: any, id: string) {
-  const docRef = doc(db, 'orders', id);
+export function updateItem(itemType: ItemType, data: any, id: string) {
+  const docRef = doc(db, itemType, id);
   updateDoc(docRef, { ...data })
     .then((_) => {
       console.log('Product has been updated successfully');
@@ -34,10 +36,10 @@ export function updateItem(data: any, id: string) {
     });
 }
 
-export async function getAllItems() {
+export async function getAllItems(itemType: ItemType) {
   const datas: any = [];
   try {
-    const querySnapshot = await getDocs(collection(db, 'orders'));
+    const querySnapshot = await getDocs(collection(db, itemType));
     querySnapshot.forEach((doc) => {
       const dataObject = {
         id: doc.id,
@@ -51,9 +53,9 @@ export async function getAllItems() {
   }
 }
 
-export async function getEachItem(id: string) {
+export async function getEachItem(itemType: ItemType, id: string) {
   try {
-    const docRef = doc(db, 'orders', id);
+    const docRef = doc(db, itemType, id);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       return docSnap.data();
