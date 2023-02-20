@@ -1,87 +1,121 @@
-import React, { useEffect, useState } from 'react';
-import { ProductAboutsType } from '../productType';
-import { styled } from '@mui/material/styles';
+// import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
-import Avatar from '@mui/material/Avatar';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
+import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import {} from '@mui/material';
+import React, { useEffect, useState } from 'react';
 
-// const ProductAbouts = ({
-//   descriptions1,
-//   label,
-//   photo,
-//   title,
-//   photoPosition,
-//   qoue,
-// }: ProductAboutsType) => {
-//   return (
-//     <>
-//       {/* <div>{ JSON.stringify(data)}</div> */}
-//       <div>{descriptions1}</div>
-//       <div>{label}</div>
-//       <div>{photo}</div>
-//       <div>{title}</div>
-//       <div>{photoPosition}</div>
-//       <div>{JSON.stringify(qoue)}</div>
-//     </>
-//   );
-// };
-
-// const ExpandMore = styled((props: any) => {
-//   const { expand, ...other } = props;
-//   return <IconButton {...other} />;
-// })(({ theme, expand }) => ({
-//   transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-//   marginLeft: 'auto',
-//   transition: theme.transitions.create('transform', {
-//     duration: theme.transitions.duration.shortest,
-//   }),
-// }));
+import { PropsProductAbout } from '../productType'
 
 
-const ProductAbouts = (props: any) => {
+const ProductAbouts = (props: PropsProductAbout) => {
+  const [aboutData, setAboutData] = useState(props.data);
   const [photo, setPhoto] = useState('');
   const [title, setTitle] = useState('');
   const [label, setLabel] = useState('');
   const [description, setDescription] = useState('');
+  const [isDescriptionFocused, setIsDescriptionFocused] = useState(false);
+  const [isLabelFocused, setIsLabelFocused] = useState(false);
+
+  const focusDescription = () => {
+    setIsDescriptionFocused(true);
+  };
+
+  const focusLabel = () => {
+    setIsLabelFocused(true);
+  };
+
+  const updateSetDescription = (description1: string) => {
+    setDescription(description1);
+    setAboutData({
+      ...aboutData,
+      description1,
+    });
+  };
+
+  const updateSetLabel = (label: string) => {
+    setLabel(label);
+    setAboutData({
+      ...aboutData,
+      label,
+    });
+  };
+
+  const updateProductAbouts = () => {
+    setIsDescriptionFocused(false);
+    setIsLabelFocused(false);
+    props.updateProductAbouts({ data: aboutData, index: props.index });
+  };
+
+  const DescriptionProduct = () => {
+    return isDescriptionFocused ? (
+      <TextField
+        sx={{ height: 100, color: 'red' }}
+        fullWidth
+        autoFocus
+        value={description}
+        onChange={(event) => updateSetDescription(event.target.value)}
+        onBlur={() => updateProductAbouts()}
+      />
+    ) : (
+      <Typography
+        variant="body2"
+        color="text.secondary"
+        onClick={() => {
+          focusDescription();
+        }}
+      >
+        {description}
+      </Typography>
+    );
+  };
+
+  const LabelProduct = () => {
+    return isLabelFocused ? (
+      <TextField
+        sx={{ height: 100, color: 'red' }}
+        fullWidth
+        autoFocus
+        value={label}
+        onChange={(event) => updateSetLabel(event.target.value)}
+        onBlur={() => updateProductAbouts()}
+      />
+    ) : (
+      <CardHeader
+        title={label}
+        onClick={() => {
+          focusLabel();
+        }}
+      />
+    );
+  };
+
+  // const StyledDescriptionProduct = styled(DescriptionProduct)({
+  //   height: '100%',
+  //   borderColor: 'red',
+  //   border: 'thick double #32a1ce',
+  //   color: 'red',
+  // });
+
   useEffect(() => {
-    console.log(props, 'props');
     props.data?.photo && setPhoto(props.data?.photo);
     props.data?.description1 && setDescription(props.data?.description1);
     props.data?.label && setLabel(props.data?.label);
     props.data?.title && setTitle(props.data?.title);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <Card sx={{ maxWidth: 345 }}>
-    <CardHeader
-      title={label}
-    />
-    <CardMedia
-      component="img"
-      height="194"
-      image={photo}
-      alt={title}
-    />
-    <CardContent>
-      <Typography variant="body2" color="text.secondary">
-        {description}
-      </Typography>
-    </CardContent>
-    <CardActions disableSpacing>
-    </CardActions>
-  </Card>
+      <LabelProduct />
+      <CardMedia component="img" height="194" image={photo} alt={title} />
+      <CardContent>
+        <DescriptionProduct />
+      </CardContent>
+      <CardActions disableSpacing></CardActions>
+    </Card>
   );
 };
 

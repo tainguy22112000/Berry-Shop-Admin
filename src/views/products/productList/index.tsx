@@ -1,22 +1,24 @@
 
 import {
+  Paper,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
-  Paper,
 } from '@mui/material'
 import React, { useEffect, useState } from 'react';
-import { get } from '../../../api/firebase/getData';
-import { clone } from '../../../helper/object-utils';
-import { convertDateFireBase } from '../../../helper/date-utils';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+import { addItem,getAllItems } from '../../../api/firebase/handleData';
 // import MainCard from '../../../ui-component/cards/MainCard';
 import productDetailsCache from '../../../cache/productDetailsCache';
-import { useDispatch } from 'react-redux';
+import { convertDateFireBase } from '../../../helper/date-utils';
+// import data
+import { clone } from '../../../helper/object-utils';
 import { PRODUCT_DETAILS_OPEN } from '../../../store/actions';
-import { useNavigate } from 'react-router-dom';
 
 // ==============================|| SAMPLE PAGE ||============================== //
 
@@ -62,7 +64,7 @@ const getPureData = (data: PureProductData) => {
     id,
     recipientName,
     address,
-    createdTime: convertDateFireBase(createOn),
+    // createdTime: convertDateFireBase(createOn),
     phone,
     paymentMethods,
     status,
@@ -82,20 +84,18 @@ const ProductsList = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setDatas(await get());
+      setDatas(await getAllItems());
     }
     fetchData().catch(console.error);
   }, []);
 
   useEffect(() => {
-    setTimeout(() => {
-      const arrayData: any = [];
-      datas.forEach((data: any) => {
-        arrayData.push(getPureData(data));
-        productDetailsCache.set(data.id, data);
-      });
-      setPureDatas(arrayData);
-    }, 1500);
+    const arrayData: any = [];
+    datas.forEach((data: any) => {
+      arrayData.push(getPureData(data));
+      // productDetailsCache.set(data.id, data);
+    });
+    setPureDatas(arrayData);
   }, [datas]);
 
   return (

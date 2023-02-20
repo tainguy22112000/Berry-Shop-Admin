@@ -7,11 +7,12 @@ import PictureAsPdfTwoToneIcon from '@mui/icons-material/PictureAsPdfOutlined';
 import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
 import { styled, useTheme } from '@mui/material/styles';
 import React from 'react';
-// import EarningIcon from 'assets/images/icons/earning.svg';
+// import EarningIcon from '../../../../assets/images/icons/earning.svg';
 import { useState } from 'react';
 
 import MainCard from '../../../ui-component/cards/MainCard';
 import SkeletonEarningCard from '../../../ui-component/cards/Skeleton/EarningCard';
+const EarningIcon = '../../../assets/images/icons/earning.svg';
 
 const CardWrapper = styled(MainCard)(({ theme }) => ({
   backgroundColor: theme.palette.secondary.dark,
@@ -89,7 +90,7 @@ const EarningCard = ({ isLoading }: Props) => {
                         mt: 1,
                       }}
                     >
-                      {/* <img src={EarningIcon} alt="Notification" /> */}
+                      <img src={EarningIcon} alt="Notification" />
                     </Avatar>
                   </Grid>
                   <Grid item>
