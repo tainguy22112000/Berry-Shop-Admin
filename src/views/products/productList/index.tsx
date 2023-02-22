@@ -12,7 +12,6 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { ItemType } from '../../../api/firebase/dataType';
-import { get } from '../../../api/firebase/getData';
 import { addItem, getAllItems } from '../../../api/firebase/handleData';
 // import MainCard from '../../../ui-component/cards/MainCard';
 import productDetailsCache from '../../../cache/productDetailsCache';

@@ -1,9 +1,26 @@
 import { Button, Stack } from '@mui/material';
 import * as React from 'react';
+import { useSelector } from 'react-redux';
 
+import { useCouponCode } from '../../../hooks/useCouponCode';
+import { useCouponPrice } from '../../../hooks/useCouponPrice';
 import { styles } from './index.styles';
 
+interface CouponCodeType {
+  couponData: {
+    couponCode: string;
+  };
+}
+
 const ConfirmButton = () => {
+  // const { couponCode } = useCouponCode();
+  const { discountValue } = useCouponPrice();
+  const couponCode = useSelector(
+    (state: CouponCodeType) => state.couponData.couponCode,
+  );
+  console.log(couponCode);
+  console.log(discountValue);
+
   return (
     <Stack spacing={3}>
       <Stack

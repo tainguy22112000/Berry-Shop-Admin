@@ -1,7 +1,8 @@
 interface CouponCodeReducerType {
   type: string;
-  payload: string;
+  payload: string | number;
 }
+
 type CouponReducerType = CouponCodeReducerType;
 
-export type { CouponReducerType };
+export type { CouponCodeReducerType, CouponReducerType };
