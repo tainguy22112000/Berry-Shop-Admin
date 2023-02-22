@@ -1,7 +1,8 @@
 import { Divider, Stack, TextareaAutosize, Typography } from '@mui/material';
-import * as React from 'react';
+import React, { useState } from 'react';
 
 const CouponDescription = () => {
+  const [description, setDescription] = useState<string>('');
   return (
     <Stack spacing={2}>
       <Stack spacing={2}>
@@ -13,6 +14,8 @@ const CouponDescription = () => {
           minRows={5}
           placeholder="Ghi chú"
           style={{ width: '100%', padding: '10px' }}
+          value={description}
+          onChange={(event) => setDescription(event.target.value)}
         />
       </Stack>
       <Divider />
