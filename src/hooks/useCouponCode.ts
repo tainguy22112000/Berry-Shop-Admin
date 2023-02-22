@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { CouponOptions } from '../constants/enum';
+import { SET_COUPON_CODE } from '../store/coupon/couponAction';
 import { generateCoupon } from '../views/utilities/generateCoupon';
 
 export const useCouponCode = () => {
   const [copy, setCopy] = useState<boolean>(false);
   const [couponCode, setCouponCode] = useState<string>('');
+  const dispatch = useDispatch();
   const [couponOptions, setCouponOptions] = useState<string>(
     CouponOptions.TYPING,
   );
@@ -26,13 +29,18 @@ export const useCouponCode = () => {
     if (!activeCouponOptions) {
       setCopy(false);
       const randomCode = generateCoupon(10).toLocaleUpperCase();
-      setCouponCode(randomCode);
+      // setCouponCode(randomCode);
+      dispatch({ type: SET_COUPON_CODE, payload: randomCode });
     }
   };
 
   const handleTypingCoupon = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (activeCouponOptions) {
       setCopy(false);
+      dispatch({
+        type: SET_COUPON_CODE,
+        payload: event.target.value.toLocaleUpperCase(),
+      });
       setCouponCode(event.target.value.toLocaleUpperCase());
     }
   };
