@@ -1,4 +1,3 @@
-// import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -92,13 +91,6 @@ const ProductAbouts = (props: PropsProductAbout) => {
       />
     );
   };
-
-  // const StyledDescriptionProduct = styled(DescriptionProduct)({
-  //   height: '100%',
-  //   borderColor: 'red',
-  //   border: 'thick double #32a1ce',
-  //   color: 'red',
-  // });
 
   useEffect(() => {
     props.data?.photo && setPhoto(props.data?.photo);

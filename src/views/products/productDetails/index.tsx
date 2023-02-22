@@ -7,13 +7,13 @@ import { useParams } from 'react-router-dom';
 
 import { ItemType } from '../../../api/firebase/dataType';
 import { getEachItem } from '../../../api/firebase/handleData';
-import { clone } from '../../../helper/object-utils';
+// import { clone } from '../../../helper/object-utils';
 import { PRODUCT_DETAILS_OPEN } from '../../../store/actions';
+import ButtonCreateProduct from '../buttonCreateProduct';
 import ButtonUpdateProduct from '../buttonUpdateProduct';
 import ProductAbouts from '../productAbouts';
 import ProductOverview from '../productOverviews';
 import { ProductAboutsType } from '../productType';
-
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -41,8 +41,11 @@ const ProductDetails = () => {
   useEffect(() => {
     const fetchData = async () => {
       if (Object.keys(selector.productDetails).length === 0) {
-        // @ts-ignore
-        const data = (await getEachItem(ItemType.ORDERS, productId)) as ProductAboutsType;
+        const data = (await getEachItem(
+          ItemType.ORDERS,
+          // @ts-ignore
+          productId,
+        )) as ProductAboutsType;
         setProductDetail(data);
         dispatch({ type: PRODUCT_DETAILS_OPEN, data });
         return;
@@ -52,13 +55,19 @@ const ProductDetails = () => {
     fetchData();
     setAboutProducts(productDetail?.productList?.productList[0]?.aboutProduct);
     setOverviewProducts(productDetail?.productList?.productList[0]);
+    console.log(productDetail, 'productDetail');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productDetail]);
 
   return (
     <Stack spacing={2}>
-      <Stack spacing={2}>
+      <Stack
+        spacing={2}
+        direction="row"
+        justifyContent="space-between"
+      >
         <ButtonUpdateProduct data={productDetail} id={productId} />
+        <ButtonCreateProduct />
       </Stack>
       <Stack spacing={2}>
         <Box sx={{ flexGrow: 1 }}>
@@ -85,9 +94,6 @@ const ProductDetails = () => {
           </Grid>
         </Box>
       </Stack>
-      {/* <Stack spacing={2}>
-        <div>Hello world</div>
-      </Stack> */}
     </Stack>
   );
 };
