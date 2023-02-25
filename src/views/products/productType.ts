@@ -11,7 +11,7 @@ type ProductOverviewType = {
   moreCombina?: {
     price: number;
     option: string;
-  };
+  }[];
   mlAndPrice?: Record<string, any>;
   totalProductValue?: number;
   mainIngredient?: string;
@@ -30,6 +30,13 @@ type PropsProductAbout = {
 type PropsProductOverview = {
   data: ProductOverviewType;
 };
+
+type MlAndPrice = {[key: string] : {ml: string, price: number}};
+
+type MoreCombina = {
+  options: string;
+  price: number;
+}
 
 export {
   ProductAboutsType,

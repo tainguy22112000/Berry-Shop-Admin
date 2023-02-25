@@ -4,12 +4,13 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
 } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import React from 'react';
+import React, { useState } from 'react';
 
+import { ItemType } from '../../../api/firebase/dataType';
+import { addItem } from '../../../api/firebase/handleData';
 import NewProductForm from '../productForm';
 
 const theme = createTheme({
@@ -33,7 +34,9 @@ const theme = createTheme({
 })
 
 const ButtonCreateProduct = () => {
-  const [open, setOpen] = React.useState(false);
+  const [newProduct, setNewProduct]  = useState();
+  const [open, setOpen] = useState(false);
+
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -43,6 +46,14 @@ const ButtonCreateProduct = () => {
     setOpen(false);
   };
 
+  const handleCreate = () => {
+    addItem(ItemType.ORDERS, newProduct);
+  }
+
+  const createNewProductData = (data: any) => {
+    console.log(data, 'data');
+    setNewProduct({...data});
+  }
   return (
     <div style={{marginTop: 0}}>
       <Button
@@ -57,11 +68,11 @@ const ButtonCreateProduct = () => {
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle>Create New Order</DialogTitle>
           <DialogContent>
-            <NewProductForm />
+            <NewProductForm createNewProductData={createNewProductData}/>
           </DialogContent>
           <DialogActions sx={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
             <Button onClick={handleClose} variant="contained" color="error">Cancel</Button>
-            <Button onClick={handleClose} variant="contained" color="success">Create</Button>
+            <Button onClick={handleCreate} variant="contained" color="success">Create</Button>
           </DialogActions>
         </Dialog>
       </ThemeProvider>

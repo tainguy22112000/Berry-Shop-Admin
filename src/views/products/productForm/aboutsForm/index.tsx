@@ -1,55 +1,85 @@
 import { Add } from '@mui/icons-material';
-import { IconButton, List, ListItem, Stack, TextField, Typography } from '@mui/material';
+import {
+  Checkbox,
+  FormControlLabel,
+  IconButton,
+  List,
+  ListItem,
+  Stack,
+  TextField,
+  Typography,
+} from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import React, { useState } from 'react';
-const AboutForm = () => {
-  const [productLists, setProductLists] = useState<any>([]);
-  const newAboutProduct = {
+
+import AboutChildForm from './aboutChildForm';
+
+const AboutForm = (props: any) => {
+  const initialAboutProduct = {
     description1: '',
     label: '',
-    title: ''
-  }
+    title: '',
+  };
+  const [checked, setChecked] = useState(false);
+  const [productLists, setProductLists] = useState<any>([]);
+
   const addFormProduct = () => {
-    console.log('addFormProduct');
-    setProductLists([...productLists, newAboutProduct]);
+    setProductLists([...productLists, initialAboutProduct]);
   };
 
-  const setFormProduct = () => {
-    console.log('setFormProduct');
-  }
+  const getIndex = (index: number) => {
+    productLists.splice(index, 1);
+    setProductLists([...productLists]);
+  };
 
-  const AboutProductForm = () => {
-    return (
-      <>
-        <TextField >
+  const getEachAboutForm = (data: any, index: number) => {
+    productLists.splice(index, 1, data);
+    setProductLists([...productLists]);
+    props.createAboutProduct([...productLists]);
+  };
 
-        </TextField>
-      </>
-    )
-  }
+  const toggleToConfirm = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { checked } = event.target;
+    setChecked(checked);
+    if (checked) {
+      console.log('confirm about product');
+    }
+  };
+
   return (
-    <div>
-      <Stack spacing={2} direction="column" justifyContent="center">
-        <Stack spacing={2} direction="row" justifyContent="flex-start">
-          <Typography variant="h6">About List</Typography>
-          <IconButton
-            color="primary"
-            aria-label="Add Product List"
-            size="small"
-            onClick={addFormProduct}
-          >
-            <Add />
-          </IconButton>
-        </Stack>
-        <Stack>
-          <List></List>
-          {productLists.length > 0 && productLists.map((form: any, index: number) => (
-            <ListItem key={index}>
-              List
-            </ListItem>
-          ))}
+    <Stack spacing={2} direction="column" justifyContent="center">
+      <Stack spacing={2} direction="row" justifyContent="flex-start">
+        <Typography variant="h6">About List</Typography>
+        <IconButton
+          color="primary"
+          aria-label="Add Product List"
+          size="small"
+          onClick={addFormProduct}
+        >
+          <Add />
+        </IconButton>
+        <FormControlLabel
+          label="Confirm"
+          control={<Checkbox checked={checked} onChange={toggleToConfirm} />}
+        />
+      </Stack>
+      <Stack>
+        <Stack sx={{ marginTop: '8px !important' }}>
+          <List sx={{ overflowY: 'auto', maxHeight: '200px' }}>
+            {productLists.length > 0 &&
+              productLists.map((form: any, index: number) => (
+                <ListItem key={index}>
+                  <AboutChildForm
+                    index={index}
+                    getIndex={getIndex}
+                    getEachAboutForm={getEachAboutForm}
+                  />
+                </ListItem>
+              ))}
+          </List>
         </Stack>
       </Stack>
-    </div>
+    </Stack>
   );
 };
 
