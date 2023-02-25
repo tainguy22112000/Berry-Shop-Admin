@@ -9,10 +9,16 @@ import {
   RadioGroup,
   Stack,
 } from '@mui/material';
-import React, { Dispatch } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { PriceOptions } from '../../../../constants/enum';
 import { useCouponPrice } from '../../../../hooks/useCouponPrice';
+import {
+  setCouponOptions,
+  setCouponValue,
+} from '../../../../store/coupon/couponAction';
+import { CouponDataTypes } from '../../../../store/coupon/couponType';
 import { styles } from './index.styles';
 
 interface CouponPriceOptionsProps {
@@ -20,7 +26,6 @@ interface CouponPriceOptionsProps {
   label: string;
   unit: string;
   options: string;
-  setOption: Dispatch<React.SetStateAction<string>>;
 }
 
 const CouponPriceOptions = ({
@@ -28,24 +33,22 @@ const CouponPriceOptions = ({
   label,
   unit,
   options,
-  setOption,
 }: CouponPriceOptionsProps) => {
-  const {
-    handleDiscountValue,
-    discountValue,
-    setDiscountValue,
-    error,
-    setError,
-  } = useCouponPrice();
+  const { handleDiscountValue, error, setError } = useCouponPrice();
+  const dispatch = useDispatch();
+  const couponValue = useSelector(
+    ({ couponData }: CouponDataTypes) => couponData.couponValue,
+  );
   const percentageError = value === PriceOptions.PERCENTAGE && error;
 
   const handlePriceOptions = () => {
     setError(false);
-    setDiscountValue(0);
-    setOption(value);
+    dispatch(setCouponValue(0));
+    dispatch(setCouponOptions(value));
   };
 
-  console.log(discountValue);
+  console.log('value', value === options);
+
   return (
     <Stack direction="row" spacing={2} alignItems="center">
       <RadioGroup
@@ -69,7 +72,7 @@ const CouponPriceOptions = ({
             <InputAdornment position="start">{unit}</InputAdornment>
           }
           label={label}
-          value={discountValue}
+          value={value === options ? couponValue : 0}
           disabled={value !== options}
           type="number"
           onChange={handleDiscountValue}

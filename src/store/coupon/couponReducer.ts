@@ -1,22 +1,37 @@
-import {
-  SET_COUPON_CODE,
-  SET_COUPON_END_DATE,
-  SET_COUPON_FREE_SHIPPING,
-  SET_COUPON_OPTIONS,
-  SET_COUPON_QUANTITY,
-  SET_COUPON_START_DATE,
-  SET_COUPON_VALUE,
-} from './couponAction';
-import { CouponReducerType } from './couponType';
+import { PriceOptions } from '../../constants/enum';
+import { CouponReducerType, CouponTypes } from './couponType';
 
 const initialState = {
   couponCode: '',
   couponValue: 0,
-  couponOptions: 'cash',
-  freeShipping: false,
-  couponQuantity: 1,
-  startDate: '',
+  couponOptions: PriceOptions.CASH,
+  couponFreeShipping: false,
+  couponQuantity: 0,
+  couponStartDate: {
+    date: '01-01-2023',
+    time: '00:00:00',
+  },
+  couponEndDate: {
+    date: '01-01-2023',
+    time: '00:00:00',
+  },
+  couponProductType: [],
+  couponProductDetails: '',
+  couponNote: '',
 };
+
+const {
+  SET_COUPON_CODE,
+  SET_COUPON_FREE_SHIPPING,
+  SET_COUPON_OPTIONS,
+  SET_COUPON_QUANTITY,
+  SET_COUPON_START_DATE,
+  SET_COUPON_END_DATE,
+  SET_COUPON_VALUE,
+  SET_COUPON_PRODUCT_TYPE,
+  SET_COUPON_PRODUCT_DETAILS,
+  SET_COUPON_NOTE,
+} = CouponTypes;
 
 const couponReducer = (
   state = initialState,
@@ -41,7 +56,7 @@ const couponReducer = (
     case SET_COUPON_FREE_SHIPPING:
       return {
         ...state,
-        freeShipping: payload,
+        couponFreeShipping: payload,
       };
     case SET_COUPON_QUANTITY:
       return {
@@ -51,7 +66,27 @@ const couponReducer = (
     case SET_COUPON_START_DATE:
       return {
         ...state,
-        startDate: payload,
+        couponStartDate: payload,
+      };
+    case SET_COUPON_END_DATE:
+      return {
+        ...state,
+        couponEndDate: payload,
+      };
+    case SET_COUPON_PRODUCT_TYPE:
+      return {
+        ...state,
+        couponProductType: payload,
+      };
+    case SET_COUPON_PRODUCT_DETAILS:
+      return {
+        ...state,
+        couponProductDetails: payload,
+      };
+    case SET_COUPON_NOTE:
+      return {
+        ...state,
+        couponNote: payload,
       };
     default: {
       return {

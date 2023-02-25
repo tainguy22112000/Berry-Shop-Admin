@@ -10,9 +10,16 @@ import {
   Typography,
 } from '@mui/material';
 import { SelectChangeEvent } from '@mui/material/Select';
-import React, { useState } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-const products = ['Tất cả', 'Đồ uống', 'Cà phê', 'Trái cây'];
+import {
+  setCouponProductDetails,
+  setCouponProductType,
+} from '../../../store/coupon/couponAction';
+import { CouponDataTypes, ProductType } from '../../../store/coupon/couponType';
+
+const products = Object.values(ProductType);
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -27,16 +34,29 @@ const MenuProps = {
 };
 
 const CouponProductType = () => {
-  const [productType, setProductType] = useState<string[]>([]);
+  const dispatch = useDispatch();
+  const productType = useSelector(
+    ({ couponData }: CouponDataTypes) => couponData.couponProductType,
+  );
 
-  const handleChange = (event: SelectChangeEvent<typeof productType>) => {
+  const handleChangeProductType = (
+    event: SelectChangeEvent<typeof productType>,
+  ) => {
     const {
       target: { value },
     } = event;
-    setProductType(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value,
+
+    dispatch(
+      setCouponProductType(
+        typeof value === 'string' ? value.split(',') : value,
+      ),
     );
+  };
+
+  const handleChangeProductDetails = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    dispatch(setCouponProductDetails(event.target.value));
   };
   return (
     <Stack spacing={2}>
@@ -53,7 +73,7 @@ const CouponProductType = () => {
                 id="demo-multiple-name"
                 multiple
                 value={productType}
-                onChange={handleChange}
+                onChange={handleChangeProductType}
                 input={<OutlinedInput label="Name" />}
                 MenuProps={MenuProps}
               >
@@ -72,7 +92,7 @@ const CouponProductType = () => {
             <Typography variant="subtitle1" component="h2">
               Sản phẩm cụ thể
             </Typography>
-            <TextField />
+            <TextField onChange={handleChangeProductDetails} />
           </Stack>
         </FormControl>
       </Stack>

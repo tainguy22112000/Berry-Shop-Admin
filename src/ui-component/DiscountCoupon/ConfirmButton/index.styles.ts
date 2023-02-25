@@ -29,4 +29,8 @@ export const styles = {
       opacity: 0.8,
     },
   },
+  alert: {
+    display: 'flex',
+    transition: 'all 2s ease-in-out',
+  },
 };

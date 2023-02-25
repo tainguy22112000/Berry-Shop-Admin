@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { PriceOptions } from '../constants/enum';
+import {
+  setCouponFreeShipping,
+  setCouponValue,
+} from '../store/coupon/couponAction';
 
 export const useCouponPrice = () => {
-  const [freeShip, setFreeShip] = useState(true);
-  const [option, setOption] = useState<string>(PriceOptions.CASH);
-  const [discountValue, setDiscountValue] = useState<number>(0);
+  const dispatch = useDispatch();
+
   const [error, setError] = useState<boolean>(false);
 
   const handleDiscountValue = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,21 +19,16 @@ export const useCouponPrice = () => {
     } else {
       setError(false);
     }
-    setDiscountValue(parseFloat(event.target.value));
+    dispatch(setCouponValue(parseFloat(event.target.value)));
   };
 
   const handleFreeShipClick = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFreeShip(event.target.checked);
+    dispatch(setCouponFreeShipping(event.target.checked));
   };
 
   return {
-    freeShip,
-    option,
-    setOption,
     error,
     setError,
-    discountValue,
-    setDiscountValue,
     handleDiscountValue,
     handleFreeShipClick,
   };

@@ -1,11 +1,63 @@
-export const SET_COUPON_CODE = '@couponData/SET_COUPON_CODE';
-export const SET_COUPON_VALUE = '@couponData/SET_COUPON_VALUE';
-export const SET_COUPON_OPTIONS = '@couponData/SET_COUPON_OPTIONS';
-export const SET_COUPON_FREE_SHIPPING = '@couponData/SET_COUPON_FREE_SHIPPING';
-export const SET_COUPON_QUANTITY = '@couponData/SET_COUPON_QUANTITY';
-export const SET_COUPON_START_DATE = '@couponData/SET_COUPON_START_DATE';
-export const SET_COUPON_END_DATE = '@couponData/SET_COUPON_END_DATE';
-export const SET_COUPON_PRODUCT_TYPE = '@couponData/SET_COUPON_START_DATE';
-export const SET_COUPON_PRODUCT_DETAILS =
-  '@couponData/SET_COUPON_START_DETAILS';
-export const SET_COUPON_NOTE = '@couponData/SET_COUPON_NOTE';
+import { CouponTypes, ProductType } from './couponType';
+const {
+  SET_COUPON_CODE,
+  SET_COUPON_END_DATE,
+  SET_COUPON_FREE_SHIPPING,
+  SET_COUPON_OPTIONS,
+  SET_COUPON_QUANTITY,
+  SET_COUPON_START_DATE,
+  SET_COUPON_VALUE,
+  SET_COUPON_PRODUCT_TYPE,
+  SET_COUPON_PRODUCT_DETAILS,
+  SET_COUPON_NOTE,
+} = CouponTypes;
+
+export const setCouponCode = (value: string) => ({
+  type: SET_COUPON_CODE,
+  payload: value,
+});
+
+export const setCouponValue = (value: number) => ({
+  type: SET_COUPON_VALUE,
+  payload: value,
+});
+
+export const setCouponOptions = (value: string) => ({
+  type: SET_COUPON_OPTIONS,
+  payload: value,
+});
+
+export const setCouponFreeShipping = (value: boolean) => ({
+  type: SET_COUPON_FREE_SHIPPING,
+  payload: value,
+});
+
+export const setCouponQuantity = (value: number) => ({
+  type: SET_COUPON_QUANTITY,
+  payload: value,
+});
+
+export const setCouponStartDate = (value: { date: string; time: string }) => ({
+  type: SET_COUPON_START_DATE,
+  payload: value,
+});
+
+export const setCouponEndDate = (value: { date: string; time: string }) => ({
+  type: SET_COUPON_END_DATE,
+  payload: value,
+});
+
+export const setCouponProductType = (value: string[]) => ({
+  type: SET_COUPON_PRODUCT_TYPE,
+  payload: value,
+});
+
+export const setCouponProductDetails = (value: string) => ({
+  type: SET_COUPON_PRODUCT_DETAILS,
+  payload: value,
+});
+
+export const setCouponNote = (value: string) => ({
+  type: SET_COUPON_NOTE,
+  payload: value,
+});

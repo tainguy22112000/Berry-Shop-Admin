@@ -2,27 +2,24 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
-import { CouponCodeReducerType } from '@/store/coupon/couponType';
-
 import { CouponOptions } from '../constants/enum';
-import { SET_COUPON_CODE } from '../store/coupon/couponAction';
+import { setCouponCode, setCouponOptions } from '../store/coupon/couponAction';
+import { CouponDataTypes } from '../store/coupon/couponType';
 import { generateCoupon } from '../views/utilities/generateCoupon';
-
-interface CouponCodeType {
-  couponData: {
-    couponCode: string;
-  };
-}
 
 export const useCouponCode = () => {
   const [copy, setCopy] = useState<boolean>(false);
   const couponCode = useSelector(
-    (state: CouponCodeType) => state.couponData.couponCode,
+    ({ couponData }: CouponDataTypes) => couponData.couponCode,
   );
-  const dispatch = useDispatch();
+  // const couponOptions = useSelector(
+  //   ({ couponData }: CouponDataTypes) => couponData.couponOptions,
+  // );
+
   const [couponOptions, setCouponOptions] = useState<string>(
     CouponOptions.TYPING,
   );
+  const dispatch = useDispatch();
   const [couponError, setCouponError] = useState<boolean>(false);
   const activeCouponOptions = couponOptions === CouponOptions.TYPING;
   const copyCouponToClipBoard = async (text: string) => {
@@ -39,19 +36,14 @@ export const useCouponCode = () => {
     if (!activeCouponOptions) {
       setCopy(false);
       const randomCode = generateCoupon(10).toLocaleUpperCase();
-      // setCouponCode(randomCode);
-      dispatch({ type: SET_COUPON_CODE, payload: randomCode });
+      dispatch(setCouponCode(randomCode));
     }
   };
 
   const handleTypingCoupon = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (activeCouponOptions) {
       setCopy(false);
-      dispatch({
-        type: SET_COUPON_CODE,
-        payload: event.target.value.toLocaleUpperCase(),
-      });
-      // setCouponCode(event.target.value.toLocaleUpperCase());
+      dispatch(setCouponCode(event.target.value.toLocaleUpperCase()));
     }
   };
 
@@ -62,11 +54,8 @@ export const useCouponCode = () => {
 
   const handleCouponOptionsClick = (type: string) => {
     setCopy(false);
-    // setCouponCode('');
-    dispatch({
-      type: SET_COUPON_CODE,
-      payload: '',
-    });
+    dispatch(setCouponCode(''));
+    // dispatch(setCouponOptions(type));
     setCouponOptions(type);
   };
 

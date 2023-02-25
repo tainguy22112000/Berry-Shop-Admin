@@ -7,6 +7,9 @@ import {
   Typography,
 } from '@mui/material';
 import React from 'react';
+import { useSelector } from 'react-redux';
+
+import { CouponDataTypes } from '@/store/coupon/couponType';
 
 import { PriceOptions } from '../../../constants/enum';
 import { useCouponPrice } from '../../../hooks/useCouponPrice';
@@ -27,7 +30,14 @@ const priceContent = [
 ];
 
 const CouponPrice = () => {
-  const { option, setOption, freeShip, handleFreeShipClick } = useCouponPrice();
+  const { handleFreeShipClick } = useCouponPrice();
+  const freeShip = useSelector(
+    ({ couponData }: CouponDataTypes) => couponData.couponFreeShipping,
+  );
+  const option = useSelector(
+    ({ couponData }: CouponDataTypes) => couponData.couponOptions,
+  );
+  console.log('freeship', typeof freeShip);
 
   return (
     <Stack spacing={2}>
@@ -37,23 +47,23 @@ const CouponPrice = () => {
 
       <Stack spacing={2}>
         {priceContent.map((items, index) => (
-          <CouponPriceOptions
-            {...items}
-            key={index}
-            options={option}
-            setOption={setOption}
-          />
+          <CouponPriceOptions {...items} key={index} options={option} />
         ))}
       </Stack>
 
       <FormGroup>
         <FormControlLabel
           control={
-            <Checkbox defaultChecked sx={styles.radioColor} value={freeShip} />
+            <Checkbox
+              defaultChecked
+              sx={styles.radioColor}
+              checked={freeShip}
+              value={freeShip}
+            />
           }
           label="Miễn phí giao hàng"
           sx={{ width: 'fit-content' }}
-          onChange={() => handleFreeShipClick}
+          onChange={handleFreeShipClick}
         />
       </FormGroup>
       <Divider />

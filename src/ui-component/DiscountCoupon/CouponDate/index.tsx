@@ -10,21 +10,53 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import dayjs, { Dayjs } from 'dayjs';
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import {
+  setCouponEndDate,
+  setCouponQuantity,
+  setCouponStartDate,
+} from '../../../store/coupon/couponAction';
+import { CouponDataTypes } from '../../../store/coupon/couponType';
 
 const CouponDate = () => {
-  const [quantity, setQuantity] = useState<number>();
-  // const [error, setError] = useState<boolean>(false);
+  const dispatch = useDispatch();
+  const quantity = useSelector(
+    ({ couponData }: CouponDataTypes) => couponData.couponQuantity,
+  );
+
   const [startDay, setStartDay] = useState<Dayjs | null>(
-    dayjs('2018-01-01T00:00:00.000Z'),
+    dayjs('2023-01-01T00:00:00.000Z'),
   );
 
   const [endDay, setEndDay] = useState<Dayjs | null>(
-    dayjs('2018-01-01T00:00:00.000Z'),
+    dayjs('2023-01-01T00:00:00.000Z'),
   );
-  console.log(startDay);
-  console.log(endDay);
+
   const handleChangeQuantity = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setQuantity(parseInt(event.target.value));
+    dispatch(setCouponQuantity(parseInt(event.target.value)));
+  };
+
+  const handleChangeStartDate = (value: Dayjs) => {
+    console.log('value', value?.format('DD/MM/YYYY'));
+    setStartDay(value);
+    dispatch(
+      setCouponStartDate({
+        date: value?.format('DD/MM/YYYY'),
+        time: value?.format('hh:mm:ss'),
+      }),
+    );
+  };
+
+  const handleChangeEndDate = (value: Dayjs) => {
+    console.log('value', value?.format('DD/MM/YYYY'));
+    setEndDay(value);
+    dispatch(
+      setCouponEndDate({
+        date: value?.format('DD/MM/YYYY'),
+        time: value?.format('hh:mm:ss'),
+      }),
+    );
   };
 
   return (
@@ -56,18 +88,14 @@ const CouponDate = () => {
                 label="Ngày bắt đầu"
                 inputFormat="MM/DD/YYYY"
                 value={startDay}
-                onChange={(newValue) => {
-                  setStartDay(newValue);
-                }}
+                onChange={handleChangeStartDate}
                 renderInput={(params) => <TextField {...params} />}
               />
               <DateTimePicker
                 label="Ngày kết thúc"
                 inputFormat="MM/DD/YYYY"
                 value={endDay}
-                onChange={(newValue) => {
-                  setEndDay(newValue);
-                }}
+                onChange={handleChangeEndDate}
                 renderInput={(params) => <TextField {...params} />}
               />
             </Stack>
