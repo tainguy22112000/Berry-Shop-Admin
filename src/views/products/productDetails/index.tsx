@@ -61,11 +61,7 @@ const ProductDetails = () => {
 
   return (
     <Stack spacing={2}>
-      <Stack
-        spacing={2}
-        direction="row"
-        justifyContent="space-between"
-      >
+      <Stack spacing={2} direction="row" justifyContent="space-between">
         <ButtonUpdateProduct data={productDetail} id={productId} />
         <ButtonCreateProduct />
       </Stack>

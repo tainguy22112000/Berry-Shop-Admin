@@ -30,7 +30,7 @@
     "prettier",
     "react-hooks",
     "simple-import-sort",
-    "@typescript-eslint"
+    // "@typescript-eslint"
   ],
   "rules": {
     // "import/extensions": [
@@ -52,7 +52,7 @@
     "react/no-array-index-key": 0,
     "react/forbid-prop-types": 0,
     "react/display-name": "off",
-    "import/order": 0,
+    // "import/order": 0,
     // "no-console": 1,
     "prefer-destructuring": 0,
     "no-shadow": 0,
