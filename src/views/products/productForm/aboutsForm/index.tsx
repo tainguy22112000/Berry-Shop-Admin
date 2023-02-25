@@ -6,11 +6,11 @@ import {
   List,
   ListItem,
   Stack,
-  TextField,
+  // TextField,
   Typography,
 } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import React, { useState } from 'react';
+// import { createTheme, ThemeProvider } from '@mui/material/styles';
+import React, { useEffect, useState } from 'react';
 
 import AboutChildForm from './aboutChildForm';
 
@@ -35,7 +35,6 @@ const AboutForm = (props: any) => {
   const getEachAboutForm = (data: any, index: number) => {
     productLists.splice(index, 1, data);
     setProductLists([...productLists]);
-    props.createAboutProduct([...productLists]);
   };
 
   const toggleToConfirm = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,6 +44,11 @@ const AboutForm = (props: any) => {
       console.log('confirm about product');
     }
   };
+
+  useEffect(() => {
+    props.createAboutProduct([...productLists]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [productLists])
 
   return (
     <Stack spacing={2} direction="column" justifyContent="center">

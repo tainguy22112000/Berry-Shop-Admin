@@ -1,6 +1,6 @@
 import { Chip, FormControl, Grid, TextField, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
   capitalizeFirstLetter,
@@ -24,6 +24,7 @@ const initialValues = {
         mlAndPrice: {},
         moreCombina: [],
         price: 0,
+        mainIngredient: '',
       },
     ],
     totalOrderValue: 0,
@@ -33,18 +34,43 @@ const initialValues = {
 
 const NewProductForm = (props: any) => {
   const [productData, setProductData] = useState(initialValues);
- 
-  const createNewProductData = () => {
-    props.createNewProductData(productData);
-  }
 
   const createAboutProduct = (aboutProductList: any) => {
-    console.log(aboutProductList, 'aboutProductList');
+    productData.productList.productList[0].aboutProduct = aboutProductList;
+    setProductData({
+      ...productData,
+      productList: {
+        ...productData.productList,
+        productList: [
+          {
+            ...productData.productList.productList[0],
+            aboutProduct: aboutProductList,
+          },
+        ],
+      },
+    });
   };
-  
+
   const createOverviewProduct = (overviewProduct: any) => {
-    console.log(createOverviewProduct, 'createOverviewProduct');
-  }
+    const { moreCombina, mlAndPrice, mainIngredient, price, totalOrderValue } =
+      overviewProduct;
+    setProductData({
+      ...productData,
+      productList: {
+        ...productData.productList,
+        productList: [
+          {
+            ...productData.productList.productList[0],
+            moreCombina,
+            mlAndPrice,
+            mainIngredient,
+            price,
+          },
+        ],
+        totalOrderValue,
+      },
+    });
+  };
 
   const handleInputChange = (e: any) => {
     const { name, value } = e.target;
@@ -60,6 +86,11 @@ const NewProductForm = (props: any) => {
       paymentMethod: payment,
     });
   };
+
+  useEffect(() => {
+    props.createNewProductData(productData);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [productData]);
 
   return (
     <Grid container spacing={2}>
@@ -90,15 +121,18 @@ const NewProductForm = (props: any) => {
           <PaymentsForm updatePayment={updatePayment} />
         </Stack>
         <Stack spacing={2}>
-          <Chip label={capitalizeFirstLetter(productData.status)} color="warning" />
+          <Chip
+            label={capitalizeFirstLetter(productData.status)}
+            color="warning"
+          />
         </Stack>
       </Grid>
       <Grid item xs>
         <Stack spacing={2} direction="column" justifyContent="center">
-          <AboutForm createAboutProduct={createAboutProduct}/>
+          <AboutForm createAboutProduct={createAboutProduct} />
         </Stack>
         <Stack spacing={2} direction="column" justifyContent="center">
-          <OverviewForm createOverviewProduct={createOverviewProduct}/>
+          <OverviewForm createOverviewProduct={createOverviewProduct} />
         </Stack>
       </Grid>
     </Grid>

@@ -37,7 +37,6 @@ const ButtonCreateProduct = () => {
   const [newProduct, setNewProduct]  = useState();
   const [open, setOpen] = useState(false);
 
-
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -47,12 +46,12 @@ const ButtonCreateProduct = () => {
   };
 
   const handleCreate = () => {
-    addItem(ItemType.ORDERS, newProduct);
+    addItem(ItemType.TEST, newProduct);
   }
 
   const createNewProductData = (data: any) => {
-    console.log(data, 'data');
-    setNewProduct({...data});
+    console.log(data, 'final');
+    setNewProduct(data);
   }
   return (
     <div style={{marginTop: 0}}>

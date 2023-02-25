@@ -58,8 +58,8 @@ const MoreCombinaForm = (props: any) => {
   const [checked, setChecked] = useState(false);
   const [moreCombinaList, setMoreCombinaList] = useState([moreCombinaInit]);
 
-  const updateMoreCombinaData = () => {
-    props.updateMoreCombinaData(moreCombinaList);
+  const updateMoreCombinaData = (isConfirm: boolean) => {
+    props.updateMoreCombinaData({data: moreCombinaList, isConfirm});
   }
 
   const addFormMoreCombina = () => {
@@ -74,9 +74,9 @@ const MoreCombinaForm = (props: any) => {
   const toggleToConfirm = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { checked } = event.target;
     setChecked(checked);
-    if (checked) {
-      updateMoreCombinaData();
-    }
+    updateMoreCombinaData(checked);
+    // if (checked) {
+    // }
   };
   return (
     <>

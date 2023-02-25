@@ -64,9 +64,9 @@ const MLAndPriceForm = (props: any) => {
   const [checked, setChecked] = useState(false);
   const [mlAndPriceList, setMlAndPriceList] = useState([mlAndPriceInit]);
 
-  const updateMlAndPriceData = () => {
+  const updateMlAndPriceData = (isConfirm: boolean) => {
     const newData = convertMLAndPriceDara(mlAndPriceList);
-    props.updateMlAndPriceData(newData);
+    props.updateMlAndPriceData({data: newData, isConfirm});
   };
 
   const addFormMlAndPrice = () => {
@@ -81,9 +81,9 @@ const MLAndPriceForm = (props: any) => {
   const toggleToConfirm = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { checked } = event.target;
     setChecked(checked);
-    if (checked) {
-      updateMlAndPriceData();
-    }
+    updateMlAndPriceData(checked);
+    // if (checked) {
+    // }
   };
 
   return (

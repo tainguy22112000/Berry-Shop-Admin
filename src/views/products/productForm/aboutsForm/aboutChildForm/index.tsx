@@ -14,7 +14,6 @@ const AboutChildForm = (props: any) => {
 
   const handleInputChange = (e: any) => {
     const { name, value } = e.target;
-    console.log(name, value, 'name, value');
     setAboutProductForm({
       ...aboutProductForm,
       [name]: value,
@@ -27,7 +26,6 @@ const AboutChildForm = (props: any) => {
   }
 
   return (
-    <>
       <Grid container spacing={2}>
         <Grid item xs>
           <TextField
@@ -70,7 +68,6 @@ const AboutChildForm = (props: any) => {
           </IconButton>
         </Grid>
       </Grid>
-    </>
   );
 };
 
