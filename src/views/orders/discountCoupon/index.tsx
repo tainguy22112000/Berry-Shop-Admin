@@ -1,6 +1,8 @@
 import { Stack, Typography } from '@mui/material';
 import React from 'react';
 
+import { OrderTableHeader } from '@/ui-component/OrderList';
+
 import MainCard from '../../../ui-component/cards/MainCard';
 import {
   ConfirmButton,
@@ -9,6 +11,7 @@ import {
   CouponDescription,
   CouponPrice,
   CouponProductType,
+  CouponTable,
 } from '../../../ui-component/DiscountCoupon';
 
 const DiscountCoupon = () => {
@@ -19,6 +22,7 @@ const DiscountCoupon = () => {
       </Typography>
 
       <Stack spacing={1}>
+        <CouponTable />
         <CouponCode />
         <CouponPrice />
         <CouponDate />

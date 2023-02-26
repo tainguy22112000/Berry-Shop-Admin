@@ -11,8 +11,6 @@ import * as React from 'react';
 
 import { IRowOrderDataProps, ITableHeaderProps } from '@/types';
 
-import { orderTableHeader } from '../../../constants/order/orderTableHeader';
-
 const OrderTableHeader = (props: ITableHeaderProps) => {
   const {
     onSelectAllClick,
@@ -21,10 +19,10 @@ const OrderTableHeader = (props: ITableHeaderProps) => {
     numSelected,
     rowCount,
     onRequestSort,
+    headerContent,
   } = props;
   const createSortHandler =
-    (property: keyof IRowOrderDataProps) =>
-    (event: React.MouseEvent<unknown>) => {
+    (property: any) => (event: React.MouseEvent<unknown>) => {
       onRequestSort(event, property);
     };
 
@@ -38,11 +36,11 @@ const OrderTableHeader = (props: ITableHeaderProps) => {
             checked={rowCount > 0 && numSelected === rowCount}
             onChange={onSelectAllClick}
             inputProps={{
-              'aria-label': 'select all desserts',
+              'aria-label': 'select all',
             }}
           />
         </TableCell>
-        {orderTableHeader.map((headCell) => (
+        {headerContent.map((headCell) => (
           <TableCell
             key={headCell.id}
             align={headCell.numeric ? 'right' : 'left'}

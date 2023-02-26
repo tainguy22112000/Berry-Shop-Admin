@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { CouponDataTypes } from '../store/coupon/couponType';
+
 export interface IRowOrderDataProps {
   name: string;
   address: string;
@@ -19,21 +21,48 @@ export interface IRowUserDataProps {
   vote: number;
 }
 
+export interface IRowCouponDataProps {
+  id: number;
+  code: string;
+  type: string;
+  value: number;
+  date: string;
+  isFreeShip: boolean;
+  productType: string[];
+  products: string;
+  quantity: number;
+  note: string;
+}
+
+export type IRowDataProps =
+  | IRowOrderDataProps
+  | IRowUserDataProps
+  | IRowCouponDataProps;
+
 export type Order = 'asc' | 'desc';
 
-export interface IOrderTableHeader {
+export interface ITableHeader {
   disablePadding: boolean;
-  id: keyof IRowOrderDataProps;
   label: string;
   numeric: boolean;
 }
 
-export interface IUserTableHeader {
-  disablePadding: boolean;
-  id: keyof IRowUserDataProps;
-  label: string;
-  numeric: boolean;
+export interface IOrderTableHeader extends ITableHeader {
+  id: keyof IRowOrderDataProps;
 }
+
+export interface IUserTableHeader extends ITableHeader {
+  id: keyof IRowUserDataProps;
+}
+
+export interface ICouponTableHeader extends ITableHeader {
+  id: keyof IRowCouponDataProps;
+}
+
+export type IHeaderContentProps =
+  | IOrderTableHeader
+  | IUserTableHeader
+  | ICouponTableHeader;
 
 export interface ITableHeaderProps {
   numSelected: number;
@@ -42,4 +71,5 @@ export interface ITableHeaderProps {
   order: Order;
   orderBy: string;
   rowCount: number;
+  headerContent: IHeaderContentProps[];
 }

@@ -10,9 +10,7 @@ import { visuallyHidden } from '@mui/utils';
 import PropTypes from 'prop-types';
 import * as React from 'react';
 
-import { IRowUserDataProps, ITableHeaderProps } from '@/types';
-
-import { userTableHeader } from '../../../constants/user/userTableHeader';
+import { ITableHeaderProps } from '@/types';
 
 const UserTableHeader = (props: ITableHeaderProps) => {
   const {
@@ -22,10 +20,10 @@ const UserTableHeader = (props: ITableHeaderProps) => {
     numSelected,
     rowCount,
     onRequestSort,
+    headerContent,
   } = props;
   const createSortHandler =
-    (property: keyof IRowUserDataProps) =>
-    (event: React.MouseEvent<unknown>) => {
+    (property: any) => (event: React.MouseEvent<unknown>) => {
       onRequestSort(event, property);
     };
 
@@ -43,7 +41,7 @@ const UserTableHeader = (props: ITableHeaderProps) => {
             }}
           />
         </TableCell>
-        {userTableHeader.map((headCell) => (
+        {headerContent.map((headCell) => (
           <TableCell
             key={headCell.id}
             align={headCell.numeric ? 'right' : 'left'}

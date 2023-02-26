@@ -3,6 +3,7 @@ import * as React from 'react';
 
 import { IOrderTableHeader, Order } from '@/types';
 
+import { orderTableHeader } from '../../../constants/order/orderTableHeader';
 import { rowOrderData } from '../../../constants/order/rowOrderData';
 import {
   OrderTableHeader,
@@ -51,6 +52,7 @@ export const OrderList = () => {
               onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
               rowCount={rowOrderData.length}
+              headerContent={orderTableHeader}
             />
             <OrderTableRow rowOrderData={rowOrderData} />
           </Table>

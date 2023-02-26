@@ -4,6 +4,7 @@ import * as React from 'react';
 import { IUserTableHeader, Order } from '@/types';
 
 import { rowUserData } from '../../../constants/user/rowUserData';
+import { userTableHeader } from '../../../constants/user/userTableHeader';
 import {
   UserTableHeader,
   UserTablePagination,
@@ -51,6 +52,7 @@ export const UserTable = () => {
               onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
               rowCount={rowUserData.length}
+              headerContent={userTableHeader}
             />
             <UserTableRow rowUserData={rowUserData} />
           </Table>
