@@ -12,13 +12,18 @@ export interface IRowOrderDataProps {
   action: string;
 }
 
+export enum Gender {
+  MALE = 'male',
+  FEMALE = 'female',
+}
 export interface IRowUserDataProps {
   id: number;
-  name: string;
+  firstName: string;
+  lastName: string;
   address: string;
-  phone: string;
-  loyalty: string;
-  vote: number;
+  txtPhone: string;
+  email: string;
+  gender: Gender;
 }
 
 export interface IRowCouponDataProps {

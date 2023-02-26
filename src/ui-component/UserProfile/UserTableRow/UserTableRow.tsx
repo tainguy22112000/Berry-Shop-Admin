@@ -53,10 +53,13 @@ const UserTableRow = ({ rowUserData }: IUserTableRowProps) => {
 
   return (
     <TableBody>
-      {stableSort(rowUserData, getSortComparator(order, orderBy))
+      {stableSort(
+        rowUserData ? rowUserData : [],
+        getSortComparator(order, orderBy),
+      )
         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
         .map((row: IRowUserDataProps, index: number) => {
-          const isItemSelected = isSelected(row.name);
+          const isItemSelected = isSelected(row.firstName);
           const labelId = `enhanced-table-checkbox-${index}`;
 
           return (
@@ -66,7 +69,7 @@ const UserTableRow = ({ rowUserData }: IUserTableRowProps) => {
               role="checkbox"
               aria-checked={isItemSelected}
               tabIndex={-1}
-              key={row.name}
+              key={row.firstName}
               selected={isItemSelected}
             >
               <TableCell padding="checkbox">
@@ -79,15 +82,21 @@ const UserTableRow = ({ rowUserData }: IUserTableRowProps) => {
                 />
               </TableCell>
               <TableCell component="th" id={labelId} scope="row" padding="none">
-                {row.name}
-              </TableCell>
-              <TableCell align="left">{row.address}</TableCell>
-              <TableCell align="left">{row.phone}</TableCell>
-              <TableCell align="left">
-                <Chip color="warning" variant="filled" label={row.loyalty} />
+                {row ? row.firstName + '' + row.lastName : ''}
               </TableCell>
               <TableCell align="left">
-                <Rating name="read-only" value={Number(row.vote)} readOnly />
+                <Chip
+                  color="warning"
+                  variant="filled"
+                  label={row ? row.gender : ''}
+                  sx={{ textTransform: 'capitalize' }}
+                />
+              </TableCell>
+              <TableCell align="left">{row ? row.address : ''}</TableCell>
+              <TableCell align="left">{row ? row.txtPhone : ''}</TableCell>
+              <TableCell align="left">
+                {/* <Rating name="read-only" value={Number(row.email)} readOnly /> */}
+                {row.email}
               </TableCell>
             </TableRow>
           );

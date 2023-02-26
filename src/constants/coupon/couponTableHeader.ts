@@ -1,24 +1,24 @@
 import { ICouponTableHeader } from '@/types';
 
-export const orderTableHeader: ICouponTableHeader[] = [
-  {
-    id: 'id',
-    numeric: false,
-    disablePadding: true,
-    label: 'STT',
-  },
+export const couponTableHeader: ICouponTableHeader[] = [
+  // {
+  //   id: 'id',
+  //   numeric: false,
+  //   disablePadding: true,
+  //   label: 'STT',
+  // },
   {
     id: 'code',
     numeric: false,
     disablePadding: false,
     label: 'Mã giảm giá',
   },
-  {
-    id: 'type',
-    numeric: true,
-    disablePadding: false,
-    label: 'Loại phiếu giảm giá',
-  },
+  // {
+  //   id: 'type',
+  //   numeric: true,
+  //   disablePadding: false,
+  //   label: 'Loại giảm giá',
+  // },
   {
     id: 'quantity',
     numeric: false,
@@ -54,11 +54,5 @@ export const orderTableHeader: ICouponTableHeader[] = [
     numeric: false,
     disablePadding: false,
     label: 'Sản phẩm',
-  },
-  {
-    id: 'note',
-    numeric: false,
-    disablePadding: false,
-    label: 'Ghi chú',
   },
 ];

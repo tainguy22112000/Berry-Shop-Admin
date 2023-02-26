@@ -9,11 +9,8 @@ import {
 import { visuallyHidden } from '@mui/utils';
 import * as React from 'react';
 
-import {
-  IHeaderContentProps,
-  IRowDataProps,
-  ITableHeaderProps,
-} from '../../types';
+import { IHeaderContentProps, ITableHeaderProps } from '../../types';
+
 const TableHeader = (props: ITableHeaderProps) => {
   const {
     onSelectAllClick,
@@ -56,6 +53,7 @@ const TableHeader = (props: ITableHeaderProps) => {
                 active={orderBy === id}
                 direction={orderBy === id ? order : 'asc'}
                 onClick={createSortHandler(id)}
+                sx={{ textAlign: 'center' }}
               >
                 {label}
                 {orderBy === id ? (
