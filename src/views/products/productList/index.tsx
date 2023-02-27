@@ -88,7 +88,7 @@ const ProductsList = () => {
 
   const selectProductDetail = (data: Record<string, any>) => {
     dispatch({ type: PRODUCT_DETAILS_OPEN, data });
-    navigate(`/products/lists/${data.id}`);
+    navigate(`/products/order-lists/${data.id}`);
   };
 
   useEffect(() => {

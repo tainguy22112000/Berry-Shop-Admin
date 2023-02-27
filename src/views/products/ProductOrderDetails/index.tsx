@@ -13,7 +13,7 @@ import { ProductAboutsType } from '../productType';
 import CustomerInfos from './CustomerInfos';
 import ProductInfos from './ProductInfos';
 
-const ProductDetailsTest = () => {
+const ProductOrderDetails = () => {
   const dispatch = useDispatch();
   const { id: productId } = useParams();
   const [customerInfos, setCustomerInfos] = useState<any>({});
@@ -99,4 +99,4 @@ const ProductDetailsTest = () => {
   );
 };
 
-export default ProductDetailsTest;
+export default ProductOrderDetails;

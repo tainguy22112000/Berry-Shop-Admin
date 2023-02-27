@@ -10,7 +10,7 @@ import ProductList from '../views/products/ProductList';
 // user page routing
 const ProductDetailsPage = Loadable(lazy(() => import('../views/products/ProductList')));
 const ProductDetails = lazy(() => import('../views/products/ProductDetails'));
-const ProductDetailsTest = lazy(() => import('../views/products/ProductDetailsTest'));
+const ProductOrderDetails = lazy(() => import('../views/products/ProductOrderDetails'));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -19,12 +19,12 @@ const ProductRoutes = {
   element: <MainLayout />,
   children: [
     {
-      path: PRODUCTS_PATH.ProductList,
+      path: PRODUCTS_PATH.ProductOrderList,
       element: <ProductDetailsPage />,
     },
     {
-      path: `${PRODUCTS_PATH.ProductList}/:id`,
-      element: <ProductDetailsTest />
+      path: `${PRODUCTS_PATH.ProductOrderList}/:id`,
+      element: <ProductOrderDetails />
     },
     {
       path: `${PRODUCTS_PATH.ProductCreate}`,

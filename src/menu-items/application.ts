@@ -36,9 +36,10 @@ const USER_PAGE = {
   OrderList: 'Danh sách đơn hàng',
   DiscountCoupon: 'Tạo mã giảm giá',
   OrderDetails: 'Chi tiết đơn hàng',
-  ProductList: 'Danh sách sản phẩm',
+  ProductOrderList: 'Danh sách đặt hàng',
   ProductCreate: 'Tạo sản phẩm mới',
   ProductDetails: 'Chi tiết sản phẩm',
+  ProductLists: 'Danh sách sản phẩm',
 };
 
 // ==============================|| EXTRA PAGES MENU ITEMS ||============================== //
@@ -107,10 +108,10 @@ const application = {
       icon: icons.IconShoppingCart,
       children: [
         {
-          id: USER_PAGE.ProductList,
-          title: USER_PAGE.ProductList,
+          id: USER_PAGE.ProductOrderList,
+          title: USER_PAGE.ProductOrderList,
           type: 'item',
-          url: `${PRODUCTS_PAGE_ROUTER}/${PRODUCTS_PATH.ProductList}`,
+          url: `${PRODUCTS_PAGE_ROUTER}/${PRODUCTS_PATH.ProductOrderList}`,
           breadcrumbs: true,
         },
         {

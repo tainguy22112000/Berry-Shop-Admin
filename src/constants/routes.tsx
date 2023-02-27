@@ -17,8 +17,9 @@ const ODERS_PATH = {
 
 const PRODUCTS_PATH = {
   ProductDetails: 'details',
-  ProductList: 'lists',
+  ProductOrderList: 'order-lists',
   ProductCreate: 'create',
+  ProductLists: 'product-lists'
 };
 
 const DASHBOARD_PATH = {
