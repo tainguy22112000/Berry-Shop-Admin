@@ -18,6 +18,7 @@ const ODERS_PATH = {
 const PRODUCTS_PATH = {
   ProductDetails: 'details',
   ProductList: 'lists',
+  ProductCreate: 'create',
 };
 
 const DASHBOARD_PATH = {

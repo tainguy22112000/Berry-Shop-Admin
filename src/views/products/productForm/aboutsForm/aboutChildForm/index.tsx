@@ -2,7 +2,7 @@ import { Clear } from '@mui/icons-material';
 import { Grid, IconButton, TextField } from '@mui/material';
 import React, { useState } from 'react';
 
-import UploadImage from './uploadImage';
+import UploadImage from './UploadImage';
 
 const AboutChildForm = (props: any) => {
   const initialAboutProduct = {

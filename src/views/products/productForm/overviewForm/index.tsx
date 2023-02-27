@@ -1,9 +1,8 @@
-import { Add } from '@mui/icons-material';
-import { Chip, IconButton, Stack, TextField, Typography } from '@mui/material';
+import { Chip, Stack, TextField } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 
-import MLAndPriceForm from './mlAndPriceForm';
-import MoreCombinaForm from './moreCombinaForm';
+import MLAndPriceForm from './MlAndPriceForm';
+import MoreCombinaForm from './MoreCombinaForm';
 
 const overViewProductInit = {
   moreCombina: [],
@@ -11,6 +10,7 @@ const overViewProductInit = {
   totalProductValue: 0,
   mainIngredient: '',
   price: 0,
+  status: 'designing',
 };
 
 const OverviewForm = (props: any) => {
@@ -87,7 +87,7 @@ const OverviewForm = (props: any) => {
         <MoreCombinaForm updateMoreCombinaData={updateMoreCombinaData} />
       </Stack>
       <Stack>
-        <Chip color="success" />
+        <Chip color="success" label={overviewProduct.status} />
       </Stack>
     </Stack>
   );

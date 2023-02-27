@@ -1,5 +1,7 @@
 import {
+  Chip,
   Paper,
+  Stack,
   Table,
   TableBody,
   TableCell,
@@ -12,29 +14,27 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { ItemType } from '../../../api/firebase/dataType';
-import { addItem, getAllItems } from '../../../api/firebase/handleData';
-// import MainCard from '../../../ui-component/cards/MainCard';
-import productDetailsCache from '../../../cache/productDetailsCache';
+import { getAllItems } from '../../../api/firebase/handleData';
+// import { ReactComponentElement as MoMoIcon } from '../../../assets/images/icons/momo.svg';
+// import MoMoIcon from '../../../assets/images/icons/momo.svg'
 import { convertDateFireBase } from '../../../helper/date-utils';
-// import data
 import { clone } from '../../../helper/object-utils';
 import { PRODUCT_DETAILS_OPEN } from '../../../store/actions';
 
-// ==============================|| SAMPLE PAGE ||============================== //
-
+// const MoMoIcon = '../../../assets/images/icons/momo.svg';
 type ProductList = {};
 
-type ProductDetail = {
-  address: string;
-  createOn: any;
-  deliveryTime: any;
-  note: string;
-  paymentMethods: string;
-  phone: string;
-  productList: ProductList;
-  recipientName: string;
-  status: boolean;
-};
+// type ProductDetail = {
+//   address: string;
+//   createOn: any;
+//   deliveryTime: any;
+//   note: string;
+//   paymentMethods: string;
+//   phone: string;
+//   productList: ProductList;
+//   recipientName: string;
+//   status: boolean;
+// };
 
 type PureProductData = {
   id: string | number;
@@ -43,7 +43,7 @@ type PureProductData = {
   paymentMethods: string;
   phone: string;
   recipientName: string;
-  status: boolean;
+  status: string;
 };
 
 const getPureData = (data: PureProductData) => {
@@ -62,12 +62,23 @@ const getPureData = (data: PureProductData) => {
     id,
     recipientName,
     address,
-    // createdTime: convertDateFireBase(createOn),
+    createdTime: convertDateFireBase(createOn),
     phone,
     paymentMethods,
     status,
   };
 };
+
+const convertStatus = (status: string) => {
+  switch(status) {
+    case 'paymenting': 
+      return 'Đang thanh toán';
+    case 'processing': 
+      return 'Đang xử lý';
+    default: 
+      return 'Đang chờ giao hàng';
+  }
+}
 
 const ProductsList = () => {
   const navigate = useNavigate();
@@ -91,50 +102,52 @@ const ProductsList = () => {
     const arrayData: any = [];
     datas.forEach((data: any) => {
       arrayData.push(getPureData(data));
-      // productDetailsCache.set(data.id, data);
     });
     setPureDatas(arrayData);
   }, [datas]);
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Tên</TableCell>
-            <TableCell align="left">Địa chỉ</TableCell>
-            <TableCell align="right">Số điện thoại</TableCell>
-            <TableCell align="right">Thời gian tạo</TableCell>
-            <TableCell align="right">Trạng thái</TableCell>
-            <TableCell align="right">Hình thức thanh toán</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {pureDatas &&
-            pureDatas.map((pureData: PureProductData, index: number) => (
-              <TableRow
-                key={index}
-                onClick={() => selectProductDetail(datas[index])}
-                sx={{
-                  '&:last-child td, &:last-child th': { border: 0 },
-                  ':hover': {
-                    backgroundColor: '#ccc',
-                  },
-                }}
-              >
-                <TableCell component="th" scope="row">
-                  {pureData.recipientName}
-                </TableCell>
-                <TableCell align="left">{pureData.address}</TableCell>
-                <TableCell align="right">{pureData.phone}</TableCell>
-                <TableCell align="right">{pureData.createdTime}</TableCell>
-                <TableCell align="right">{pureData.status}</TableCell>
-                <TableCell align="right">{pureData.paymentMethods}</TableCell>
-              </TableRow>
-            ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <Stack spacing={2} direction="column">
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Tên Khách hàng</TableCell>
+              <TableCell align="center">Địa chỉ</TableCell>
+              <TableCell align="center" sx={{minWidth: '150px'}}>Số Điện thoại</TableCell>
+              <TableCell align="center">Ngày tạo</TableCell>
+              <TableCell align="center">Trạng thái</TableCell>
+              <TableCell align="center">Phương thức thanh toán</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {pureDatas &&
+              pureDatas.map((pureData: PureProductData, index: number) => (
+                <TableRow
+                  hover
+                  role="checkbox"
+                  key={index}
+                  onClick={() => selectProductDetail(datas[index])}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row" sx={{fontWeight: 'bold'}}>
+                    {pureData.recipientName}
+                  </TableCell>
+                  <TableCell align="center" sx={{minWidth: '150px'}}>{pureData.address}</TableCell>
+                  <TableCell align="center">{pureData.phone}</TableCell>
+                  <TableCell align="center">{pureData.createdTime}</TableCell>
+                  <TableCell align="center">
+                    <Chip color={pureData.status === 'paymenting' ? 'warning' : 'success'} variant="outlined" label={convertStatus(pureData.status)} />
+                  </TableCell>
+                  <TableCell align="center">{pureData.paymentMethods}
+                     {/* <img src={MoMoIcon} alt="google" width={16} height={16} /> */}
+                  </TableCell>
+                </TableRow>
+              ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Stack>
   );
 };
 

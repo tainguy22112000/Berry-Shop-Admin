@@ -7,6 +7,8 @@ import {
 } from '@mui/material';
 import React, { ChangeEvent } from 'react';
 
+import { stylesRadio } from '../../radio.styles';
+
 const PaymentsForm = (props: any) => {
   const paymentsList = ['Credit Card', 'Paypal', 'ZaloPay', 'MoMo'];
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -15,14 +17,14 @@ const PaymentsForm = (props: any) => {
   return (
     <>
       <FormControl>
-        <FormLabel>Pay With</FormLabel>
+        <FormLabel>Thanh toán với</FormLabel>
         <RadioGroup defaultValue="Paypal">
           {paymentsList.map((value, index) => (
             <FormControlLabel
               key={index}
               value={value}
               label={value}
-              control={<Radio value={value} onChange={handleChange} />}
+              control={<Radio value={value} onChange={handleChange} sx={stylesRadio.radioColor}/>}
             />
           ))}
         </RadioGroup>

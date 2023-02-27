@@ -1,4 +1,4 @@
-import { Chip, FormControl, Grid, TextField, Typography } from '@mui/material';
+import { Button, Chip, Grid, Paper, TextField, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
 import React, { useEffect, useState } from 'react';
 
@@ -6,9 +6,10 @@ import {
   capitalizeFirstLetter,
   createRandomId,
 } from '../../../helper/string-utls';
-import AboutForm from './aboutsForm';
-import OverviewForm from './overviewForm';
-import PaymentsForm from './paymentsForm';
+import { stylesButton } from '../button.styles';
+import AboutForm from './AboutsForm';
+import OverviewForm from './OverviewForm';
+import PaymentsForm from './PaymentsForm';
 
 const initialValues = {
   id: createRandomId(),
@@ -87,55 +88,76 @@ const NewProductForm = (props: any) => {
     });
   };
 
-  useEffect(() => {
-    props.createNewProductData(productData);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [productData]);
+  const handleCancel = () => {
+    console.log('Cancel create product');
+  };
+
+  const handleCreate = () => {
+    console.log('Create product');
+  };
+  // useEffect(() => {
+  //   props.createNewProductData(productData);
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [productData]);
 
   return (
-    <Grid container spacing={2}>
-      <Grid item xs>
-        <Stack spacing={2} direction="column" justifyContent="center">
-          <Typography variant="h4">ID: {productData.id}</Typography>
-          <TextField
-            variant="outlined"
-            label="Address"
-            name="address"
-            value={productData.address}
-            onChange={handleInputChange}
-          />
-          <TextField
-            variant="outlined"
-            label="Recipient Name"
-            name="recipientName"
-            value={productData.recipientName}
-            onChange={handleInputChange}
-          />
-          <TextField
-            variant="outlined"
-            label="Phone"
-            name="phone"
-            value={productData.phone}
-            onChange={handleInputChange}
-          />
-          <PaymentsForm updatePayment={updatePayment} />
-        </Stack>
-        <Stack spacing={2}>
-          <Chip
-            label={capitalizeFirstLetter(productData.status)}
-            color="warning"
-          />
-        </Stack>
-      </Grid>
-      <Grid item xs>
-        <Stack spacing={2} direction="column" justifyContent="center">
-          <AboutForm createAboutProduct={createAboutProduct} />
-        </Stack>
-        <Stack spacing={2} direction="column" justifyContent="center">
-          <OverviewForm createOverviewProduct={createOverviewProduct} />
-        </Stack>
-      </Grid>
-    </Grid>
+    <Paper sx={{padding: '10px'}}>
+    <Stack spacing={2} direction="column">
+      <Stack>
+        <Grid container spacing={2}>
+          <Grid item xs>
+            <Stack spacing={2} direction="column" justifyContent="center">
+              <Typography variant="h2">ID: {productData.id}</Typography>
+              <TextField
+                variant="outlined"
+                label="Địa chỉ"
+                name="address"
+                value={productData.address}
+                onChange={handleInputChange}
+              />
+              <TextField
+                variant="outlined"
+                label="Tên người nhận"
+                name="recipientName"
+                value={productData.recipientName}
+                onChange={handleInputChange}
+              />
+              <TextField
+                variant="outlined"
+                label="Số Điện thoại"
+                name="phone"
+                value={productData.phone}
+                onChange={handleInputChange}
+              />
+              <PaymentsForm updatePayment={updatePayment} />
+            </Stack>
+            <Stack spacing={2}>
+              <Chip
+                label={capitalizeFirstLetter(productData.status)}
+                color="warning"
+              />
+            </Stack>
+          </Grid>
+          <Grid item xs>
+            <Stack spacing={2} direction="column" justifyContent="center">
+              <AboutForm createAboutProduct={createAboutProduct} />
+            </Stack>
+            <Stack spacing={2} direction="column" justifyContent="center">
+              <OverviewForm createOverviewProduct={createOverviewProduct} />
+            </Stack>
+          </Grid>
+        </Grid>
+      </Stack>
+      <Stack spacing={2} direction="row" justifyContent="center">
+        <Button onClick={handleCreate} variant="contained" sx={stylesButton.button}>
+          Tạo Sản Phẩm
+        </Button>
+        {/* <Button onClick={handleCancel} variant="outlined" sx={stylesButton.cancel}>
+          Huỷ bỏ
+        </Button> */}
+      </Stack>
+    </Stack>
+    </Paper>
   );
 };
 

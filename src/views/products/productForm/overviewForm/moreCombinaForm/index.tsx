@@ -11,6 +11,8 @@ import {
 } from '@mui/material';
 import React, { useState } from 'react';
 
+import { stylesRadio } from '../../../radio.styles';
+
 const moreCombinaInit = {
   option: '',
   price: 0,
@@ -75,14 +77,12 @@ const MoreCombinaForm = (props: any) => {
     const { checked } = event.target;
     setChecked(checked);
     updateMoreCombinaData(checked);
-    // if (checked) {
-    // }
   };
   return (
     <>
       <Stack spacing={2} direction="column">
-        <Stack spacing={2} direction="row">
-          <Typography variant="h6">More Combina</Typography>
+        <Stack spacing={2} direction="row" alignItems="center">
+          <Typography variant="h3">More Combina</Typography>
           <IconButton
             color="primary"
             aria-label="ML and Price"
@@ -93,7 +93,7 @@ const MoreCombinaForm = (props: any) => {
           </IconButton>
           <FormControlLabel
           label="Confirm"
-          control={<Checkbox checked={checked} onChange={toggleToConfirm} />}
+          control={<Checkbox sx={stylesRadio.radioColor} checked={checked} onChange={toggleToConfirm} />}
         />
         </Stack>
         <Stack spacing={2} direction="column">

@@ -9,7 +9,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import React, { useState } from 'react';
 
 import { ItemType } from '../../../api/firebase/dataType';
-import { addItem, updateItem } from '../../../api/firebase/handleData';
+import { updateItem } from '../../../api/firebase/handleData';
 
 const ButtonUpdateProduct = (props: any) => {
   const [loading, setLoading] = useState(false);

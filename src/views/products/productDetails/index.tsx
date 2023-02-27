@@ -1,5 +1,3 @@
-// import MainCard from "@/ui-component/cards/MainCard";
-// import MainCard from '../../../ui-component/cards/MainCard';
 import { Box, Grid, Stack } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,12 +5,10 @@ import { useParams } from 'react-router-dom';
 
 import { ItemType } from '../../../api/firebase/dataType';
 import { getEachItem } from '../../../api/firebase/handleData';
-// import { clone } from '../../../helper/object-utils';
 import { PRODUCT_DETAILS_OPEN } from '../../../store/actions';
-import ButtonCreateProduct from '../buttonCreateProduct';
-import ButtonUpdateProduct from '../buttonUpdateProduct';
-import ProductAbouts from '../productAbouts';
-import ProductOverview from '../productOverviews';
+import ButtonUpdateProduct from '../ButtonUpdateProduct';
+import ProductAbouts from '../ProductAbouts';
+import ProductOverview from '../ProductOverviews';
 import { ProductAboutsType } from '../productType';
 
 const ProductDetails = () => {
@@ -63,7 +59,7 @@ const ProductDetails = () => {
     <Stack spacing={2}>
       <Stack spacing={2} direction="row" justifyContent="space-between">
         <ButtonUpdateProduct data={productDetail} id={productId} />
-        <ButtonCreateProduct />
+        {/* <ButtonCreateProduct /> */}
       </Stack>
       <Stack spacing={2}>
         <Box sx={{ flexGrow: 1 }}>

@@ -12,7 +12,8 @@ import {
 // import { createTheme, ThemeProvider } from '@mui/material/styles';
 import React, { useEffect, useState } from 'react';
 
-import AboutChildForm from './aboutChildForm';
+import { stylesRadio } from '../../radio.styles';
+import AboutChildForm from './AboutChildForm';
 
 const AboutForm = (props: any) => {
   const initialAboutProduct = {
@@ -21,7 +22,7 @@ const AboutForm = (props: any) => {
     title: '',
   };
   const [checked, setChecked] = useState(false);
-  const [productLists, setProductLists] = useState<any>([]);
+  const [productLists, setProductLists] = useState<any>([initialAboutProduct]);
 
   const addFormProduct = () => {
     setProductLists([...productLists, initialAboutProduct]);
@@ -52,8 +53,8 @@ const AboutForm = (props: any) => {
 
   return (
     <Stack spacing={2} direction="column" justifyContent="center">
-      <Stack spacing={2} direction="row" justifyContent="flex-start">
-        <Typography variant="h6">About List</Typography>
+      <Stack spacing={2} direction="row" justifyContent="flex-start" alignItems="center">
+        <Typography variant="h3">About List</Typography>
         <IconButton
           color="primary"
           aria-label="Add Product List"
@@ -64,11 +65,11 @@ const AboutForm = (props: any) => {
         </IconButton>
         <FormControlLabel
           label="Confirm"
-          control={<Checkbox checked={checked} onChange={toggleToConfirm} />}
+          control={<Checkbox sx={stylesRadio.radioColor} checked={checked} onChange={toggleToConfirm} />}
         />
       </Stack>
       <Stack>
-        <Stack sx={{ marginTop: '8px !important' }}>
+        <Stack sx={{ marginTop: '0px !important' }}>
           <List sx={{ overflowY: 'auto', maxHeight: '200px' }}>
             {productLists.length > 0 &&
               productLists.map((form: any, index: number) => (

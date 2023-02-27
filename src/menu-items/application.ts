@@ -36,6 +36,8 @@ const USER_PAGE = {
   OrderList: 'Danh sách đơn hàng',
   DiscountCoupon: 'Tạo mã giảm giá',
   OrderDetails: 'Chi tiết đơn hàng',
+  ProductList: 'Danh sách sản phẩm',
+  ProductCreate: 'Tạo sản phẩm mới',
   ProductDetails: 'Chi tiết sản phẩm',
 };
 
@@ -105,10 +107,17 @@ const application = {
       icon: icons.IconShoppingCart,
       children: [
         {
-          id: USER_PAGE.ProductDetails,
-          title: USER_PAGE.ProductDetails,
+          id: USER_PAGE.ProductList,
+          title: USER_PAGE.ProductList,
           type: 'item',
           url: `${PRODUCTS_PAGE_ROUTER}/${PRODUCTS_PATH.ProductList}`,
+          breadcrumbs: true,
+        },
+        {
+          id: USER_PAGE.ProductCreate,
+          title: USER_PAGE.ProductCreate,
+          type: 'item',
+          url: `${PRODUCTS_PAGE_ROUTER}/${PRODUCTS_PATH.ProductCreate}`,
           breadcrumbs: true,
         },
       ],

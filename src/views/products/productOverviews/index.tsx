@@ -9,8 +9,6 @@ import {
 } from '@mui/material';
 import React, { useEffect,useState } from 'react';
 
-import { addItem, updateItem } from '../../../api/firebase/handleData';
-import { staticData, updateData } from '../../../api/firebase/staticData';
 import MainCard from '../../../ui-component/cards/MainCard';
 import { PropsProductOverview } from '../productType';
 
@@ -25,7 +23,6 @@ const ProductOverview = (props: PropsProductOverview) => {
     props.data?.price && setPrice(props.data.price);
     props.data?.mainIngredient && setMainIngredient(props.data.mainIngredient);
     props.data?.moreCombina && setMoreCombina(props.data.moreCombina);
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (

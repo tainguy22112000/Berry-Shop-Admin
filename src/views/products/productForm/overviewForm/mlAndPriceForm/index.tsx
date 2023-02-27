@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import React, { useState } from 'react';
 
+import { stylesRadio } from '../../../radio.styles';
 import { convertMLAndPriceDara } from './converter';
 
 const mlAndPriceInit = {
@@ -82,14 +83,12 @@ const MLAndPriceForm = (props: any) => {
     const { checked } = event.target;
     setChecked(checked);
     updateMlAndPriceData(checked);
-    // if (checked) {
-    // }
   };
 
   return (
     <Stack spacing={2} direction="column">
-      <Stack spacing={2} direction="row">
-        <Typography variant="h6">ML and Price</Typography>
+      <Stack spacing={2} direction="row" alignItems="center">
+        <Typography variant="h3">ML and Price</Typography>
         <IconButton
           color="primary"
           aria-label="ML and Price"
@@ -100,7 +99,7 @@ const MLAndPriceForm = (props: any) => {
         </IconButton>
         <FormControlLabel
           label="Confirm"
-          control={<Checkbox checked={checked} onChange={toggleToConfirm} />}
+          control={<Checkbox sx={stylesRadio.radioColor} checked={checked} onChange={toggleToConfirm} />}
         />
       </Stack>
       <Stack spacing={2} direction="column">
