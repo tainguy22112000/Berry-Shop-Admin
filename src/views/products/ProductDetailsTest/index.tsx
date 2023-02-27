@@ -11,7 +11,7 @@ import { PRODUCT_DETAILS_OPEN } from '../../../store/actions';
 // import ProductOverview from '../ProductOverviews';
 import { ProductAboutsType } from '../productType';
 import CustomerInfos from './CustomerInfos';
-import ProductInfos from './ProductInfos/indext';
+import ProductInfos from './ProductInfos';
 
 const ProductDetailsTest = () => {
   const dispatch = useDispatch();
