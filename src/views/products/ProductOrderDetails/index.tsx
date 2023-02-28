@@ -6,9 +6,6 @@ import { useParams } from 'react-router-dom';
 import { ItemType } from '../../../api/firebase/dataType';
 import { getEachItem } from '../../../api/firebase/handleData';
 import { PRODUCT_DETAILS_OPEN } from '../../../store/actions';
-// import ButtonUpdateProduct from '../ButtonUpdateProduct';
-// import ProductAbouts from '../ProductAbouts';
-// import ProductOverview from '../ProductOverviews';
 import { ProductAboutsType } from '../productType';
 import CustomerInfos from './CustomerInfos';
 import ProductInfos from './ProductInfos';
@@ -69,7 +66,6 @@ const ProductOrderDetails = () => {
           // @ts-ignore
           productId,
         )) as ProductAboutsType;
-        console.log(data, 'data');
         setOrderInfos(data);
         dispatch({ type: PRODUCT_DETAILS_OPEN, data });
         return;
@@ -79,6 +75,7 @@ const ProductOrderDetails = () => {
     fetchData();
     getCustomerDetail(orderInfos);
     getProductDetails(orderInfos);
+    console.log(orderInfos, 'orderInfos');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orderInfos]);
 
@@ -86,7 +83,7 @@ const ProductOrderDetails = () => {
     <Paper>
       <Stack spacing={2} direction="column">
         <Stack spacing={2}>
-          <Typography variant="h1">Chi tiết đơn hàng</Typography>
+          <Typography variant="h2">Chi tiết đơn hàng</Typography>
         </Stack>
         <Stack spacing={2}>
           {customerInfos && <CustomerInfos customerInfos={customerInfos} />}

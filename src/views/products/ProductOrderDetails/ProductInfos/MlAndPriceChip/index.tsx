@@ -9,10 +9,10 @@ import {
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 
-import { convertMLAndPriceDara } from '@/views/products/ProductForm/OverviewForm/MlAndPriceForm/converter';
+import { MlAndPrice } from '../../../productType'
+
 const MlAndPriceChip = (props: any) => {
-  const [mlAndPrice, setMlAndPrice] = useState<any>({});
-  // convertMLAndPriceDara()
+  const [mlAndPrice, setMlAndPrice] = useState<MlAndPrice>({});
   useEffect(() => {
     setMlAndPrice(props.mlAndPrice);
   }, [props.mlAndPrice]);

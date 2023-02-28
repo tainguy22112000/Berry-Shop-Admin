@@ -4,15 +4,12 @@ import React, { lazy } from 'react';
 import { PRODUCTS_PAGE_ROUTER, PRODUCTS_PATH } from '../constants/routes';
 import MainLayout from '../layout/MainLayout';
 import Loadable from '../ui-component/Loadable';
+import ProductDetails from '../views/products/ProductDetails';
 import NewProductForm from '../views/products/ProductForm';
-import ProductList from '../views/products/ProductList';
 
-// user page routing
-const ProductDetailsPage = Loadable(lazy(() => import('../views/products/ProductList')));
-const ProductDetails = lazy(() => import('../views/products/ProductDetails'));
-const ProductOrderDetails = lazy(() => import('../views/products/ProductOrderDetails'));
+const ProductOrderLists = Loadable(lazy(() => import('../views/products/ProductOrderLists')));
+const ProductOrderDetails = Loadable(lazy(() => import('../views/products/ProductOrderDetails')));
 
-// ==============================|| MAIN ROUTING ||============================== //
 
 const ProductRoutes = {
   path: PRODUCTS_PAGE_ROUTER,
@@ -20,7 +17,7 @@ const ProductRoutes = {
   children: [
     {
       path: PRODUCTS_PATH.ProductOrderList,
-      element: <ProductDetailsPage />,
+      element: <ProductOrderLists />,
     },
     {
       path: `${PRODUCTS_PATH.ProductOrderList}/:id`,
@@ -29,6 +26,10 @@ const ProductRoutes = {
     {
       path: `${PRODUCTS_PATH.ProductCreate}`,
       element: <NewProductForm />
+    },
+    {
+      path: `${PRODUCTS_PATH.ProductLists}`,
+      element: <ProductDetails />
     }
   ],
 };

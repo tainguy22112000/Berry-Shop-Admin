@@ -39,6 +39,8 @@ type MoreCombina = {
 }
 
 export {
+  MlAndPrice,
+  MoreCombina,
   ProductAboutsType,
   ProductOverviewType,
   PropsProductAbout,

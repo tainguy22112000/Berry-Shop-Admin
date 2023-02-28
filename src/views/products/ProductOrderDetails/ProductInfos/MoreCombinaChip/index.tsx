@@ -8,8 +8,10 @@ import {
   TableRow,
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
+
+import { MoreCombina } from '../../../productType'
 const MoreCombinaChip = (props: any) => {
-  const [moreCombina, setMoreCombina] = useState<any>([]);
+  const [moreCombina, setMoreCombina] = useState<MoreCombina[]>([]);
   useEffect(() => {
     setMoreCombina(props.moreCombina);
   }, [props.moreCombina])

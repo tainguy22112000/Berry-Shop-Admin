@@ -70,15 +70,15 @@ const getPureData = (data: PureProductData) => {
 };
 
 const convertStatus = (status: string) => {
-  switch(status) {
-    case 'paymenting': 
+  switch (status) {
+    case 'paymenting':
       return 'Đang thanh toán';
-    case 'processing': 
+    case 'processing':
       return 'Đang xử lý';
-    default: 
+    default:
       return 'Đang chờ giao hàng';
   }
-}
+};
 
 const ProductsList = () => {
   const navigate = useNavigate();
@@ -114,7 +114,9 @@ const ProductsList = () => {
             <TableRow>
               <TableCell>Tên Khách hàng</TableCell>
               <TableCell align="center">Địa chỉ</TableCell>
-              <TableCell align="center" sx={{minWidth: '150px'}}>Số Điện thoại</TableCell>
+              <TableCell align="center" sx={{ minWidth: '150px' }}>
+                Số Điện thoại
+              </TableCell>
               <TableCell align="center">Ngày tạo</TableCell>
               <TableCell align="center">Trạng thái</TableCell>
               <TableCell align="center">Phương thức thanh toán</TableCell>
@@ -130,17 +132,30 @@ const ProductsList = () => {
                   onClick={() => selectProductDetail(datas[index])}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
-                  <TableCell component="th" scope="row" sx={{fontWeight: 'bold'}}>
+                  <TableCell
+                    component="th"
+                    scope="row"
+                    sx={{ fontWeight: 'bold' }}
+                  >
                     {pureData.recipientName}
                   </TableCell>
-                  <TableCell align="center" sx={{minWidth: '150px'}}>{pureData.address}</TableCell>
+                  <TableCell align="center" sx={{ minWidth: '150px' }}>
+                    {pureData.address}
+                  </TableCell>
                   <TableCell align="center">{pureData.phone}</TableCell>
                   <TableCell align="center">{pureData.createdTime}</TableCell>
                   <TableCell align="center">
-                    <Chip color={pureData.status === 'paymenting' ? 'warning' : 'success'} variant="outlined" label={convertStatus(pureData.status)} />
+                    <Chip
+                      color={
+                        pureData.status === 'paymenting' ? 'warning' : 'success'
+                      }
+                      variant="outlined"
+                      label={convertStatus(pureData.status)}
+                    />
                   </TableCell>
-                  <TableCell align="center">{pureData.paymentMethods}
-                     {/* <img src={MoMoIcon} alt="google" width={16} height={16} /> */}
+                  <TableCell align="center">
+                    {pureData.paymentMethods}
+                    {/* <img src={MoMoIcon} alt="google" width={16} height={16} /> */}
                   </TableCell>
                 </TableRow>
               ))}
