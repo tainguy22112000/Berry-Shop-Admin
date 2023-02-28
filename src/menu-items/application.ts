@@ -121,6 +121,13 @@ const application = {
           url: `${PRODUCTS_PAGE_ROUTER}/${PRODUCTS_PATH.ProductCreate}`,
           breadcrumbs: true,
         },
+        {
+          id: USER_PAGE.ProductLists,
+          title: USER_PAGE.ProductLists,
+          type: 'item',
+          url: `${PRODUCTS_PAGE_ROUTER}/${PRODUCTS_PATH.ProductLists}`,
+          breadcrumbs: true,
+        },
       ],
     },
   ],

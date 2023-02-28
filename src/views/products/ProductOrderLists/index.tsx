@@ -19,7 +19,7 @@ import { getAllItems } from '../../../api/firebase/handleData';
 // import MoMoIcon from '../../../assets/images/icons/momo.svg'
 import { convertDateFireBase } from '../../../helper/date-utils';
 import { clone } from '../../../helper/object-utils';
-import { PRODUCT_DETAILS_OPEN } from '../../../store/actions';
+import { PRODUCT_ORDER_DETAILS_OPEN } from '../../../store/actions';
 
 // const MoMoIcon = '../../../assets/images/icons/momo.svg';
 type ProductList = {};
@@ -87,8 +87,8 @@ const ProductsList = () => {
   const dispatch = useDispatch();
 
   const selectProductDetail = (data: Record<string, any>) => {
-    dispatch({ type: PRODUCT_DETAILS_OPEN, data });
-    navigate(`/products/order-lists/${data.id}`);
+    dispatch({ type: PRODUCT_ORDER_DETAILS_OPEN, data });
+    navigate(`/products/order-lists/${data.fireBaseId}`);
   };
 
   useEffect(() => {

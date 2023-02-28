@@ -50,8 +50,8 @@ export async function getAllItems(itemType: ItemType) {
     const querySnapshot = await getDocs(collection(db, itemType));
     querySnapshot.forEach((doc) => {
       const dataObject = {
-        id: doc.id,
         ...doc.data(),
+        fireBaseId: doc.id,
       };
       datas.push(dataObject);
     });

@@ -9,6 +9,7 @@ import NewProductForm from '../views/products/ProductForm';
 
 const ProductOrderLists = Loadable(lazy(() => import('../views/products/ProductOrderLists')));
 const ProductOrderDetails = Loadable(lazy(() => import('../views/products/ProductOrderDetails')));
+const ProductLists = Loadable(lazy(() => import('../views/products/ProductLists')));
 
 
 const ProductRoutes = {
@@ -29,6 +30,10 @@ const ProductRoutes = {
     },
     {
       path: `${PRODUCTS_PATH.ProductLists}`,
+      element: <ProductLists />
+    },
+    {
+      path: `${PRODUCTS_PATH.ProductLists}/:id`,
       element: <ProductDetails />
     }
   ],

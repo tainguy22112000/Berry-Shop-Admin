@@ -1,11 +1,11 @@
-import { Box, Grid, Paper, Stack, Typography } from '@mui/material';
+import { Paper, Stack, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { ItemType } from '../../../api/firebase/dataType';
 import { getEachItem } from '../../../api/firebase/handleData';
-import { PRODUCT_DETAILS_OPEN } from '../../../store/actions';
+import { PRODUCT_ORDER_DETAILS_OPEN } from '../../../store/actions';
 import { ProductAboutsType } from '../productType';
 import CustomerInfos from './CustomerInfos';
 import ProductInfos from './ProductInfos';
@@ -16,7 +16,7 @@ const ProductOrderDetails = () => {
   const [customerInfos, setCustomerInfos] = useState<any>({});
   const [productInfos, setProductInfos] = useState<any>({});
   const [orderInfos, setOrderInfos] = useState<any>({});
-  const selector = useSelector((state: any) => state.productData);
+  const selector = useSelector((state: any) => state.productOrderData);
 
   const getCustomerDetail = (orderInfos: any) => {
     const {
@@ -67,7 +67,7 @@ const ProductOrderDetails = () => {
           productId,
         )) as ProductAboutsType;
         setOrderInfos(data);
-        dispatch({ type: PRODUCT_DETAILS_OPEN, data });
+        dispatch({ type: PRODUCT_ORDER_DETAILS_OPEN, data });
         return;
       }
       setOrderInfos(selector.productDetails);

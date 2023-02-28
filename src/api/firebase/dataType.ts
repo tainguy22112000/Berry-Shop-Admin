@@ -4,4 +4,5 @@ export enum ItemType {
   PRODUCT2 = 'product2',
   DISCOUNT = 'discount',
   TEST = 'test',
+  PRODUCT = 'product',
 }

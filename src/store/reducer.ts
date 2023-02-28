@@ -3,13 +3,13 @@ import { combineReducers } from 'redux';
 import couponReducer from './coupon/couponReducer';
 // reducer import
 import customizationReducer from './customizationReducer';
-import productDetailsReducer from './productDetailsReducer';
+import productOrderDetailsReducer from './productOrderDetailsReducer';
 
 // ==============================|| COMBINE REDUCER ||============================== //
 
 const reducer = combineReducers({
   customization: customizationReducer,
-  productData: productDetailsReducer,
+  productOrderData: productOrderDetailsReducer,
   couponData: couponReducer,
 });
 

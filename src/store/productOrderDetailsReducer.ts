@@ -5,12 +5,12 @@ const initialState = {
   productDetails: {},
 }
 
-const productDetailsReducer = (
+const productOrderDetailsReducer = (
   state = initialState,
   action: Record<string, any>,
 ) => {
   switch(action.type) {
-    case (actionTypes.PRODUCT_DETAILS_OPEN):
+    case (actionTypes.PRODUCT_ORDER_DETAILS_OPEN):
       return {
         ...state,
         productId: action.data.id,
@@ -24,4 +24,4 @@ const productDetailsReducer = (
   }
 }
 
-export default productDetailsReducer;
+export default productOrderDetailsReducer;
