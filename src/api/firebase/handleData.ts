@@ -1,6 +1,7 @@
 import {
   addDoc,
   collection,
+  deleteDoc,
   doc,
   getDoc,
   getDocs,
@@ -22,7 +23,14 @@ export function addItem(itemType: ItemType, data: any) {
 }
 
 export function deleteItem(itemType: ItemType, id: any) {
-  console.log('deleteItem');
+  const docRef = doc(db, itemType, id);
+  deleteDoc(docRef)
+    .then(() => {
+      console.log('Product successfully deleted!');
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
 
 export function updateItem(itemType: ItemType, data: any, id: string) {

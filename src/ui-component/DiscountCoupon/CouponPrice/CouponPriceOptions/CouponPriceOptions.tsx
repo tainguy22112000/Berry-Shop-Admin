@@ -47,8 +47,6 @@ const CouponPriceOptions = ({
     dispatch(setCouponOptions(value));
   };
 
-  console.log('value', value === options);
-
   return (
     <Stack direction="row" spacing={2} alignItems="center">
       <RadioGroup

@@ -62,7 +62,7 @@ const CouponDate = () => {
   return (
     <Stack spacing={2}>
       <Stack direction="row" spacing={2}>
-        <FormControl sx={{ width: '10%' }}>
+        <FormControl sx={{ width: '20%' }}>
           <Stack spacing={2}>
             <Typography variant="subtitle1" component="h2">
               Số lượng

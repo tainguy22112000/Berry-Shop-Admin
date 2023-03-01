@@ -16,15 +16,17 @@ import { stableSort } from '../../../views/utilities/stableSort';
 
 interface IOderTableRow {
   rowOrderData: IRowOrderDataProps[];
+  page: number;
+  rowsPerPage: number;
 }
 
-const OrderTableRow = ({ rowOrderData }: IOderTableRow) => {
+const OrderTableRow = ({ rowOrderData, page, rowsPerPage }: IOderTableRow) => {
   const [order, setOrder] = useState<Order>('asc');
   const [orderBy, setOrderBy] = useState<keyof IRowOrderDataProps>('id');
   const [selected, setSelected] = useState<Array<any>>([]);
-  const [page, setPage] = useState(0);
+  // const [page, setPage] = useState(0);
   const [dense, setDense] = useState(false);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  // const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
     const selectedIndex = selected.indexOf(name);

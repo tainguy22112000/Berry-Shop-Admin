@@ -37,7 +37,6 @@ const CouponPrice = () => {
   const option = useSelector(
     ({ couponData }: CouponDataTypes) => couponData.couponOptions,
   );
-  console.log('freeship', typeof freeShip);
 
   return (
     <Stack spacing={2}>

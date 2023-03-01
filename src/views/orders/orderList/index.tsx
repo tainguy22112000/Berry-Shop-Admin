@@ -1,15 +1,21 @@
-import { Box, Paper, Table, TableContainer } from '@mui/material';
+import {
+  Box,
+  Paper,
+  Table,
+  TableContainer,
+  TablePagination,
+} from '@mui/material';
 import * as React from 'react';
 
 import { IOrderTableHeader, Order } from '@/types';
 
+import { orderTableHeader } from '../../../constants/order/orderTableHeader';
 import { rowOrderData } from '../../../constants/order/rowOrderData';
 import {
-  OrderTableHeader,
-  OrderTablePagination,
   OrderTableRow,
   OrderTableToolbar,
 } from '../../../ui-component/OrderList';
+import TableHeader from '../../../ui-component/TableHeader';
 
 export const OrderList = () => {
   const [order, setOrder] = React.useState<Order>('asc');
@@ -34,6 +40,20 @@ export const OrderList = () => {
     setSelected([]);
   };
 
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
@@ -44,18 +64,32 @@ export const OrderList = () => {
             aria-labelledby="tableTitle"
             size="medium"
           >
-            <OrderTableHeader
+            <TableHeader
               numSelected={selected.length}
               order={order}
               orderBy={orderBy}
               onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
               rowCount={rowOrderData.length}
+              headerContent={orderTableHeader}
             />
-            <OrderTableRow rowOrderData={rowOrderData} />
+            <OrderTableRow
+              rowOrderData={rowOrderData}
+              page={page}
+              rowsPerPage={rowsPerPage}
+            />
           </Table>
         </TableContainer>
-        <OrderTablePagination total={rowOrderData.length} />
+
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          component="div"
+          count={rowOrderData.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
       </Paper>
     </Box>
   );
