@@ -37,7 +37,7 @@ const ProductAboutsForm = (props: any) => {
   };
 
   useEffect(() => {
-    // props.createAboutProduct([...productLists]);
+    props.getProductAboutData([...productLists]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productLists]);
 

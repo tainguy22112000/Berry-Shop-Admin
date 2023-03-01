@@ -1,33 +1,45 @@
 import { Divider, Stack, TextField, Typography } from '@mui/material';
 import React, { ChangeEvent, useEffect, useState } from 'react';
 
-import { test } from '../../../../api/firebase/productList';
+import { createRandomId } from '../../../../helper/string-utls';
+
 const initOverviewProduct = {
   mainIngredient: '',
   price: 0,
-  status: 'designing',
+  status: '',
   name: '',
 };
-const ProductOverviewForm = () => {
+const ProductOverviewForm = (props: any) => {
   const [productOverview, setProductOverview] = useState(initOverviewProduct);
+
   useEffect(() => {
-    console.log(test, 'test');
-  }, []);
+    props.getProductOverviewData(productOverview);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [productOverview]);
+
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value, 'e.target.value');
+    const { name, value } = e.target;
+    setProductOverview({
+      ...productOverview,
+      [name]: value,
+    });
   };
+
   return (
     <Stack spacing={2} direction="column">
       <Stack spacing={2} direction="column">
         <Typography variant="subtitle1">Tên sản phẩm</Typography>
-        <TextField
-          variant="outlined"
-          label="Tên"
-          name="name"
-          value={productOverview.name}
-          onChange={handleInputChange}
-          sx={{ width: '50%' }}
-        />
+        <Stack spacing={2} direction="row">
+          <TextField
+            variant="outlined"
+            label="Tên"
+            name="name"
+            value={productOverview.name}
+            onChange={handleInputChange}
+            sx={{ width: '50%' }}
+          />
+          <Typography variant="h1">ID: {createRandomId()}</Typography>
+        </Stack>
       </Stack>
       <Stack spacing={2} direction="row">
         <Stack spacing={2} direction="column" sx={{ flexGrow: '1' }}>

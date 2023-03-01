@@ -43,7 +43,6 @@ const UploadImage = () => {
       <input type="file" onChange={handeOnChange} accept="image/*"/>
       <Button variant="contained" color="success" onClick={handleUpload}>
         <AddPhotoAlternateIcon />
-        {/* <p>{percent} %</p> */}
       </Button>
     </>
   );

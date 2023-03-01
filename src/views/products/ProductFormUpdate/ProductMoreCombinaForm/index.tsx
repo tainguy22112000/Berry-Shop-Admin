@@ -1,7 +1,5 @@
-import { Add } from '@mui/icons-material';
+import { Add, Clear } from '@mui/icons-material';
 import {
-  Checkbox,
-  FormControlLabel,
   IconButton,
   List,
   ListItem,
@@ -9,7 +7,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const moreCombinaInit = {
   option: '',
@@ -25,31 +23,52 @@ const ChildForm = (props: any) => {
       [name]: value,
     });
     props.getMoreCombina({ data: values, index: props.index });
-  }
+  };
+
+  const getIndex = (index: number) => {
+    props.getIndex(index);
+  };
 
   return (
-    <Stack spacing={2} direction="row">
-      <TextField
-        id="outlined-number"
-        label="Lựa chọn"
-        InputLabelProps={{
-          shrink: true,
-        }}
-        size="small"
-        name="option"
-        onChange={handleChangeInput}
-      />
-      <TextField
-        id="outlined-number"
-        label="Giá"
-        type="number"
-        InputLabelProps={{
-          shrink: true,
-        }}
-        size="small"
-        name="price"
-        onChange={handleChangeInput}
-      />
+    <Stack spacing={2} direction="row" sx={{ width: '100%' }}>
+      <Stack spacing={2} direction="column" sx={{ width: '100%' }}>
+        <Stack spacing={2} direction="row" alignItems="center">
+          <Typography variant="subtitle2">Item {props.index + 1}</Typography>
+          <IconButton
+            color="error"
+            aria-label="Add Product List"
+            size="small"
+            onClick={() => getIndex(props.index)}
+          >
+            <Clear />
+          </IconButton>
+        </Stack>
+        <Stack spacing={2} direction="row" sx={{ width: '100%' }}>
+          <TextField
+            id="outlined-number"
+            label="Lựa chọn"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            size="small"
+            name="option"
+            onChange={handleChangeInput}
+            sx={{ width: '100%' }}
+          />
+          <TextField
+            id="outlined-number"
+            label="Giá"
+            type="number"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            size="small"
+            name="price"
+            onChange={handleChangeInput}
+            sx={{ width: '100%' }}
+          />
+        </Stack>
+      </Stack>
     </Stack>
   );
 };
@@ -57,18 +76,24 @@ const ChildForm = (props: any) => {
 const ProductMoreCombinaForm = (props: any) => {
   const [moreCombinaList, setMoreCombinaList] = useState([moreCombinaInit]);
 
-  const updateMoreCombinaData = (isConfirm: boolean) => {
-    props.updateMoreCombinaData({data: moreCombinaList, isConfirm});
-  }
-
   const addFormMoreCombina = () => {
     setMoreCombinaList([...moreCombinaList, moreCombinaInit]);
   };
 
   const getMoreCombina = (input: any) => {
     moreCombinaList.splice(input.index, 1, input.data);
-    setMoreCombinaList([...moreCombinaList])
-  }
+    setMoreCombinaList([...moreCombinaList]);
+  };
+
+  const getIndex = (index: number) => {
+    moreCombinaList.splice(index, 1);
+    setMoreCombinaList([...moreCombinaList]);
+  };
+
+  useEffect(() => {
+    props.getProductMoreCombinaData(moreCombinaList);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [moreCombinaList]);
 
   return (
     <>
@@ -88,7 +113,11 @@ const ProductMoreCombinaForm = (props: any) => {
           <List>
             {moreCombinaList.map((item: any, index: number) => (
               <ListItem key={index}>
-                <ChildForm index={index} getMoreCombina={getMoreCombina}/>
+                <ChildForm
+                  index={index}
+                  getMoreCombina={getMoreCombina}
+                  getIndex={getIndex}
+                />
               </ListItem>
             ))}
           </List>
