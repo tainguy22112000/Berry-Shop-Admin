@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import React, { useState } from 'react';
 
-import { stylesRadio } from '../../../radio.styles';
+import { stylesRadio } from '../../radio.styles';
 
 const moreCombinaInit = {
   option: '',
@@ -56,7 +56,7 @@ const ChildForm = (props: any) => {
   );
 };
 
-const MoreCombinaForm = (props: any) => {
+const ProductMoreCombinaForm = (props: any) => {
   const [checked, setChecked] = useState(false);
   const [moreCombinaList, setMoreCombinaList] = useState([moreCombinaInit]);
 
@@ -110,4 +110,4 @@ const MoreCombinaForm = (props: any) => {
   );
 };
 
-export default MoreCombinaForm;
+export default ProductMoreCombinaForm;

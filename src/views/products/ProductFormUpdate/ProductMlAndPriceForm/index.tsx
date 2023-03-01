@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import React, { useState } from 'react';
 
-import { stylesRadio } from '../../../radio.styles';
+import { stylesRadio } from '../../radio.styles';
 import { convertMLAndPriceDara } from './converter';
 
 const mlAndPriceInit = {
@@ -61,7 +61,7 @@ const ChildForm = (props: any) => {
   );
 };
 
-const MLAndPriceForm = (props: any) => {
+const ProductMlAndPriceForm = (props: any) => {
   const [checked, setChecked] = useState(false);
   const [mlAndPriceList, setMlAndPriceList] = useState([mlAndPriceInit]);
 
@@ -115,4 +115,4 @@ const MLAndPriceForm = (props: any) => {
   );
 };
 
-export default MLAndPriceForm;
+export default ProductMlAndPriceForm;
