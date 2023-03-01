@@ -101,12 +101,12 @@ const ProductsList = () => {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell align="right">Address</TableCell>
-            <TableCell align="right">Phone</TableCell>
-            <TableCell align="right">Created Time</TableCell>
-            <TableCell align="right">Status</TableCell>
-            <TableCell align="right">Payment Method</TableCell>
+            <TableCell>Tên</TableCell>
+            <TableCell align="left">Địa chỉ</TableCell>
+            <TableCell align="right">Số điện thoại</TableCell>
+            <TableCell align="right">Thời gian tạo</TableCell>
+            <TableCell align="right">Trạng thái</TableCell>
+            <TableCell align="right">Hình thức thanh toán</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -115,12 +115,17 @@ const ProductsList = () => {
               <TableRow
                 key={index}
                 onClick={() => selectProductDetail(datas[index])}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                sx={{
+                  '&:last-child td, &:last-child th': { border: 0 },
+                  ':hover': {
+                    backgroundColor: '#ccc',
+                  },
+                }}
               >
                 <TableCell component="th" scope="row">
                   {pureData.recipientName}
                 </TableCell>
-                <TableCell align="right">{pureData.address}</TableCell>
+                <TableCell align="left">{pureData.address}</TableCell>
                 <TableCell align="right">{pureData.phone}</TableCell>
                 <TableCell align="right">{pureData.createdTime}</TableCell>
                 <TableCell align="right">{pureData.status}</TableCell>

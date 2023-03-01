@@ -1,13 +1,16 @@
 import {
   Box,
+  Button,
   Paper,
   Stack,
   Table,
   TableContainer,
+  TablePagination,
   Typography,
 } from '@mui/material';
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { IUserTableHeader, Order } from '@/types';
 
@@ -15,17 +18,32 @@ import { ItemType } from '../../../api/firebase/dataType';
 import { getAllItems } from '../../../api/firebase/handleData';
 import { couponTableHeader } from '../../../constants/coupon/couponTableHeader';
 import { rowUserData } from '../../../constants/user/rowUserData';
+import { setOpenCreateModal } from '../../../store/coupon/couponAction';
 import TableHeader from '../../../ui-component/TableHeader';
-import {
-  UserTablePagination,
-  UserTableRow,
-} from '../../../ui-component/UserProfile/index';
+import CouponTableRow from '../CouponTableRow';
+import CouponToolbar from '../CouponToolbar';
 
 export const CouponTable = () => {
+  const open =
+    useSelector(({ couponData }) => couponData.openCreateModal) ?? false;
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState('id');
   const [selected, setSelected] = React.useState([]);
-  const [discountData, setDiscountData] = useState<any>();
+  const [discountData, setDiscountData] = useState<any>([]);
+
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
@@ -48,21 +66,18 @@ export const CouponTable = () => {
   useEffect(() => {
     const fetchDiscountData = async () => {
       const data = await getAllItems(ItemType.DISCOUNT);
-      setDiscountData(data);
+      data && setDiscountData(data);
     };
     fetchDiscountData().catch(console.error);
-  }, []);
+  }, [open]);
 
   console.log(discountData);
 
   return (
     <Stack spacing={2}>
-      <Typography variant="subtitle1" component="h2">
-        Danh sách mã giảm giá
-      </Typography>
+      <CouponToolbar />
       <Box sx={{ width: '100%' }}>
         <Paper sx={{ width: '100%', mb: 2 }}>
-          {/* <UserTableToolbar numSelected={selected.length} /> */}
           <TableContainer>
             <Table
               sx={{ minWidth: 750 }}
@@ -75,13 +90,25 @@ export const CouponTable = () => {
                 orderBy={orderBy}
                 onSelectAllClick={handleSelectAllClick}
                 onRequestSort={handleRequestSort}
-                rowCount={rowUserData.length}
+                rowCount={couponTableHeader.length}
                 headerContent={couponTableHeader}
               />
-              <UserTableRow rowUserData={rowUserData} />
+              <CouponTableRow
+                rowCouponData={discountData}
+                page={page}
+                rowsPerPage={rowsPerPage}
+              />
             </Table>
           </TableContainer>
-          <UserTablePagination total={rowUserData.length} />
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 25]}
+            component="div"
+            count={discountData.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
         </Paper>
       </Box>
     </Stack>

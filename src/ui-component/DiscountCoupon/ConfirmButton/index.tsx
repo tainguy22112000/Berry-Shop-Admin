@@ -1,23 +1,29 @@
-import { Alert, Button, Stack } from '@mui/material';
+import { Alert, Button, Dialog, Stack } from '@mui/material';
 import { IconCheck } from '@tabler/icons';
 import * as React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { ItemType } from '../../../api/firebase/dataType';
 import { addItem } from '../../../api/firebase/handleData';
+import { setOpenCreateModal } from '../../../store/coupon/couponAction';
 import { styles } from './index.styles';
 
 const ConfirmButton = () => {
   const data = useSelector(({ couponData }) => couponData);
-  const [open, setOpen] = React.useState(false);
+  const dispatch = useDispatch();
+  const [alert, setAlert] = React.useState(false);
   console.log('data', data);
 
   const handleSubmit = () => {
     addItem(ItemType.DISCOUNT, data);
-    setOpen(true);
+    setAlert(true);
     setTimeout(() => {
-      setOpen(false);
+      setAlert(false);
     }, 3000);
+  };
+
+  const handleCancel = () => {
+    dispatch(setOpenCreateModal(false));
   };
 
   return (
@@ -36,11 +42,17 @@ const ConfirmButton = () => {
         >
           Tạo mã giảm giá
         </Button>
-        <Button variant="outlined" size="large" sx={styles.cancel}>
+        <Button
+          variant="outlined"
+          size="large"
+          sx={styles.cancel}
+          onClick={handleCancel}
+        >
           Huỷ bỏ
         </Button>
       </Stack>
-      {open && (
+      (
+      <Dialog open={alert}>
         <Alert
           icon={<IconCheck fontSize="inherit" />}
           severity="success"
@@ -48,7 +60,8 @@ const ConfirmButton = () => {
         >
           Tạo mã giảm giá thành công
         </Alert>
-      )}
+      </Dialog>
+      )
     </Stack>
   );
 };

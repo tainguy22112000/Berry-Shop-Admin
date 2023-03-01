@@ -18,6 +18,7 @@ const initialState = {
   couponProductType: [],
   couponProductDetails: '',
   couponNote: '',
+  // openCreateModal: false,
 };
 
 const {
@@ -31,6 +32,7 @@ const {
   SET_COUPON_PRODUCT_TYPE,
   SET_COUPON_PRODUCT_DETAILS,
   SET_COUPON_NOTE,
+  SET_OPEN_CREATE_MODAL,
 } = CouponTypes;
 
 const couponReducer = (
@@ -87,6 +89,11 @@ const couponReducer = (
       return {
         ...state,
         couponNote: payload,
+      };
+    case SET_OPEN_CREATE_MODAL:
+      return {
+        ...state,
+        openCreateModal: payload,
       };
     default: {
       return {

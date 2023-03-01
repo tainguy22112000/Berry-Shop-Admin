@@ -28,15 +28,22 @@ export interface IRowUserDataProps {
 
 export interface IRowCouponDataProps {
   id: number;
-  code: string;
-  type: string;
-  value: number;
-  date: string;
-  isFreeShip: boolean;
-  productType: string[];
-  products: string;
-  quantity: number;
-  note: string;
+  couponCode: string;
+  couponOptions: string;
+  couponValue: number;
+  couponStartDate: {
+    date: string;
+    time: string;
+  };
+  couponEndDate: {
+    date: string;
+    time: string;
+  };
+  couponFreeShipping: boolean;
+  couponProductType: string[];
+  couponProductDetails: string;
+  couponQuantity: number;
+  couponNote: string;
 }
 
 export type IRowDataProps =

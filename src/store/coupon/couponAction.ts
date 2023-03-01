@@ -10,6 +10,7 @@ const {
   SET_COUPON_PRODUCT_TYPE,
   SET_COUPON_PRODUCT_DETAILS,
   SET_COUPON_NOTE,
+  SET_OPEN_CREATE_MODAL,
 } = CouponTypes;
 
 export const setCouponCode = (value: string) => ({
@@ -59,5 +60,10 @@ export const setCouponProductDetails = (value: string) => ({
 
 export const setCouponNote = (value: string) => ({
   type: SET_COUPON_NOTE,
+  payload: value,
+});
+
+export const setOpenCreateModal = (value: boolean) => ({
+  type: SET_OPEN_CREATE_MODAL,
   payload: value,
 });
