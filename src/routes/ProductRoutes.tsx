@@ -5,7 +5,7 @@ import { PRODUCTS_PAGE_ROUTER, PRODUCTS_PATH } from '../constants/routes';
 import MainLayout from '../layout/MainLayout';
 import Loadable from '../ui-component/Loadable';
 import ProductDetails from '../views/products/ProductDetails';
-import NewProductForm from '../views/products/ProductForm';
+import ProductFormUpdate from '../views/products/ProductFormUpdate';
 
 const ProductOrderLists = Loadable(lazy(() => import('../views/products/ProductOrderLists')));
 const ProductOrderDetails = Loadable(lazy(() => import('../views/products/ProductOrderDetails')));
@@ -25,17 +25,17 @@ const ProductRoutes = {
       element: <ProductOrderDetails />
     },
     {
-      path: `${PRODUCTS_PATH.ProductCreate}`,
-      element: <NewProductForm />
-    },
-    {
       path: `${PRODUCTS_PATH.ProductLists}`,
       element: <ProductLists />
     },
     {
       path: `${PRODUCTS_PATH.ProductLists}/:id`,
       element: <ProductDetails />
-    }
+    },
+    {
+      path: `${PRODUCTS_PATH.ProductCreate}`,
+      element: <ProductFormUpdate />
+    },
   ],
 };
 

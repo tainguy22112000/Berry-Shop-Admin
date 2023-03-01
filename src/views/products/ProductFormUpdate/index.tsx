@@ -1,8 +1,12 @@
 import React from "react";
+
+import ProductAboutsForm from "./ProductAboutsForm";
+import ProductOverviewForm from "./ProductOverviewForm";
 const ProductFormUpdate = () => {
   return (
     <>
-      ProductFormUpdate
+      <ProductOverviewForm />
+      <ProductAboutsForm />
     </>
   )
 }

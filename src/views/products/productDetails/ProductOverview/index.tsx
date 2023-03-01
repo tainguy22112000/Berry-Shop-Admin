@@ -3,19 +3,17 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import { productDetailTest } from '../../../../api/firebase/productList';
 
-
 const ManualComponent = () => {
   const contentRef = useRef<HTMLDivElement>(null);
-  const [content, setContent] = useState(`${productDetailTest.rickText.userManual}`);
+  const [content, setContent] = useState(
+    `${productDetailTest.rickText.userManual}`,
+  );
   useEffect(() => {
     if (contentRef.current) {
       contentRef.current.innerHTML = content;
     }
-  }, [contentRef.current, content])
-  return (
-    <div ref={contentRef}>
-    </div>
-  )
+  }, [contentRef.current, content]);
+  return <div ref={contentRef}></div>;
 };
 
 const ProductOverview = () => {
