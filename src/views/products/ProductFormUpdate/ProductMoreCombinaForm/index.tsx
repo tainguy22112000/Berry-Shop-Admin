@@ -11,8 +11,6 @@ import {
 } from '@mui/material';
 import React, { useState } from 'react';
 
-import { stylesRadio } from '../../radio.styles';
-
 const moreCombinaInit = {
   option: '',
   price: 0,
@@ -33,7 +31,7 @@ const ChildForm = (props: any) => {
     <Stack spacing={2} direction="row">
       <TextField
         id="outlined-number"
-        label="Option"
+        label="Lựa chọn"
         InputLabelProps={{
           shrink: true,
         }}
@@ -43,7 +41,7 @@ const ChildForm = (props: any) => {
       />
       <TextField
         id="outlined-number"
-        label="Price"
+        label="Giá"
         type="number"
         InputLabelProps={{
           shrink: true,
@@ -57,7 +55,6 @@ const ChildForm = (props: any) => {
 };
 
 const ProductMoreCombinaForm = (props: any) => {
-  const [checked, setChecked] = useState(false);
   const [moreCombinaList, setMoreCombinaList] = useState([moreCombinaInit]);
 
   const updateMoreCombinaData = (isConfirm: boolean) => {
@@ -73,16 +70,11 @@ const ProductMoreCombinaForm = (props: any) => {
     setMoreCombinaList([...moreCombinaList])
   }
 
-  const toggleToConfirm = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { checked } = event.target;
-    setChecked(checked);
-    updateMoreCombinaData(checked);
-  };
   return (
     <>
       <Stack spacing={2} direction="column">
         <Stack spacing={2} direction="row" alignItems="center">
-          <Typography variant="h3">More Combina</Typography>
+          <Typography variant="subtitle1">Tổ hợp</Typography>
           <IconButton
             color="primary"
             aria-label="ML and Price"
@@ -91,10 +83,6 @@ const ProductMoreCombinaForm = (props: any) => {
           >
             <Add />
           </IconButton>
-          <FormControlLabel
-          label="Confirm"
-          control={<Checkbox sx={stylesRadio.radioColor} checked={checked} onChange={toggleToConfirm} />}
-        />
         </Stack>
         <Stack spacing={2} direction="column">
           <List>

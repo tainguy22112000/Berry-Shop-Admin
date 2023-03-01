@@ -11,7 +11,6 @@ import {
 } from '@mui/material';
 import React, { useState } from 'react';
 
-import { stylesRadio } from '../../radio.styles';
 import { convertMLAndPriceDara } from './converter';
 
 const mlAndPriceInit = {
@@ -37,7 +36,7 @@ const ChildForm = (props: any) => {
     <Stack spacing={2} direction="row">
       <TextField
         id="outlined-number"
-        label="Ml"
+        label="Dung tích"
         type="number"
         InputLabelProps={{
           shrink: true,
@@ -48,7 +47,7 @@ const ChildForm = (props: any) => {
       />
       <TextField
         id="outlined-number"
-        label="Price"
+        label="Giá"
         type="number"
         InputLabelProps={{
           shrink: true,
@@ -79,16 +78,10 @@ const ProductMlAndPriceForm = (props: any) => {
     setMlAndPriceList([...mlAndPriceList]);
   };
 
-  const toggleToConfirm = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { checked } = event.target;
-    setChecked(checked);
-    updateMlAndPriceData(checked);
-  };
-
   return (
     <Stack spacing={2} direction="column">
       <Stack spacing={2} direction="row" alignItems="center">
-        <Typography variant="h3">ML and Price</Typography>
+        <Typography variant="subtitle1">Giá theo dung tích</Typography>
         <IconButton
           color="primary"
           aria-label="ML and Price"
@@ -97,10 +90,6 @@ const ProductMlAndPriceForm = (props: any) => {
         >
           <Add />
         </IconButton>
-        <FormControlLabel
-          label="Confirm"
-          control={<Checkbox sx={stylesRadio.radioColor} checked={checked} onChange={toggleToConfirm} />}
-        />
       </Stack>
       <Stack spacing={2} direction="column">
         <List>

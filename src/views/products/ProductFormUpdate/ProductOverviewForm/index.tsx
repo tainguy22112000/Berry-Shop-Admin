@@ -1,4 +1,4 @@
-import { Stack, TextField, Typography } from '@mui/material';
+import { Divider, Stack, TextField, Typography } from '@mui/material';
 import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import { test } from '../../../../api/firebase/productList';
@@ -65,6 +65,7 @@ const ProductOverviewForm = () => {
           />
         </Stack>
       </Stack>
+      <Divider />
     </Stack>
   );
 };
