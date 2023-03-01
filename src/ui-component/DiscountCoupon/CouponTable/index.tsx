@@ -1,16 +1,14 @@
 import {
   Box,
-  Button,
   Paper,
   Stack,
   Table,
   TableContainer,
   TablePagination,
-  Typography,
 } from '@mui/material';
 import * as React from 'react';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import { IUserTableHeader, Order } from '@/types';
 
@@ -18,7 +16,6 @@ import { ItemType } from '../../../api/firebase/dataType';
 import { getAllItems } from '../../../api/firebase/handleData';
 import { couponTableHeader } from '../../../constants/coupon/couponTableHeader';
 import { rowUserData } from '../../../constants/user/rowUserData';
-import { setOpenCreateModal } from '../../../store/coupon/couponAction';
 import TableHeader from '../../../ui-component/TableHeader';
 import CouponTableRow from '../CouponTableRow';
 import CouponToolbar from '../CouponToolbar';
@@ -70,8 +67,6 @@ export const CouponTable = () => {
     };
     fetchDiscountData().catch(console.error);
   }, [open]);
-
-  console.log(discountData);
 
   return (
     <Stack spacing={2}>

@@ -45,7 +45,7 @@ const TableHeader = (props: ITableHeaderProps) => {
           ({ numeric, id, disablePadding, label }: IHeaderContentProps) => (
             <TableCell
               key={id}
-              align={numeric ? 'right' : 'left'}
+              align={numeric ? 'center' : 'left'}
               padding={disablePadding ? 'none' : 'normal'}
               sortDirection={orderBy === id ? order : false}
             >

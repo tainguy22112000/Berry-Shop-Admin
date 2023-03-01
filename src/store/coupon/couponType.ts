@@ -43,6 +43,7 @@ export enum CouponTypes {
   SET_COUPON_PRODUCT_DETAILS = '@couponData/SET_COUPON_PRODUCT_DETAILS',
   SET_COUPON_NOTE = '@couponData/SET_COUPON_NOTE',
   SET_OPEN_CREATE_MODAL = '@couponData/SET_OPEN_CREATE_MODAL',
+  SET_CLEAR_DATA = '@couponData/SET_CLEAR_DATA',
 }
 
 export enum ProductType {

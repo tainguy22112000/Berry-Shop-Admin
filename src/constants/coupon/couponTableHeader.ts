@@ -1,27 +1,15 @@
 import { ICouponTableHeader } from '@/types';
 
 export const couponTableHeader: ICouponTableHeader[] = [
-  // {
-  //   id: 'id',
-  //   numeric: false,
-  //   disablePadding: true,
-  //   label: 'STT',
-  // },
   {
     id: 'couponCode',
     numeric: false,
     disablePadding: true,
     label: 'Mã giảm giá',
   },
-  // {
-  //   id: 'type',
-  //   numeric: true,
-  //   disablePadding: false,
-  //   label: 'Loại giảm giá',
-  // },
   {
     id: 'couponQuantity',
-    numeric: false,
+    numeric: true,
     disablePadding: false,
     label: 'Số lượng',
   },
@@ -39,7 +27,7 @@ export const couponTableHeader: ICouponTableHeader[] = [
   },
   {
     id: 'couponFreeShipping',
-    numeric: false,
+    numeric: true,
     disablePadding: false,
     label: 'Miễn phí giao hàng',
   },
@@ -54,5 +42,11 @@ export const couponTableHeader: ICouponTableHeader[] = [
     numeric: false,
     disablePadding: false,
     label: 'Sản phẩm',
+  },
+  {
+    id: 'couponProductDetails',
+    numeric: false,
+    disablePadding: false,
+    label: '',
   },
 ];

@@ -5,7 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { ItemType } from '../../../api/firebase/dataType';
 import { addItem } from '../../../api/firebase/handleData';
-import { setOpenCreateModal } from '../../../store/coupon/couponAction';
+import {
+  setClearData,
+  setOpenCreateModal,
+} from '../../../store/coupon/couponAction';
 import { styles } from './index.styles';
 
 const ConfirmButton = () => {
@@ -20,10 +23,12 @@ const ConfirmButton = () => {
     setTimeout(() => {
       setAlert(false);
     }, 3000);
+    dispatch(setClearData());
   };
 
   const handleCancel = () => {
     dispatch(setOpenCreateModal(false));
+    dispatch(setClearData());
   };
 
   return (

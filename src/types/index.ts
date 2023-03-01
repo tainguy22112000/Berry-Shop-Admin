@@ -27,7 +27,7 @@ export interface IRowUserDataProps {
 }
 
 export interface IRowCouponDataProps {
-  id: number;
+  id: string;
   couponCode: string;
   couponOptions: string;
   couponValue: number;
