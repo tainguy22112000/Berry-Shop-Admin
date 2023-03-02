@@ -1,19 +1,29 @@
 import { TabContext, TabList, TabPanel } from '@mui/lab';
-import { Box, Tab} from '@mui/material';
+import { Box, Tab } from '@mui/material';
 import React, { SyntheticEvent, useEffect, useState } from 'react';
 
 import ProductDescriptions from './ProductDescriptions';
 const ProductAbouts = (props: any) => {
   const [aboutInfo, setAboutInfo] = useState<any>({});
-  useEffect(() => {
-    console.log(props.aboutProduct, 'props.productAbout');
-    setAboutInfo(props.aboutProduct);
-  }, [props.aboutProduct]);
+  const [value, setValue] = useState<string>('1');
 
-  const [value, setValue] = useState<any>('1');
   const handleChange = (event: SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
+
+  const updateAboutProduct = (data: any) => {
+    console.log(data, 'data');
+    setAboutInfo(data);
+  };
+
+  useEffect(() => {
+    setAboutInfo(props.aboutProduct);
+  }, [props.aboutProduct]);
+
+  useEffect(() => {
+    props.updateProductAbouts(aboutInfo);
+  }, [aboutInfo])
+
   return (
     <Box
       sx={{
@@ -33,7 +43,13 @@ const ProductAbouts = (props: any) => {
           </TabList>
         </Box>
         <TabPanel value="1" style={{ width: '100%' }}>
-        {aboutInfo && <ProductDescriptions aboutProduct={aboutInfo} />}
+          {aboutInfo && (
+            <ProductDescriptions
+              aboutProduct={aboutInfo}
+              isEditMode={props.isEditMode}
+              updateAboutProduct={updateAboutProduct}
+            />
+          )}
         </TabPanel>
         <TabPanel value="2">Nhận xét</TabPanel>
         <TabPanel value="3">Thông tin khác</TabPanel>

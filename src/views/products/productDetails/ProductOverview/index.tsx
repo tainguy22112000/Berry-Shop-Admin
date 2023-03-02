@@ -1,39 +1,58 @@
-import { Divider, Paper, Rating, Stack, Typography } from '@mui/material';
-import React, { useEffect, useRef, useState } from 'react';
+import {
+  Divider,
+  Paper,
+  Rating,
+  Stack,
+  TextField,
+  Typography,
+} from '@mui/material';
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 
-import { productDetailTest } from '../../../../api/firebase/productList';
+// const ManualComponent = () => {
+//   const contentRef = useRef<HTMLDivElement>(null);
+//   const [content, setContent] = useState(
+//     `${productDetailTest.rickText.userManual}`,
+//   );
+//   useEffect(() => {
+//     if (contentRef.current) {
+//       contentRef.current.innerHTML = content;
+//     }
+//   }, [contentRef.current, content]);
+//   return <div ref={contentRef}></div>;
+// };
 
-const ManualComponent = () => {
-  const contentRef = useRef<HTMLDivElement>(null);
-  const [content, setContent] = useState(
-    `${productDetailTest.rickText.userManual}`,
-  );
+const ProductOverview = (props: any) => {
+  const [data, setData] = useState(props);
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setData({
+      ...data,
+      [name]: value,
+    });
+  };
+
   useEffect(() => {
-    if (contentRef.current) {
-      contentRef.current.innerHTML = content;
-    }
-  }, [contentRef.current, content]);
-  return <div ref={contentRef}></div>;
-};
+    setData(props.overviewProduct);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.overviewProduct]);
 
-const ProductOverview = () => {
-  const { id, mainIngredient, price } = productDetailTest;
-  const [overview, setOverview] = useState<any>();
-  // useEffect(() => {
-  //   setOverview({
-  //     group,
-  //     id,
-  //     mainIngredient,
-  //     price,
-  //   });
-  //   console.log(overview, 'overview');
-  // }, [overview]);
+  useEffect(() => {
+    props.updateProductOverview(data);
+  }, [data])
+
+  useEffect(() => {
+    console.log(props.isEditMode, 'props.isEditMode');
+  }, [props.isEditMode]);
+
+  
+
 
   return (
     <Paper>
       <Stack spacing={2}>
         <Stack>
-          <Typography variant="h5">ID: {productDetailTest.id}</Typography>
+          <Typography variant="h5">ID: {data.id}</Typography>
         </Stack>
         <Stack direction="column">
           <Stack>
@@ -45,21 +64,58 @@ const ProductOverview = () => {
           <Stack>
             <Typography variant="h5">Nhóm</Typography>
           </Stack>
-          <Stack>{productDetailTest.group}</Stack>
+          <Stack sx={{paddingTop: '8px'}}>
+            {props.isEditMode ? (
+              <TextField
+                label="Nhóm"
+                name="group"
+                value={data.group}
+                onChange={handleInputChange}
+                sx={{width: "98%"}}
+              />
+            ) : (
+              data.group
+            )}
+          </Stack>
         </Stack>
         <Divider />
         <Stack direction="column">
           <Stack>
             <Typography variant="h5">Nguyên liệu chính</Typography>
           </Stack>
-          <Stack>{productDetailTest.mainIngredient}</Stack>
+          <Stack sx={{paddingTop: '8px'}}>
+            {props.isEditMode ? (
+              <TextField
+                label="Nguyên liệu chính"
+                name="mainIngredient"
+                value={data.mainIngredient}
+                onChange={handleInputChange}
+                sx={{width: "98%"}}
+              />
+            ) : (
+              data.mainIngredient
+            )}
+          </Stack>
         </Stack>
         <Divider />
         <Stack direction="column">
           <Stack>
             <Typography variant="h5">Giá</Typography>
           </Stack>
-          <Stack>{productDetailTest.price}</Stack>
+          <Stack sx={{paddingTop: '8px'}}>
+            {props.isEditMode ? (
+              <TextField
+                label="Giá"
+                name="price"
+                value={data.price}
+                type="number"
+                onChange={handleInputChange}
+                sx={{width: "98%"}}
+              />
+            ) : (
+              data.price
+            )}
+          </Stack>
         </Stack>
         <Divider />
       </Stack>

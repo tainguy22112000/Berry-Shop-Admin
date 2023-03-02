@@ -19,6 +19,8 @@ export function isEqual<T>(a: T, b: T): boolean {
   return a === b;
 }
 
+
+
 // export function clone(value: any) {
 //   try {
 //     return JSON.parse(JSON.stringify(value));

@@ -7,7 +7,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 
 const moreCombinaInit = {
   option: '',
@@ -16,7 +16,7 @@ const moreCombinaInit = {
 
 const ChildForm = (props: any) => {
   const [values, setValues] = useState(moreCombinaInit);
-  const handleChangeInput = (event: any) => {
+  const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.target;
     setValues({
       ...values,

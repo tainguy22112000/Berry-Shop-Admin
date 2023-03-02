@@ -9,7 +9,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import { convertMLAndPriceDara } from './converter';
 
@@ -20,7 +20,7 @@ const mlAndPriceInit = {
 
 const ChildForm = (props: any) => {
   const [values, setValues] = useState(mlAndPriceInit);
-  const handleChangeInput = (event: any) => {
+  const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
     let { name, value } = event.target;
     if (name === 'ml') {
       value = `${value}ml`;
@@ -33,7 +33,6 @@ const ChildForm = (props: any) => {
   };
 
   const getIndex = (index: number) => {
-    console.log(index, 'index');
     props.getIndex(index);
   };
 

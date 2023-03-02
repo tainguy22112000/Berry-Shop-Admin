@@ -49,12 +49,8 @@ const ProductFormUpdate = () => {
       <Stack spacing={2} direction="column">
         <ProductOverviewForm getProductOverviewData={getProductOverviewData} />
         <ProductAboutsForm getProductAboutData={getProductAboutData} />
-        <ProductMlAndPriceForm
-          getProductMlAndPriceData={getProductMlAndPriceData}
-        />
-        <ProductMoreCombinaForm
-          getProductMoreCombinaData={getProductMoreCombinaData}
-        />
+        <ProductMlAndPriceForm getProductMlAndPriceData={getProductMlAndPriceData} />
+        <ProductMoreCombinaForm getProductMoreCombinaData={getProductMoreCombinaData} />
       </Stack>
       <Stack>
         <Button onClick={createNewProduct} style={stylesButton.button}>

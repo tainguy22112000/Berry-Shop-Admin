@@ -34,10 +34,10 @@ export function deleteItem(itemType: ItemType, id: any) {
     });
 }
 
-export function updateItem(itemType: ItemType, data: any, id: string) {
-  const docRef = doc(db, itemType, id);
+export function updateItem(itemType: ItemType, data: any, fireBaseid: string) {
+  const docRef = doc(db, itemType, fireBaseid);
   updateDoc(docRef, { ...data })
-    .then((_) => {
+    .then((docRef) => {
       console.log('Product has been updated successfully');
     })
     .catch((error) => {
@@ -67,7 +67,10 @@ export async function getEachItem(itemType: ItemType, id: string) {
     const docRef = doc(db, itemType, id);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
-      return docSnap.data();
+      return {
+        ...docSnap.data(),
+        fireBaseId: docSnap.id,
+      };
     }
     return {};
   } catch (error) {
