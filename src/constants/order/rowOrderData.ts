@@ -1,5 +1,5 @@
-import { IRowOrderDataProps } from "@/types";
-export const rowOrderData: IRowOrderDataProps[] = [
+import { IRowTestDataProps } from '@/types';
+export const rowOrderData: IRowTestDataProps[] = [
   {
     name: 'Nguyễn Văn Kiệt',
     address: 'UOA Tower Quận 7',

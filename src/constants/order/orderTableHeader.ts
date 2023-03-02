@@ -1,6 +1,6 @@
-import { IOrderTableHeader } from '@/types';
+import { IOrderTableHeader, ITestTableHeader } from '@/types';
 
-export const orderTableHeader: IOrderTableHeader[] = [
+export const testTableHeader: ITestTableHeader[] = [
   {
     id: 'name',
     numeric: false,
@@ -42,5 +42,44 @@ export const orderTableHeader: IOrderTableHeader[] = [
     numeric: false,
     disablePadding: false,
     label: 'Chỉnh sửa',
+  },
+];
+
+export const orderTableHeader: IOrderTableHeader[] = [
+  {
+    id: 'recipientName',
+    numeric: false,
+    disablePadding: false,
+    label: 'Tên khách hàng',
+  },
+  {
+    id: 'address',
+    numeric: true,
+    disablePadding: false,
+    label: 'Địa chỉ',
+  },
+  {
+    id: 'phone',
+    numeric: false,
+    disablePadding: false,
+    label: 'Số điện thoại',
+  },
+  {
+    id: 'createOn',
+    numeric: false,
+    disablePadding: false,
+    label: 'Ngày tạo',
+  },
+  {
+    id: 'status',
+    numeric: false,
+    disablePadding: false,
+    label: 'Trạng thái thanh toán',
+  },
+  {
+    id: 'paymentMethods',
+    numeric: false,
+    disablePadding: false,
+    label: 'Phương thức thanh toán',
   },
 ];

@@ -9,7 +9,7 @@ import {
 import { visuallyHidden } from '@mui/utils';
 import * as React from 'react';
 
-import { IRowOrderDataProps, ITableHeaderProps } from '@/types';
+import { ITableHeaderProps } from '@/types';
 
 const OrderTableHeader = (props: ITableHeaderProps) => {
   const {

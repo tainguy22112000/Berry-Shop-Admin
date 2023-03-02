@@ -1,6 +1,7 @@
 import {
   Checkbox,
   Chip,
+  CircularProgress,
   IconButton,
   TableBody,
   TableCell,
@@ -21,12 +22,14 @@ interface ICouponTableRowProps {
   rowCouponData: IRowCouponDataProps[];
   page: number;
   rowsPerPage: number;
+  loading: boolean;
 }
 
 const CouponTableRow = ({
   rowCouponData,
   page,
   rowsPerPage,
+  loading,
 }: ICouponTableRowProps) => {
   const [order, setOrder] = useState<Order>('desc');
   const [orderBy, setOrderBy] =

@@ -9,20 +9,20 @@ import {
 import { IconEdit, IconEye } from '@tabler/icons';
 import React, { useState } from 'react';
 
-import { IRowOrderDataProps, Order } from '@/types';
+import { IRowTestDataProps, Order } from '@/types';
 
 import { getSortComparator } from '../../../views/utilities/getSortComparator';
 import { stableSort } from '../../../views/utilities/stableSort';
 
 interface IOderTableRow {
-  rowOrderData: IRowOrderDataProps[];
+  rowOrderData: IRowTestDataProps[];
   page: number;
   rowsPerPage: number;
 }
 
 const OrderTableRow = ({ rowOrderData, page, rowsPerPage }: IOderTableRow) => {
   const [order, setOrder] = useState<Order>('asc');
-  const [orderBy, setOrderBy] = useState<keyof IRowOrderDataProps>('id');
+  const [orderBy, setOrderBy] = useState<keyof IRowTestDataProps>('id');
   const [selected, setSelected] = useState<Array<any>>([]);
   // const [page, setPage] = useState(0);
   const [dense, setDense] = useState(false);
@@ -58,7 +58,7 @@ const OrderTableRow = ({ rowOrderData, page, rowsPerPage }: IOderTableRow) => {
     <TableBody>
       {stableSort(rowOrderData, getSortComparator(order, orderBy))
         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-        .map((row: IRowOrderDataProps, index: number) => {
+        .map((row: IRowTestDataProps, index: number) => {
           const isItemSelected = isSelected(row.name);
           const labelId = `enhanced-table-checkbox-${index}`;
 

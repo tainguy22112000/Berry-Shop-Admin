@@ -1,4 +1,5 @@
 import {
+  Checkbox,
   Chip,
   Paper,
   Stack,
@@ -13,11 +14,17 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import { IOrderTableHeader, Order } from '@/types';
+
 import { ItemType } from '../../../api/firebase/dataType';
 import { getAllItems } from '../../../api/firebase/handleData';
+import { orderTableHeader } from '../../../constants/order/orderTableHeader';
+// import { ReactComponentElement as MoMoIcon } from '../../../assets/images/icons/momo.svg';
+// import MoMoIcon from '../../../assets/images/icons/momo.svg'
 import { convertDateFireBase } from '../../../helper/date-utils';
 import { clone } from '../../../helper/object-utils';
 import { PRODUCT_ORDER_DETAILS_OPEN } from '../../../store/actions';
+import TableHeader from '../../../ui-component/TableHeader';
 
 
 type PureProductData = {
@@ -70,6 +77,42 @@ const ProductsList = () => {
   const [pureDatas, setPureDatas] = useState<PureProductData[]>([]);
   const dispatch = useDispatch();
 
+  const [order, setOrder] = React.useState<Order>('asc');
+  const [orderBy, setOrderBy] = React.useState('recipientName');
+  const [selected, setSelected] = React.useState([]);
+
+  const handleRequestSort = (
+    event: React.MouseEvent<unknown>,
+    property: keyof IOrderTableHeader,
+  ) => {
+    const isAsc = orderBy === property && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
+    setOrderBy(property);
+  };
+
+  const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.checked) {
+      const newSelected: any = pureDatas.map((n) => n.recipientName);
+      setSelected(newSelected);
+      return;
+    }
+    setSelected([]);
+  };
+
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
   const selectProductDetail = (data: Record<string, any>) => {
     dispatch({ type: PRODUCT_ORDER_DETAILS_OPEN, data });
     navigate(`/products/order-lists/${data.fireBaseId}`);
@@ -94,7 +137,7 @@ const ProductsList = () => {
     <Stack spacing={2} direction="column">
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
+          {/* <TableHead>
             <TableRow>
               <TableCell>Tên Khách hàng</TableCell>
               <TableCell align="center">Địa chỉ</TableCell>
@@ -105,7 +148,16 @@ const ProductsList = () => {
               <TableCell align="center">Trạng thái</TableCell>
               <TableCell align="center">Phương thức thanh toán</TableCell>
             </TableRow>
-          </TableHead>
+          </TableHead> */}
+          <TableHeader
+            numSelected={10}
+            order={order}
+            orderBy={orderBy}
+            onSelectAllClick={handleSelectAllClick}
+            onRequestSort={handleRequestSort}
+            rowCount={orderTableHeader.length}
+            headerContent={orderTableHeader}
+          />
           <TableBody>
             {pureDatas &&
               pureDatas.map((pureData: PureProductData, index: number) => (
@@ -116,6 +168,10 @@ const ProductsList = () => {
                   onClick={() => selectProductDetail(datas[index])}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
+                  <TableCell align="center">
+                    <Checkbox color="primary" checked={false} />
+                  </TableCell>
+
                   <TableCell
                     component="th"
                     scope="row"
@@ -123,7 +179,7 @@ const ProductsList = () => {
                   >
                     {pureData.recipientName}
                   </TableCell>
-                  <TableCell align="center" sx={{ minWidth: '150px' }}>
+                  <TableCell align="left" sx={{ maxWidth: '200px' }}>
                     {pureData.address}
                   </TableCell>
                   <TableCell align="center">{pureData.phone}</TableCell>
