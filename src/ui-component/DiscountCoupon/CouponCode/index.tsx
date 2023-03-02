@@ -110,7 +110,7 @@ const CouponCode = () => {
             onClick={() => handleCouponOptionsClick(CouponOptions.TYPING)}
           />
         </RadioGroup>
-        <FormControl sx={styles.formWith}>
+        <FormControl sx={{ width: '60%' }}>
           <TextField
             id="outlined-adornment-amount"
             InputProps={{

@@ -78,7 +78,7 @@ const CouponDate = () => {
           </Stack>
         </FormControl>
 
-        <Stack spacing={2} sx={{ width: '80%' }}>
+        <Stack spacing={2} width="80%">
           <Typography variant="subtitle1" component="h2">
             Hạn sử dụng
           </Typography>
@@ -89,14 +89,18 @@ const CouponDate = () => {
                 inputFormat="MM/DD/YYYY"
                 value={startDay}
                 onChange={handleChangeStartDate}
-                renderInput={(params) => <TextField {...params} />}
+                renderInput={(params) => (
+                  <TextField {...params} sx={{ flexGrow: 1 }} />
+                )}
               />
               <DateTimePicker
                 label="Ngày kết thúc"
                 inputFormat="MM/DD/YYYY"
                 value={endDay}
                 onChange={handleChangeEndDate}
-                renderInput={(params) => <TextField {...params} />}
+                renderInput={(params) => (
+                  <TextField {...params} sx={{ flexGrow: 1 }} />
+                )}
               />
             </Stack>
           </LocalizationProvider>

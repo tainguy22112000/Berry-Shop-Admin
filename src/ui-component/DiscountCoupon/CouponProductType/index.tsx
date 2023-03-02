@@ -61,7 +61,7 @@ const CouponProductType = () => {
   return (
     <Stack spacing={2}>
       <Stack direction="row" spacing={2}>
-        <FormControl sx={{ width: '40%' }}>
+        <FormControl sx={{ flexGrow: 1 }}>
           <Stack spacing={2}>
             <Typography variant="subtitle1" component="h2">
               Loại sản phẩm
@@ -87,7 +87,7 @@ const CouponProductType = () => {
           </Stack>
         </FormControl>
 
-        <FormControl sx={{ width: '50%' }}>
+        <FormControl sx={{ flexGrow: 1 }}>
           <Stack spacing={2}>
             <Typography variant="subtitle1" component="h2">
               Sản phẩm cụ thể

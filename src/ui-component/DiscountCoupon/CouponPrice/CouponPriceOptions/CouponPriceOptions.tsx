@@ -62,7 +62,7 @@ const CouponPriceOptions = ({
           onChange={handlePriceOptions}
         />
       </RadioGroup>
-      <FormControl sx={{ width: '40%' }} size="small">
+      <FormControl sx={{ width: '60%' }} size="small">
         <InputLabel htmlFor="outlined-adornment-amount">{label}</InputLabel>
         <OutlinedInput
           id="outlined-adornment-amount quantity"

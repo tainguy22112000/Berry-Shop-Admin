@@ -19,6 +19,6 @@ export const styles = {
     backgroundColor: grey[900],
   },
   formWith: {
-    width: '40%',
+    flexGrow: 1,
   },
 };

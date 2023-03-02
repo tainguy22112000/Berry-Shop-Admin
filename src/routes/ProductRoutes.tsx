@@ -1,10 +1,10 @@
-// project imports
 import React, { lazy } from 'react';
 
 import { PRODUCTS_PAGE_ROUTER, PRODUCTS_PATH } from '../constants/routes';
 import MainLayout from '../layout/MainLayout';
 import Loadable from '../ui-component/Loadable';
-import ProductDetails from '../views/products/ProductDetails';
+// import ProductDetails from '../views/products/ProductDetails';
+import ProductDetails from '../views/products/productDetails';
 import ProductFormUpdate from '../views/products/ProductFormUpdate';
 
 const ProductOrderLists = Loadable(lazy(() => import('../views/products/ProductOrderLists')));
