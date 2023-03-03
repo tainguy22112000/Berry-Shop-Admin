@@ -5,6 +5,7 @@ import Carousel from 'react-material-ui-carousel';
 type Props = {
   photo: string[];
 };
+
 const ProductImagesCarousel = ({ photo }: Props) => {
   const [photoArr, setPhotoArr] = useState<string[]>([]);
   useEffect(() => {

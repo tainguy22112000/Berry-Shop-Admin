@@ -23,7 +23,6 @@ export function addItem(itemType: ItemType, data: any) {
 }
 
 export function deleteItem(itemType: ItemType, id: any) {
-  console.log('deleteItem');
   const docRef = doc(db, itemType, id);
   deleteDoc(docRef)
     .then(() => {

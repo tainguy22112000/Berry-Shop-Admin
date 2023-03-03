@@ -15,26 +15,10 @@ import { useNavigate } from 'react-router-dom';
 
 import { ItemType } from '../../../api/firebase/dataType';
 import { getAllItems } from '../../../api/firebase/handleData';
-// import { ReactComponentElement as MoMoIcon } from '../../../assets/images/icons/momo.svg';
-// import MoMoIcon from '../../../assets/images/icons/momo.svg'
 import { convertDateFireBase } from '../../../helper/date-utils';
 import { clone } from '../../../helper/object-utils';
 import { PRODUCT_ORDER_DETAILS_OPEN } from '../../../store/actions';
 
-// const MoMoIcon = '../../../assets/images/icons/momo.svg';
-type ProductList = {};
-
-// type ProductDetail = {
-//   address: string;
-//   createOn: any;
-//   deliveryTime: any;
-//   note: string;
-//   paymentMethods: string;
-//   phone: string;
-//   productList: ProductList;
-//   recipientName: string;
-//   status: boolean;
-// };
 
 type PureProductData = {
   id: string | number;
@@ -155,7 +139,6 @@ const ProductsList = () => {
                   </TableCell>
                   <TableCell align="center">
                     {pureData.paymentMethods}
-                    {/* <img src={MoMoIcon} alt="google" width={16} height={16} /> */}
                   </TableCell>
                 </TableRow>
               ))}

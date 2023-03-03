@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
   Divider,
   Paper,
@@ -6,7 +7,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 
 // const ManualComponent = () => {
 //   const contentRef = useRef<HTMLDivElement>(null);
@@ -34,7 +35,6 @@ const ProductOverview = (props: any) => {
 
   useEffect(() => {
     setData(props.overviewProduct);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.overviewProduct]);
 
   useEffect(() => {
@@ -42,11 +42,7 @@ const ProductOverview = (props: any) => {
   }, [data])
 
   useEffect(() => {
-    console.log(props.isEditMode, 'props.isEditMode');
   }, [props.isEditMode]);
-
-  
-
 
   return (
     <Paper>

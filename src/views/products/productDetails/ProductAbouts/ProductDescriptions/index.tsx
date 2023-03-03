@@ -20,14 +20,14 @@ const AboutProductCard = (props: any) => {
   };
   return (
     <Card sx={{ display: 'flex', width: '100%' }}>
-      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', width: '70%' }}>
         <CardContent sx={{ flex: '1 0 auto' }}>
           {props.isEditMode ? (
             <TextareaAutosize
               onChange={handleInputChange}
               minRows={5}
               placeholder="Mô tả sản phẩm"
-              style={{ height: '100%', padding: '10px' }}
+              style={{ height: '100%', padding: '10px', width: '100%' }}
               value={description}
             />
           ) : (
@@ -56,13 +56,15 @@ const ProductDescriptions = (props: any) => {
       ...aboutProductList[data.index],
       description1: data.description,
     });
-    setAboutProductList(aboutProductList);
-    props.updateAboutProduct(aboutProductList);
+    setAboutProductList([...aboutProductList]);
+    props.updateAboutProduct([...aboutProductList]);
   };
 
   useEffect(() => {
     setAboutProductList(props.aboutProduct);
   }, [props.aboutProduct]);
+
+
 
   return (
     <Carousel autoPlay={false}>

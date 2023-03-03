@@ -2,18 +2,18 @@ import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { Box, Tab } from '@mui/material';
 import React, { SyntheticEvent, useEffect, useState } from 'react';
 
+import { ProductAboutsType } from '../../productType';
 import ProductDescriptions from './ProductDescriptions';
 const ProductAbouts = (props: any) => {
-  const [aboutInfo, setAboutInfo] = useState<any>({});
+  const [aboutInfo, setAboutInfo] = useState<ProductAboutsType[]>([]);
   const [value, setValue] = useState<string>('1');
 
   const handleChange = (event: SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
 
-  const updateAboutProduct = (data: any) => {
-    console.log(data, 'data');
-    setAboutInfo(data);
+  const updateAboutProduct = (data: ProductAboutsType[]) => {
+    setAboutInfo([...data]);
   };
 
   useEffect(() => {
@@ -22,6 +22,7 @@ const ProductAbouts = (props: any) => {
 
   useEffect(() => {
     props.updateProductAbouts(aboutInfo);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [aboutInfo])
 
   return (

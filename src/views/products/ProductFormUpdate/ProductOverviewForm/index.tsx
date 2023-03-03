@@ -9,6 +9,8 @@ const initOverviewProduct = {
   status: '',
   name: '',
 };
+
+const ID_PRODUCT = createRandomId();
 const ProductOverviewForm = (props: any) => {
   const [productOverview, setProductOverview] = useState(initOverviewProduct);
 
@@ -38,7 +40,7 @@ const ProductOverviewForm = (props: any) => {
             onChange={handleInputChange}
             sx={{ width: '50%' }}
           />
-          <Typography variant="h1">ID: {createRandomId()}</Typography>
+          <Typography variant="h1">ID: {ID_PRODUCT}</Typography>
         </Stack>
       </Stack>
       <Stack spacing={2} direction="row">

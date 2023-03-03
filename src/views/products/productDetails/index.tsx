@@ -1,23 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Grid,
-  Paper,
-  Stack,
-} from '@mui/material';
+import { Button, Grid, Paper, Stack } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
 import { getEachItem, updateItem } from '../../..//api/firebase/handleData';
 import { ItemType } from '../../../api/firebase/dataType';
 import { isEqual } from '../../../helper/object-utils';
-import { stylesButton } from '../button.styles';
-import { ProductAboutsType } from '../productType';
+import ProductModal from '../ProductModal';
+import ProductSnackBar from '../ProductSnackBar';
+import { ProductAboutsType, ProductOverviewType } from '../productType';
 import ProductAbouts from './ProductAbouts';
 import ProductImagesCarousel from './ProductImagesCarousel';
 import ProductOverview from './ProductOverview';
@@ -34,12 +25,13 @@ const ProductDetails = () => {
     useState<string>('Chế độ chỉnh sửa');
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const [isDataChange, setIsDataChange] = useState<boolean>(false);
+  const [isOpenSnackBar, setIsOpenSnackBar] = useState<boolean>(false);
 
   const updateProductDetails = () => {
     updateItem(
       ItemType.PRODUCT,
       updateProductDetailsData,
-      updateProductDetailsData.fireBaseId ?? '',
+      updateProductDetailsData?.fireBaseId ?? '',
     );
     setIsOpenModal(false);
     setIsEditMode(false);
@@ -58,16 +50,14 @@ const ProductDetails = () => {
     setIsOpenModal(false);
   };
 
-  const updateProductOverview = (data: any) => {
-    console.log(data, 'updateProductOverview');
+  const updateProductOverview = (data: ProductOverviewType) => {
     setUpdateProductDetailsData({
       ...updateProductDetailsData,
       ...data,
     });
   };
 
-  const updateProductAbouts = (data: any) => {
-    console.log(data, 'updateProductAbouts');
+  const updateProductAbouts = (data: ProductAboutsType) => {
     setUpdateProductDetailsData({
       ...updateProductDetailsData,
       aboutProduct: data,
@@ -104,8 +94,8 @@ const ProductDetails = () => {
     if (
       !isEqual(productDetails, updateProductDetailsData) ||
       !isEqual(
-        productDetails.aboutProduct,
-        updateProductDetailsData.aboutProduct,
+        productDetails?.aboutProduct,
+        updateProductDetailsData?.aboutProduct,
       )
     ) {
       setIsDataChange(true);
@@ -170,36 +160,21 @@ const ProductDetails = () => {
           </Grid>
         </Grid>
       </Paper>
-      <Dialog
-        open={isOpenModal}
-        onClose={closeModal}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">Lưu thay đổi</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description" color="error">
-            Bạn có muốn lưu thay đổi của chi tiết sản phẩm này?
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button
-            variant="outlined"
-            style={stylesButton.cancel}
-            onClick={closeModal}
-          >
-            Huỷ bỏ
-          </Button>
-          <Button
-            variant="contained"
-            style={stylesButton.button}
-            onClick={updateProductDetails}
-            autoFocus
-          >
-            Lưu thay đổi
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <ProductModal
+        isOpenModal={isOpenModal}
+        labelTextContent="Bạn có muốn lưu thay đổi của chi tiết sản phẩm này?"
+        labelTitle="Lưu thay đổi"
+        labelCancel="Huỷ bỏ"
+        labelSucess=" Lưu thay đổi"
+        onCancel={closeModal}
+        onSucess={updateProductDetails}
+      />
+      <ProductSnackBar
+        isOpenSnackBar={isOpenSnackBar}
+        position={{ vertical: 'top', horizontal: 'center' }}
+        status="success"
+        message="Chỉnh sửa thành công"
+      />
     </Stack>
   );
 };

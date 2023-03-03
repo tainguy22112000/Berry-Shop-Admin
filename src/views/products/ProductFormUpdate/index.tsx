@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { ItemType } from '../../../api/firebase/dataType';
 import { addItem } from '../../../api/firebase/handleData';
 import { stylesButton } from '../button.styles';
+import ProductSnackBar from '../ProductSnackBar';
 import ProductAboutsForm from './ProductAboutsForm';
 import ProductMlAndPriceForm from './ProductMlAndPriceForm';
 import ProductMoreCombinaForm from './ProductMoreCombinaForm';
@@ -11,29 +12,26 @@ import ProductOverviewForm from './ProductOverviewForm';
 
 const ProductFormUpdate = () => {
   const [productData, setProductData] = useState({});
+  const [isOpenSnackBar, setIsOpenSnackBar] = useState<boolean>(false);
   const getProductOverviewData = (data: any) => {
-    console.log(data, 'getProductOverviewData');
     setProductData({
       ...productData,
       ...data,
     });
   };
   const getProductAboutData = (data: any) => {
-    console.log(data, 'getProductAboutData');
     setProductData({
       ...productData,
       aboutProduct: data,
     });
   };
   const getProductMlAndPriceData = (data: any) => {
-    console.log(data, 'getProductMlAndPriceData');
     setProductData({
       ...productData,
       mlAndPrice: data,
     });
   };
   const getProductMoreCombinaData = (data: any) => {
-    console.log(data, 'getProductMoreCombinaData');
     setProductData({
       ...productData,
       moreCombina: data,
@@ -42,6 +40,11 @@ const ProductFormUpdate = () => {
 
   const createNewProduct = () => {
     addItem(ItemType.PRODUCT, productData);
+    setIsOpenSnackBar(true);
+    setTimeout(() => {
+      setIsOpenSnackBar(false);
+    }, 3000);
+
   };
 
   return (
@@ -57,6 +60,12 @@ const ProductFormUpdate = () => {
           Tạo sản phẩm mới
         </Button>
       </Stack>
+      <ProductSnackBar 
+        isOpenSnackBar={isOpenSnackBar}
+        position={{vertical: 'top', horizontal: 'center'}}
+        status="success"
+        message='Thêm sản phẩm thành công'
+      />
     </Paper>
   );
 };

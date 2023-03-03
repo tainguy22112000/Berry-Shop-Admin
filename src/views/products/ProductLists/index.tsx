@@ -1,10 +1,4 @@
 import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
   IconButton,
   Paper,
   Stack,
@@ -15,31 +9,30 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
-import { IconEdit, IconEye, IconTrash } from '@tabler/icons';
+import { IconEye, IconTrash } from '@tabler/icons';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { ItemType } from '../../../api/firebase/dataType';
 import {
-  addItem,
   deleteItem,
   getAllItems,
 } from '../../../api/firebase/handleData';
-import { productDetailTest, test } from '../../../api/firebase/productList';
-import { stylesButton } from '../button.styles';
+import ProductModal from '../ProductModal';
+import ProductSnackBar from '../ProductSnackBar';
 
 const ProductLists = () => {
   const navigate = useNavigate();
   const [productLists, setProductLists] = useState<any>([]);
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [idSelected, setIdSelected] = useState<string>('');
+  const [isOpenSnackBar, setIsOpenSnackBar] = useState<boolean>(false);
 
   const selectProduct = (data: any) => {
     navigate(`/products/product-lists/${data.fireBaseId}`);
   };
 
   const showModalDelete = (fireBaseId: string) => {
-    // console.log(fireBaseId, 'fireBaseId');
     setIdSelected(fireBaseId);
     setOpenModal(true);
   };
@@ -56,10 +49,10 @@ const ProductLists = () => {
     setProductLists(productLists);
     deleteItem(ItemType.PRODUCT, idSelected);
     setOpenModal(false);
-  };
-
-  const addProduct = () => {
-    addItem(ItemType.PRODUCT, productDetailTest);
+    setIsOpenSnackBar(true);
+    setTimeout(() => {
+      setIsOpenSnackBar(false);
+    }, 2000);
   };
 
   useEffect(() => {
@@ -67,13 +60,11 @@ const ProductLists = () => {
       setProductLists(await getAllItems(ItemType.PRODUCT));
     };
     fetchData().catch(console.error);
-    console.log(productLists, 'productLists');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productLists.length]);
 
   return (
     <Stack spacing={2} direction="column">
-      {/* <Button onClick={addProduct}>Add Product</Button> */}
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -118,36 +109,21 @@ const ProductLists = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      <Dialog
-        open={openModal}
-        onClose={closeModalDelete}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">Xoá sản phẩm</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description" color="error">
-            Bạn có muốn xoá sản phẩm này không?
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button
-            variant="outlined"
-            style={stylesButton.cancel}
-            onClick={closeModalDelete}
-          >
-            Huỷ bỏ
-          </Button>
-          <Button
-            variant="contained"
-            style={stylesButton.button}
-            onClick={deleteProduct}
-            autoFocus
-          >
-            Xoá sản phẩm
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <ProductModal
+        isOpenModal={openModal}
+        labelTextContent="Bạn có muốn xoá sản phẩm này không?"
+        labelTitle="Xoá sản phẩm"
+        labelCancel="Huỷ bỏ"
+        labelSucess="Xoá sản phẩm"
+        onCancel={closeModalDelete}
+        onSucess={deleteProduct}
+      />
+      <ProductSnackBar 
+        isOpenSnackBar={isOpenSnackBar}
+        message="Xoá sản phẩm thành công"
+        status="success"
+        position={{vertical: 'top', horizontal: 'center'}}
+      />
     </Stack>
   );
 };
