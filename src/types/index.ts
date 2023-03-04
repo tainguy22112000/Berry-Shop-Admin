@@ -2,7 +2,7 @@ import React from 'react';
 
 import { CouponDataTypes } from '../store/coupon/couponType';
 
-export interface IRowOrderDataProps {
+export interface IRowTestDataProps {
   name: string;
   address: string;
   id: number;
@@ -15,6 +15,16 @@ export interface IRowOrderDataProps {
 export enum Gender {
   MALE = 'male',
   FEMALE = 'female',
+}
+
+export enum OrderStatus {
+  PAYMENTING = 'paymenting',
+}
+
+export enum PaymentMethods {
+  CASH = 'cash',
+  ZALO = 'ZaloPay',
+  MOMO = 'Momo',
 }
 export interface IRowUserDataProps {
   id: number;
@@ -46,10 +56,25 @@ export interface IRowCouponDataProps {
   couponNote: string;
 }
 
+export interface IRowOrderDataProps {
+  id: string;
+  fireBaseId: string;
+  recipientName: string;
+  address: string;
+  phone: string;
+  createOn: {
+    seconds: number;
+    nanoseconds: number;
+  };
+  status: string;
+  paymentMethods: string;
+}
+
 export type IRowDataProps =
-  | IRowOrderDataProps
+  | IRowTestDataProps
   | IRowUserDataProps
-  | IRowCouponDataProps;
+  | IRowCouponDataProps
+  | IRowOrderDataProps;
 
 export type Order = 'asc' | 'desc';
 
@@ -59,8 +84,8 @@ export interface ITableHeader {
   numeric: boolean;
 }
 
-export interface IOrderTableHeader extends ITableHeader {
-  id: keyof IRowOrderDataProps;
+export interface ITestTableHeader extends ITableHeader {
+  id: keyof IRowTestDataProps;
 }
 
 export interface IUserTableHeader extends ITableHeader {
@@ -71,11 +96,15 @@ export interface ICouponTableHeader extends ITableHeader {
   id: keyof IRowCouponDataProps;
 }
 
+export interface IOrderTableHeader extends ITableHeader {
+  id: keyof IRowOrderDataProps;
+}
+
 export type IHeaderContentProps =
   | IOrderTableHeader
   | IUserTableHeader
-  | ICouponTableHeader;
-
+  | ICouponTableHeader
+  | ITestTableHeader;
 export interface ITableHeaderProps {
   numSelected: number;
   onRequestSort: (event: React.MouseEvent<unknown>, property: any) => void;

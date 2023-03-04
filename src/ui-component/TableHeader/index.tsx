@@ -30,7 +30,7 @@ const TableHeader = (props: ITableHeaderProps) => {
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
+        <TableCell padding="checkbox" align="center">
           <Checkbox
             color="primary"
             indeterminate={numSelected > 0 && numSelected < rowCount}

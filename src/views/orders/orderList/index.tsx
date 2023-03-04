@@ -9,7 +9,7 @@ import * as React from 'react';
 
 import { IOrderTableHeader, Order } from '@/types';
 
-import { orderTableHeader } from '../../../constants/order/orderTableHeader';
+import { testTableHeader } from '../../../constants/order/orderTableHeader';
 import { rowOrderData } from '../../../constants/order/rowOrderData';
 import {
   OrderTableRow,
@@ -71,7 +71,7 @@ export const OrderList = () => {
               onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
               rowCount={rowOrderData.length}
-              headerContent={orderTableHeader}
+              headerContent={testTableHeader}
             />
             <OrderTableRow
               rowOrderData={rowOrderData}

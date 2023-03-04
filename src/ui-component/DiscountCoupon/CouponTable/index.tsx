@@ -1,5 +1,6 @@
 import {
   Box,
+  CircularProgress,
   Paper,
   Stack,
   Table,
@@ -30,6 +31,7 @@ export const CouponTable = () => {
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [loading, setLoading] = React.useState(false);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -61,11 +63,13 @@ export const CouponTable = () => {
   };
 
   useEffect(() => {
+    setLoading(true);
     const fetchDiscountData = async () => {
       const data = await getAllItems(ItemType.DISCOUNT);
       data && setDiscountData(data);
     };
     fetchDiscountData().catch(console.error);
+    setLoading(false);
   }, [open]);
 
   return (
@@ -75,7 +79,9 @@ export const CouponTable = () => {
         <Paper sx={{ width: '100%', mb: 2 }}>
           <TableContainer>
             <Table
-              sx={{ minWidth: 750 }}
+              sx={{
+                minWidth: 750,
+              }}
               aria-labelledby="tableTitle"
               size="medium"
             >
@@ -88,11 +94,29 @@ export const CouponTable = () => {
                 rowCount={couponTableHeader.length}
                 headerContent={couponTableHeader}
               />
-              <CouponTableRow
-                rowCouponData={discountData}
-                page={page}
-                rowsPerPage={rowsPerPage}
-              />
+              {loading ? (
+                <Box
+                  height={200}
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
+                >
+                  <CircularProgress
+                    color="secondary"
+                    sx={{ display: 'flex', justifyContent: 'center' }}
+                  />
+                </Box>
+              ) : (
+                <CouponTableRow
+                  rowCouponData={discountData}
+                  page={page}
+                  rowsPerPage={rowsPerPage}
+                  loading={loading}
+                />
+              )}
             </Table>
           </TableContainer>
           <TablePagination
