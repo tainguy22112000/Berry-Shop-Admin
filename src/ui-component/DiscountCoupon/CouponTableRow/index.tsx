@@ -37,26 +37,6 @@ const CouponTableRow = ({
   const [selected, setSelected] = useState<Array<any>>([]);
   const [dense, setDense] = useState(false);
 
-  // const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
-  //   const selectedIndex = selected.indexOf(name);
-  //   let newSelected: string[] = [];
-
-  //   if (selectedIndex === -1) {
-  //     newSelected = newSelected.concat(selected, name);
-  //   } else if (selectedIndex === 0) {
-  //     newSelected = newSelected.concat(selected.slice(1));
-  //   } else if (selectedIndex === selected.length - 1) {
-  //     newSelected = newSelected.concat(selected.slice(0, -1));
-  //   } else if (selectedIndex > 0) {
-  //     newSelected = newSelected.concat(
-  //       selected.slice(0, selectedIndex),
-  //       selected.slice(selectedIndex + 1),
-  //     );
-  //   }
-
-  //   setSelected(newSelected);
-  // };
-
   const isSelected = (name: string) => selected.indexOf(name) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.

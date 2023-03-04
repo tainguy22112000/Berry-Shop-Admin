@@ -60,26 +60,32 @@ export const orderTableHeader: IOrderTableHeader[] = [
   },
   {
     id: 'phone',
-    numeric: false,
+    numeric: true,
     disablePadding: false,
     label: 'Số điện thoại',
   },
   {
     id: 'createOn',
-    numeric: false,
+    numeric: true,
     disablePadding: false,
     label: 'Ngày tạo',
   },
   {
     id: 'status',
-    numeric: false,
+    numeric: true,
     disablePadding: false,
-    label: 'Trạng thái thanh toán',
+    label: 'Trạng thái',
   },
   {
     id: 'paymentMethods',
-    numeric: false,
+    numeric: true,
     disablePadding: false,
-    label: 'Phương thức thanh toán',
+    label: 'Thanh toán',
+  },
+  {
+    id: 'id',
+    numeric: true,
+    disablePadding: false,
+    label: '',
   },
 ];

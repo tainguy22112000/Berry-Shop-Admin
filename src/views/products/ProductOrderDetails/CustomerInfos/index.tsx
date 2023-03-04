@@ -1,133 +1,166 @@
-  import { AccountBox, Email, LocalPhone } from '@mui/icons-material';
-  import {
-    Avatar,
-    Box,
-    Chip,
-    Divider,
-    Grid,
-    Paper,
-    Stack,
-    Typography,
-  } from '@mui/material';
-  import React, { useEffect, useState } from 'react';
+import {
+  AccountBox,
+  AutoMode,
+  CoPresent,
+  DateRange,
+  Email,
+  EventNote,
+  EventRepeat,
+  Home,
+  LocalAtm,
+  LocalPhone,
+  QueryBuilder,
+  TextSnippet,
+} from '@mui/icons-material';
+import {
+  Avatar,
+  Box,
+  Chip,
+  Divider,
+  Grid,
+  Paper,
+  Stack,
+  Typography,
+} from '@mui/material';
+import React, { useEffect, useState } from 'react';
 
-  import { convertDateFireBase } from '../../../../helper/date-utils';
-  convertDateFireBase;
-  const CustomerInfos = (props: any) => {
-    const [customerInfos, setCustomerInfos] = useState<any>({});
-    const getColorChip = (status: string) => {
-      switch (status) {
-        case 'paymenting':
-          return 'warning';
-        case 'processing':
-          return 'default';
-        default:
-          return 'success';
-      }
-    };
+import { convertDateFireBase } from '../../../../helper/date-utils';
+import {
+  getColorChip,
+  getPayments,
+} from '../../../utilities/convertOrderStatus';
+convertDateFireBase;
+const CustomerInfos = (props: any) => {
+  const [customerInfos, setCustomerInfos] = useState<any>({});
 
-    const getPayments = (status: string) => {
-      switch (status) {
-        case 'paymenting':
-          return 'Đang thanh toán';
-        case 'processing':
-          return 'Đang xử lý';
-        default:
-          return 'Đã giao hàng';
-      }
-    };
-
-    useEffect(() => {
-      setCustomerInfos(props.customerInfos);
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [props.customerInfos]);
-    return (
-      <Paper sx={{ padding: '20px' }}>
-        <Stack spacing={2} direction="column">
-          <Stack>
-            <Grid container justifyContent="space-between">
-              <Typography variant="h3">ID: {customerInfos.id}</Typography>
-              {customerInfos.createOn && (
-                <Typography variant="h3">
-                  Đặt hàng lúc {convertDateFireBase(customerInfos.createOn)}
+  useEffect(() => {
+    setCustomerInfos(props.customerInfos);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.customerInfos]);
+  return (
+    <Paper
+      sx={{
+        padding: '20px',
+        border: '1px solid rgb(238, 238, 238)',
+        borderRadius: 2,
+      }}
+    >
+      <Stack spacing={2}>
+        <Stack spacing={2}>
+          <Grid container justifyContent="space-between">
+            <Typography variant="h4">Thông tin khách hàng</Typography>
+          </Grid>
+          <Stack spacing={2} direction="row" justifyContent="space-between">
+            <Stack spacing={1}>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <AccountBox fontSize="small" />
+                <Typography variant="h5">Tên khách hàng :</Typography>
+                <Typography variant="body1">
+                  {customerInfos.recipientName}
                 </Typography>
-              )}
-            </Grid>
-          </Stack>
-          <Stack direction="row" spacing={4}>
-            <Stack direction="row" spacing={1} alignItems="center">
-              <AccountBox />
-              <Typography variant="h4">{customerInfos.recipientName}</Typography>
-            </Stack>
-            <Stack direction="row" spacing={1} alignItems="center">
-              <LocalPhone />
-              <Typography variant="h4">{customerInfos.phone}</Typography>
-            </Stack>
-            <Stack direction="row" spacing={1} alignItems="center">
-              <Email />
-              <Typography variant="h4">Email</Typography>
-            </Stack>
-          </Stack>
-          <Divider />
-          <Stack>
-            <Grid container justifyContent="space-between">
-              <Stack direction="column">
-                <Stack>
-                  <Typography variant="h5">Phương thức thanh toán</Typography>
-                </Stack>
-                <Stack>{customerInfos.paymentMethods}</Stack>
               </Stack>
-              <Stack
-                direction="column"
-                justifyContent="center"
-                alignItems="center"
-              >
-                <Stack>
-                  <Typography variant="h5">Trạng thái</Typography>
-                </Stack>
-                <Stack>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <LocalPhone fontSize="small" />
+                <Typography variant="h5">Số điện thoại : </Typography>
+                <Typography variant="body1">{customerInfos.phone}</Typography>
+              </Stack>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <Home fontSize="small" />
+                <Typography variant="h5">Địa chỉ : </Typography>
+                <Typography variant="body1">{customerInfos.address}</Typography>
+              </Stack>
+            </Stack>
+
+            <Stack spacing={1} sx={{ minWidth: 300 }}>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <CoPresent fontSize="small" />
+                <Typography variant="h5">ID: </Typography>
+                <Typography variant="body1">{customerInfos.id}</Typography>
+              </Stack>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <DateRange fontSize="small" />
+                <Typography variant="h5">Đặt hàng lúc: </Typography>
+                <Typography variant="body1">
+                  {convertDateFireBase(customerInfos.createOn)}
+                </Typography>
+              </Stack>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <Email fontSize="small" />
+                <Typography variant="h5">Email : </Typography>
+                <Typography variant="h5"></Typography>
+              </Stack>
+            </Stack>
+          </Stack>
+        </Stack>
+
+        <Divider />
+
+        {/* <Stack> */}
+        {/* <Grid container justifyContent="space-between"> */}
+        <Stack direction="row" justifyContent="space-between">
+          <Stack direction="column" spacing={2}>
+            <Typography variant="h4">Phương thức thanh toán</Typography>
+
+            <Stack spacing={1}>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <LocalAtm fontSize="small" />
+                <Typography variant="h5">Thanh toán qua : </Typography>
+                <Typography variant="body1">
+                  {customerInfos.paymentMethods}
+                </Typography>
+              </Stack>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <AutoMode fontSize="small" />
+                <Typography variant="h5">Trạng thái: </Typography>
+                <Typography variant="body1">
                   <Chip
                     color={getColorChip(customerInfos.status)}
                     label={getPayments(customerInfos.status)}
-                  ></Chip>
-                </Stack>
+                    size='small'
+                  />
+                </Typography>
               </Stack>
-              <Stack direction="column">
-                <Stack>
-                  <Typography variant="h5">Ghi chú</Typography>
-                </Stack>
-                <Stack> {customerInfos.note}</Stack>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <TextSnippet fontSize="small" />
+                <Typography variant="h5">Ghi chú : </Typography>
+                <Typography variant="h5">
+                  {customerInfos.note ?? 'Trống'}
+                </Typography>
               </Stack>
-            </Grid>
+            </Stack>
           </Stack>
-          <Divider />
-          <Stack>
-            <Grid container justifyContent="space-between">
-              <Stack direction="column">
-                <Stack>
-                  <Typography variant="h5">Thời gian vận chuyển</Typography>
-                </Stack>
-                <Stack>
-                  {customerInfos.deliveryTime}
-                </Stack>
+
+          <Stack direction="column" spacing={2} sx={{ minWidth: 300 }}>
+            <Typography variant="h4">Thời gian nhận hàng</Typography>
+
+            <Stack spacing={1}>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <EventNote fontSize="small" />
+                <Typography variant="h5">Ngày giao hàng : </Typography>
+                <Typography variant="body1">
+                  {customerInfos.deliveryTime ?? 'Trống'}
+                </Typography>
               </Stack>
-              <Stack direction="column">
-                <Stack>
-                  <Typography variant="h5">Thời gian nhận hàng</Typography>
-                </Stack>
-                <Stack>
-                  Ngày nhận: {customerInfos.receivedDate}
-                </Stack>
-                <Stack>
-                  Giờ nhận: {customerInfos.receivedTime}
-                </Stack>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <EventRepeat fontSize="small" />
+                <Typography variant="h5">Ngày nhận: </Typography>
+                <Typography variant="body1">
+                  {customerInfos.receivedDate}
+                </Typography>
               </Stack>
-            </Grid>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <QueryBuilder fontSize="small" />
+                <Typography variant="h5">Giờ nhận : </Typography>
+                <Typography variant="body1">
+                  {customerInfos.receivedTime}
+                </Typography>
+              </Stack>
+            </Stack>
           </Stack>
         </Stack>
-        <Divider />
-      </Paper>
-    );
-  };
+      </Stack>
+    </Paper>
+  );
+};
 
-  export default CustomerInfos;
+export default CustomerInfos;

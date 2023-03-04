@@ -34,7 +34,7 @@ const USER_PAGE = {
   Products: 'Sản phẩm',
   Orders: 'Đơn hàng',
   OrderList: 'Danh sách đơn hàng',
-  DiscountCoupon: 'Tạo mã giảm giá',
+  DiscountCoupon: 'Danh sách mã giảm giá',
   OrderDetails: 'Chi tiết đơn hàng',
   ProductOrderList: 'Danh sách đặt hàng',
   ProductCreate: 'Tạo sản phẩm mới',
@@ -63,13 +63,13 @@ const application = {
           url: `${USERS_PAGE_ROUTER}/${USERS_PATH.Profile}`,
           breadcrumbs: true,
         },
-        {
-          id: USER_PAGE.Account,
-          title: USER_PAGE.Account,
-          type: 'item',
-          url: `${USERS_PAGE_ROUTER}/${USERS_PATH.Account}`,
-          breadcrumbs: true,
-        },
+        // {
+        //   id: USER_PAGE.Account,
+        //   title: USER_PAGE.Account,
+        //   type: 'item',
+        //   url: `${USERS_PAGE_ROUTER}/${USERS_PATH.Account}`,
+        //   breadcrumbs: true,
+        // },
       ],
     },
     {
@@ -85,13 +85,13 @@ const application = {
           url: `${ORDERS_PAGE_ROUTER}/${ODERS_PATH.OrderList}`,
           breadcrumbs: true,
         },
-        {
-          id: USER_PAGE.OrderDetails,
-          title: USER_PAGE.OrderDetails,
-          type: 'item',
-          url: `${ORDERS_PAGE_ROUTER}/${ODERS_PATH.OrderDetails}`,
-          breadcrumbs: true,
-        },
+        // {
+        //   id: USER_PAGE.OrderDetails,
+        //   title: USER_PAGE.OrderDetails,
+        //   type: 'item',
+        //   url: `${ORDERS_PAGE_ROUTER}/${ODERS_PATH.OrderDetails}`,
+        //   breadcrumbs: true,
+        // },
         {
           id: USER_PAGE.DiscountCoupon,
           title: USER_PAGE.DiscountCoupon,
@@ -107,13 +107,13 @@ const application = {
       type: 'collapse',
       icon: icons.IconShoppingCart,
       children: [
-        {
-          id: USER_PAGE.ProductOrderList,
-          title: USER_PAGE.ProductOrderList,
-          type: 'item',
-          url: `${PRODUCTS_PAGE_ROUTER}/${PRODUCTS_PATH.ProductOrderList}`,
-          breadcrumbs: true,
-        },
+        // {
+        //   id: USER_PAGE.ProductOrderList,
+        //   title: USER_PAGE.ProductOrderList,
+        //   type: 'item',
+        //   url: `${PRODUCTS_PAGE_ROUTER}/${PRODUCTS_PATH.ProductOrderList}`,
+        //   breadcrumbs: true,
+        // },
         {
           id: USER_PAGE.ProductLists,
           title: USER_PAGE.ProductLists,

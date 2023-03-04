@@ -5,7 +5,8 @@ import { useParams } from 'react-router-dom';
 
 import { ItemType } from '../../../api/firebase/dataType';
 import { getEachItem } from '../../../api/firebase/handleData';
-import { PRODUCT_ORDER_DETAILS_OPEN } from '../../../store/actions';
+import { setProductOrderDetails } from '../../../store/product/productOrder.action';
+import MainCard from '../../../ui-component/cards/MainCard';
 import { ProductAboutsType } from '../productType';
 import CustomerInfos from './CustomerInfos';
 import ProductInfos from './ProductInfos';
@@ -67,7 +68,7 @@ const ProductOrderDetails = () => {
           productId,
         )) as ProductAboutsType;
         setOrderInfos(data);
-        dispatch({ type: PRODUCT_ORDER_DETAILS_OPEN, data });
+        dispatch(setProductOrderDetails(data));
         return;
       }
       setOrderInfos(selector.productDetails);
@@ -81,17 +82,16 @@ const ProductOrderDetails = () => {
 
   return (
     <Paper>
-      <Stack spacing={2} direction="column">
-        <Stack spacing={2}>
-          <Typography variant="h2">Chi tiết đơn hàng</Typography>
+      <MainCard title="Chi tiết đơn hàng">
+        <Stack spacing={2} direction="column">
+          <Stack spacing={2}>
+            {customerInfos && <CustomerInfos customerInfos={customerInfos} />}
+          </Stack>
+          <Stack spacing={2}>
+            {productInfos && <ProductInfos productInfos={productInfos} />}
+          </Stack>
         </Stack>
-        <Stack spacing={2}>
-          {customerInfos && <CustomerInfos customerInfos={customerInfos} />}
-        </Stack>
-        <Stack spacing={2}>
-          {productInfos && <ProductInfos productInfos={productInfos} />}
-        </Stack>
-      </Stack>
+      </MainCard>
     </Paper>
   );
 };

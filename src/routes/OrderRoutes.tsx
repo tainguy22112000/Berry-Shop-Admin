@@ -6,7 +6,7 @@ import MainLayout from '../layout/MainLayout';
 import Loadable from '../ui-component/Loadable';
 
 // user page routing
-const OrderListPage = Loadable(lazy(() => import('../views/orders/orderList')));
+const OrderListPage = Loadable(lazy(() => import('../views/products/ProductOrderLists')));
 const OrderDetailsPage = Loadable(lazy(() => import('../views/orders/orderDetails')));
 const DiscountCouponPage = Loadable(lazy(() => import('../views/orders/discountCoupon')));
 

@@ -57,12 +57,17 @@ export interface IRowCouponDataProps {
 }
 
 export interface IRowOrderDataProps {
+  id: string;
+  fireBaseId: string;
   recipientName: string;
   address: string;
   phone: string;
-  createOn: string;
-  status: OrderStatus;
-  paymentMethods: PaymentMethods;
+  createOn: {
+    seconds: number;
+    nanoseconds: number;
+  };
+  status: string;
+  paymentMethods: string;
 }
 
 export type IRowDataProps =
