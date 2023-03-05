@@ -56,6 +56,7 @@ const PaymentMenu = (props: IPayementMenuProps) => {
   const handleClose = (e: React.MouseEvent<HTMLLIElement>, payment: string) => {
     e.stopPropagation();
     if (!listPaymensts.includes(payment)) {
+      setAnchorEl(null);
       return;
     }
     setAnchorEl(null);
