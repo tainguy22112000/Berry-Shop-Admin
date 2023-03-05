@@ -1,57 +1,61 @@
 import {
-  IconButton,
   Paper,
   Stack,
   Table,
-  TableBody,
-  TableCell,
   TableContainer,
-  TableHead,
-  TableRow,
+  TablePagination,
 } from '@mui/material';
-import { IconEye, IconTrash } from '@tabler/icons';
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { IOrderTableHeader, Order } from '@/types';
+
 import { ItemType } from '../../../api/firebase/dataType';
-import {
-  deleteItem,
-  getAllItems,
-} from '../../../api/firebase/handleData';
-import ProductModal from '../ProductModal';
+import { getAllItems } from '../../../api/firebase/handleData';
+import { productTableHeader } from '../../../constants/order/orderTableHeader';
+import MainCard from '../../../ui-component/cards/MainCard';
+import TableHeader from '../../../ui-component/TableHeader';
+import ProductRow from '../ProductRow';
+import ProductSnackBar from '../ProductSnackBar';
 
 const ProductLists = () => {
-  const navigate = useNavigate();
   const [productLists, setProductLists] = useState<any>([]);
-  const [openModal, setOpenModal] = useState<boolean>(false);
-  const [idSelected, setIdSelected] = useState<string>('');
   const [isOpenSnackBar, setIsOpenSnackBar] = useState<boolean>(false);
+  const [order, setOrder] = useState<Order>('asc');
+  const [orderBy, setOrderBy] = useState('name');
+  const [selected, setSelected] = useState([]);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const selectProduct = (data: any) => {
-    navigate(`/products/product-lists/${data.fireBaseId}`);
+  const handleRequestSort = (
+    event: React.MouseEvent<unknown>,
+    property: keyof IOrderTableHeader,
+  ) => {
+    const isAsc = orderBy === property && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
+    setOrderBy(property);
   };
 
-  const showModalDelete = (fireBaseId: string) => {
-    setIdSelected(fireBaseId);
-    setOpenModal(true);
+  const handleSelectAllClick = (event: ChangeEvent<HTMLInputElement>) => {
+    if (event.target.checked) {
+      const newSelected: any = productLists.map((n: any) => n.name);
+      setSelected(newSelected);
+      return;
+    }
+    setSelected([]);
   };
 
-  const closeModalDelete = () => {
-    setOpenModal(false);
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
   };
 
-  const deleteProduct = () => {
-    const index = productLists.findIndex(
-      (product: any) => (product.fireBaseId = idSelected),
-    );
-    productLists.splice(index, 1);
-    setProductLists(productLists);
-    deleteItem(ItemType.PRODUCT, idSelected);
-    setOpenModal(false);
-    setIsOpenSnackBar(true);
-    setTimeout(() => {
-      setIsOpenSnackBar(false);
-    }, 2000);
+  const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  const openSnackBar = (status: boolean) => {
+    setIsOpenSnackBar(status);
   };
 
   useEffect(() => {
@@ -63,61 +67,44 @@ const ProductLists = () => {
   }, [productLists.length]);
 
   return (
-    <Stack spacing={2} direction="column">
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell>Tên sản phẩm</TableCell>
-              <TableCell align="center">ID</TableCell>
-              <TableCell align="center" sx={{ minWidth: '150px' }}>
-                Số lượng
-              </TableCell>
-              <TableCell align="center">Xem chi tiết/Xoá</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {productLists.length > 0 &&
-              productLists.map((product: any, index: number) => (
-                <TableRow hover key={index}>
-                  <TableCell sx={{ fontWeight: 'bold' }}>
-                    {product.name}
-                  </TableCell>
-                  <TableCell align="center">{product.id}</TableCell>
-                  <TableCell align="center" sx={{ minWidth: '150px' }}>
-                    {product.amount}
-                  </TableCell>
-                  <TableCell align="center">
-                    <IconButton
-                      aria-label="copy"
-                      size="small"
-                      onClick={() => selectProduct(product)}
-                    >
-                      <IconEye size={20} />
-                    </IconButton>
-                    <IconButton
-                      aria-label="copy"
-                      size="small"
-                      onClick={() => showModalDelete(product.fireBaseId)}
-                    >
-                      <IconTrash size={20} color="red"/>
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
-              ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <ProductModal
-        isOpenModal={openModal}
-        labelTextContent="Bạn có muốn xoá sản phẩm này không?"
-        labelTitle="Xoá sản phẩm"
-        labelCancel="Huỷ bỏ"
-        labelSucess="Xoá sản phẩm"
-        onCancel={closeModalDelete}
-        onSucess={deleteProduct}
-      />
-    </Stack>
+    <MainCard title="Danh sách sản phẩm">
+      <Stack spacing={2} direction="column">
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHeader
+              numSelected={10}
+              order={order}
+              orderBy={orderBy}
+              onSelectAllClick={handleSelectAllClick}
+              onRequestSort={handleRequestSort}
+              rowCount={productTableHeader.length}
+              headerContent={productTableHeader}
+            />
+            <ProductRow
+              rowOrderData={productLists}
+              page={page}
+              rowsPerPage={rowsPerPage}
+              openSnackBar={openSnackBar}
+            />
+          </Table>
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 25]}
+            component="div"
+            count={productLists.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </TableContainer>
+        <ProductSnackBar
+          isOpenSnackBar={isOpenSnackBar}
+          message="Xoá sản phẩm thành công"
+          status="success"
+          position={{ vertical: 'top', horizontal: 'center' }}
+        />
+      </Stack>
+    </MainCard>
   );
 };
 

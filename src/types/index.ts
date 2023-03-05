@@ -70,11 +70,17 @@ export interface IRowOrderDataProps {
   paymentMethods: string;
 }
 
+export interface IRowProductDataProps extends IRowOrderDataProps{
+  name: string;
+  amount: number;
+}
+
 export type IRowDataProps =
   | IRowTestDataProps
   | IRowUserDataProps
   | IRowCouponDataProps
-  | IRowOrderDataProps;
+  | IRowOrderDataProps
+  | IRowProductDataProps;
 
 export type Order = 'asc' | 'desc';
 
@@ -100,11 +106,16 @@ export interface IOrderTableHeader extends ITableHeader {
   id: keyof IRowOrderDataProps;
 }
 
+export interface IProductTableHeader extends ITableHeader {
+  id: keyof IRowProductDataProps | '';
+}
+
 export type IHeaderContentProps =
   | IOrderTableHeader
   | IUserTableHeader
   | ICouponTableHeader
-  | ITestTableHeader;
+  | ITestTableHeader
+  | IProductTableHeader;
 export interface ITableHeaderProps {
   numSelected: number;
   onRequestSort: (event: React.MouseEvent<unknown>, property: any) => void;
