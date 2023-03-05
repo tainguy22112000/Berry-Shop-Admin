@@ -70,9 +70,27 @@ export interface IRowOrderDataProps {
   paymentMethods: string;
 }
 
-export interface IRowProductDataProps extends IRowOrderDataProps{
+export interface IRowProductDataProps {
+  id: string;
+  fireBaseId: string;
   name: string;
   amount: number;
+  price: number;
+  mlAndPrice: {
+    '250ml': {
+      ml: string;
+      price: number;
+    };
+    '350ml': {
+      ml: string;
+      price: number;
+    };
+  };
+  moreCombina: {
+    option: string;
+    price: number;
+  }[];
+  action: string;
 }
 
 export type IRowDataProps =

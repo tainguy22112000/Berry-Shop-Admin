@@ -59,19 +59,19 @@ const ProductListTable = (props: any) => {
                       {product.mainIngredient}
                     </Typography>
                     <Typography variant="body1" fontSize={12}>
-                      {product.optionPicked.cooldess}
+                      {product.optionPicked?.cooldess}
                     </Typography>
                     <Typography variant="body1" fontSize={12}>
-                      {product.optionPicked.ice}
+                      {product.optionPicked?.ice}
                     </Typography>
                     <Typography variant="body1" fontSize={12}>
-                      {product.optionPicked.sugar}
+                      {product.optionPicked?.sugar}
                     </Typography>
                   </Stack>
                 </TableCell>
                 <TableCell align="center">{product.amount}</TableCell>
                 <TableCell align="center">
-                  {product.optionPicked.size}
+                  {product.optionPicked?.size}
                 </TableCell>
                 <TableCell align="center" sx={{ minWidth: '200px' }}>
                   {/* <MlAndPriceChip mlAndPrice={product.mlAndPrice} /> */}
