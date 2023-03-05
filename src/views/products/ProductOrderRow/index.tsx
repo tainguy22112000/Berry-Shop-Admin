@@ -11,12 +11,14 @@ import {
   TableRow,
 } from '@mui/material';
 import { IconTrash } from '@tabler/icons';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { IRowOrderDataProps, Order } from '@/types';
 
+import {ItemType} from '../../../api/firebase/dataType';
+import {updateItem} from '../../../api/firebase/handleData';
 import { PRODUCTS_PAGE_ROUTER, PRODUCTS_PATH } from '../../../constants/routes';
 import { setProductOrderDetails } from '../../../store/product/productOrder.action';
 import DeleteNotification from '../../../ui-component/DiscountCoupon/Notification';
@@ -35,7 +37,7 @@ interface IOrderTableRowProps {
   rowsPerPage: number;
 }
 
-const BasicMenu = (props: any) => {
+const PaymentMenu = (props: any) => {
   const [currentPayment, setCurrentPayment] = useState(props.status);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -45,11 +47,15 @@ const BasicMenu = (props: any) => {
     setAnchorEl(e.currentTarget);
   };
   const handleClose = (e: React.MouseEvent<HTMLLIElement>, payment: string) => {
-    console.log(payment, 'handleClose');
     e.stopPropagation();
+    if (!listPaymensts.includes(payment)) {
+      return;
+    }
     setAnchorEl(null);
     setCurrentPayment(payment);
+    props.updatePaymentOrder(payment);
   };
+
   return (
     <>
       <Button
@@ -76,16 +82,18 @@ const BasicMenu = (props: any) => {
           'aria-labelledby': 'basic-button',
         }}
       >
-        {listPaymensts.filter((p: string) => p !== currentPayment).map((payment: string, index: number) => (
-          <MenuItem key={index} onClick={(e) => handleClose(e, payment)}>
-            <Chip
-              color={getColorChip(payment)}
-              variant="outlined"
-              label={getPayments(payment)}
-            />
-          <Divider />
-          </MenuItem>
-        ))}
+        {listPaymensts
+          .filter((p: string) => p !== currentPayment)
+          .map((payment: string, index: number) => (
+            <MenuItem key={index} onClick={(e) => handleClose(e, payment)}>
+              <Chip
+                color={getColorChip(payment)}
+                variant="outlined"
+                label={getPayments(payment)}
+              />
+              <Divider />
+            </MenuItem>
+          ))}
       </Menu>
     </>
   );
@@ -116,6 +124,12 @@ const ProductOrderRow = ({
     navigate(
       `${PRODUCTS_PAGE_ROUTER}/${PRODUCTS_PATH.ProductOrderList}/${data.fireBaseId}`,
     );
+  };
+
+  const updatePaymentOrder = (payment: string, fireBaseId: string) => {
+    const index = rowOrderData.findIndex((order) => order.fireBaseId === fireBaseId);
+    rowOrderData[index].status = payment;
+    updateItem(ItemType.ORDERS, rowOrderData[index], fireBaseId);
   };
 
   return (
@@ -159,7 +173,10 @@ const ProductOrderRow = ({
                 {convertDateFireBase(row ? row.createOn : '')}
               </TableCell>
               <TableCell align="center">
-                <BasicMenu status={row.status} />
+                <PaymentMenu
+                  status={row.status}
+                  updatePaymentOrder={(data: any) => updatePaymentOrder(data, row.fireBaseId)}
+                />
               </TableCell>
               <TableCell align="center">{row.paymentMethods}</TableCell>
               <TableCell align="center">

@@ -16,16 +16,6 @@ import MainCard from '../../../ui-component/cards/MainCard';
 import TableHeader from '../../../ui-component/TableHeader';
 import ProductOrderRow from '../ProductOrderRow';
 
-// type PureProductData = {
-//   id: string | number;
-//   address: string;
-//   createdTime: any;
-//   paymentMethods: string;
-//   phone: string;
-//   recipientName: string;
-//   status: string;
-// };
-
 const ProductsList = () => {
   const [pureDatas, setPureDatas] = useState<IRowOrderDataProps[]>([]);
   const [order, setOrder] = useState<Order>('asc');
