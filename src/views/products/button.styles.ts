@@ -5,12 +5,11 @@ export const stylesButton = {
     color: grey[900],
   },
   button: {
-    marginLeft: '10px',
+    // marginLeft: '10px',
     height: 40,
     backgroundColor: grey[900],
     border: '1px solid',
     borderColor: grey[900],
-
     ':hover': {
       backgroundColor: grey[900],
       border: '1px solid',
@@ -22,7 +21,6 @@ export const stylesButton = {
     border: '1px solid ',
     borderColor: grey[900],
     color: grey[900],
-
     ':hover': {
       backgroundColor: '#fff',
       borderColor: grey[900],

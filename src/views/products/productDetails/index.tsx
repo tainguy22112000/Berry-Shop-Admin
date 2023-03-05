@@ -1,11 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Button, Grid, Paper, Stack } from '@mui/material';
+import { ArrowBack } from '@mui/icons-material';
+import { Button, Grid, IconButton, Paper, Stack } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 
 import { getEachItem, updateItem } from '../../..//api/firebase/handleData';
 import { ItemType } from '../../../api/firebase/dataType';
+import { PRODUCTS_PAGE_ROUTER, PRODUCTS_PATH } from '../../../constants/routes';
 import { isEqual } from '../../../helper/object-utils';
+import { stylesButton } from '../button.styles';
 import ProductModal from '../ProductModal';
 import ProductSnackBar from '../ProductSnackBar';
 import { ProductAboutsType, ProductOverviewType } from '../productType';
@@ -15,6 +18,7 @@ import ProductOverview from './ProductOverview';
 
 const ProductDetails = () => {
   const { id: productId } = useParams();
+  const navigate = useNavigate();
   const [productDetails, setProductDetails] = useState<any>({});
   const [updateProductDetailsData, setUpdateProductDetailsData] = useState<any>(
     {},
@@ -64,6 +68,10 @@ const ProductDetails = () => {
     });
   };
 
+  const backToProductList = () => {
+    navigate(`${PRODUCTS_PAGE_ROUTER}/${PRODUCTS_PATH.ProductLists}`);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       const data = (await getEachItem(
@@ -106,21 +114,35 @@ const ProductDetails = () => {
 
   return (
     <Stack spacing={2} direction="column">
-      <Button
-        variant="contained"
-        onClick={toggleEditMode}
-        sx={{ width: '20%' }}
-      >
-        {labelEditButton}
-      </Button>
-      <Button
-        variant="contained"
-        onClick={openModal}
-        sx={{ width: '20%' }}
-        disabled={!isDataChange}
-      >
-        Lưu thay đổi
-      </Button>
+      <Stack spacing={2} direction="row" justifyContent="space-between">
+        <Stack alignItems="center" justifyContent="center">
+          <IconButton
+            color="primary"
+            sx={{ backgroundColor: 'white', width: '40px', height: '40px' }}
+            onClick={backToProductList}
+          >
+            <ArrowBack />
+          </IconButton>
+        </Stack>
+        <Stack spacing={2} direction="column">
+          <Button
+            variant="contained"
+            onClick={toggleEditMode}
+            sx={{ width: '100%' }}
+            style={stylesButton.button}
+          >
+            {labelEditButton}
+          </Button>
+          <Button
+            variant="outlined"
+            onClick={openModal}
+            sx={{ width: '100%' }}
+            disabled={!isDataChange}
+          >
+            Lưu thay đổi
+          </Button>
+        </Stack>
+      </Stack>
       <Paper>
         <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           <Grid

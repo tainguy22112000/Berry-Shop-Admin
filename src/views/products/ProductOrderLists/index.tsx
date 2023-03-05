@@ -1,4 +1,6 @@
+import { ArrowBack } from '@mui/icons-material';
 import {
+  IconButton,
   Paper,
   Stack,
   Table,
@@ -48,16 +50,14 @@ const ProductsList = () => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (
-    event: ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
   const openSnackBar = (status: boolean) => {
     setIsOpenSnackBar(status);
-  }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -68,44 +68,46 @@ const ProductsList = () => {
   }, []);
 
   return (
-    <MainCard title="Danh sách đơn hàng">
-      <Stack spacing={2} direction="column">
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHeader
-              numSelected={10}
-              order={order}
-              orderBy={orderBy}
-              onSelectAllClick={handleSelectAllClick}
-              onRequestSort={handleRequestSort}
-              rowCount={orderTableHeader.length}
-              headerContent={orderTableHeader}
-            />
-            <ProductOrderRow
-              rowOrderData={pureDatas}
-              page={page}
+    <Stack spacing={2} direction="column">
+      <MainCard title="Danh sách đơn hàng">
+        <Stack spacing={2} direction="column">
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHeader
+                numSelected={10}
+                order={order}
+                orderBy={orderBy}
+                onSelectAllClick={handleSelectAllClick}
+                onRequestSort={handleRequestSort}
+                rowCount={orderTableHeader.length}
+                headerContent={orderTableHeader}
+              />
+              <ProductOrderRow
+                rowOrderData={pureDatas}
+                page={page}
+                rowsPerPage={rowsPerPage}
+                openSnackBar={openSnackBar}
+              />
+            </Table>
+            <TablePagination
+              rowsPerPageOptions={[5, 10, 25]}
+              component="div"
+              count={pureDatas.length}
               rowsPerPage={rowsPerPage}
-              openSnackBar={openSnackBar}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
             />
-          </Table>
-          <TablePagination
-            rowsPerPageOptions={[5, 10, 25]}
-            component="div"
-            count={pureDatas.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
-        </TableContainer>
-      </Stack>
-      <ProductSnackBar
-        isOpenSnackBar={isOpenSnackBar}
-        message="Xoá sản phẩm thành công"
-        status="success"
-        position={{ vertical: 'top', horizontal: 'center' }}
-      />
-    </MainCard>
+          </TableContainer>
+        </Stack>
+        <ProductSnackBar
+          isOpenSnackBar={isOpenSnackBar}
+          message="Xoá sản phẩm thành công"
+          status="success"
+          position={{ vertical: 'top', horizontal: 'center' }}
+        />
+      </MainCard>
+    </Stack>
   );
 };
 
