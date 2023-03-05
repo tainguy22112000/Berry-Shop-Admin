@@ -19,7 +19,6 @@ import {
   getAllItems,
 } from '../../../api/firebase/handleData';
 import ProductModal from '../ProductModal';
-import ProductSnackBar from '../ProductSnackBar';
 
 const ProductLists = () => {
   const navigate = useNavigate();
@@ -94,14 +93,14 @@ const ProductLists = () => {
                       size="small"
                       onClick={() => selectProduct(product)}
                     >
-                      <IconEye />
+                      <IconEye size={20} />
                     </IconButton>
                     <IconButton
                       aria-label="copy"
                       size="small"
                       onClick={() => showModalDelete(product.fireBaseId)}
                     >
-                      <IconTrash />
+                      <IconTrash size={20} color="red"/>
                     </IconButton>
                   </TableCell>
                 </TableRow>
@@ -117,12 +116,6 @@ const ProductLists = () => {
         labelSucess="Xoá sản phẩm"
         onCancel={closeModalDelete}
         onSucess={deleteProduct}
-      />
-      <ProductSnackBar 
-        isOpenSnackBar={isOpenSnackBar}
-        message="Xoá sản phẩm thành công"
-        status="success"
-        position={{vertical: 'top', horizontal: 'center'}}
       />
     </Stack>
   );

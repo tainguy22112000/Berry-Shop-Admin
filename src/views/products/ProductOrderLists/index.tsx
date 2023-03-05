@@ -15,6 +15,7 @@ import { orderTableHeader } from '../../../constants/order/orderTableHeader';
 import MainCard from '../../../ui-component/cards/MainCard';
 import TableHeader from '../../../ui-component/TableHeader';
 import ProductOrderRow from '../ProductOrderRow';
+import ProductSnackBar from '../ProductSnackBar';
 
 const ProductsList = () => {
   const [pureDatas, setPureDatas] = useState<IRowOrderDataProps[]>([]);
@@ -23,6 +24,7 @@ const ProductsList = () => {
   const [selected, setSelected] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [isOpenSnackBar, setIsOpenSnackBar] = useState(false);
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
@@ -53,6 +55,10 @@ const ProductsList = () => {
     setPage(0);
   };
 
+  const openSnackBar = (status: boolean) => {
+    setIsOpenSnackBar(status);
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       const data = await getAllItems(ItemType.ORDERS);
@@ -79,6 +85,7 @@ const ProductsList = () => {
               rowOrderData={pureDatas}
               page={page}
               rowsPerPage={rowsPerPage}
+              openSnackBar={openSnackBar}
             />
           </Table>
           <TablePagination
@@ -92,6 +99,12 @@ const ProductsList = () => {
           />
         </TableContainer>
       </Stack>
+      <ProductSnackBar
+        isOpenSnackBar={isOpenSnackBar}
+        message="Xoá sản phẩm thành công"
+        status="success"
+        position={{ vertical: 'top', horizontal: 'center' }}
+      />
     </MainCard>
   );
 };

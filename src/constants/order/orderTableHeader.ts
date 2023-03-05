@@ -68,7 +68,7 @@ export const orderTableHeader: IOrderTableHeader[] = [
     id: 'createOn',
     numeric: true,
     disablePadding: false,
-    label: 'Ngày tạo',
+    label: 'Thời gian tạo',
   },
   {
     id: 'status',

@@ -6,6 +6,7 @@ import {
   IconButton,
   Menu,
   MenuItem,
+  Stack,
   TableBody,
   TableCell,
   TableRow,
@@ -17,8 +18,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { IRowOrderDataProps, Order } from '@/types';
 
-import {ItemType} from '../../../api/firebase/dataType';
-import {updateItem} from '../../../api/firebase/handleData';
+import { ItemType } from '../../../api/firebase/dataType';
+import { deleteItem, updateItem } from '../../../api/firebase/handleData';
 import { PRODUCTS_PAGE_ROUTER, PRODUCTS_PATH } from '../../../constants/routes';
 import { setProductOrderDetails } from '../../../store/product/productOrder.action';
 import DeleteNotification from '../../../ui-component/DiscountCoupon/Notification';
@@ -30,11 +31,14 @@ import {
 import { convertDateFireBase } from '../../../views/utilities/convertTimeStamp';
 import { getSortComparator } from '../../../views/utilities/getSortComparator';
 import { stableSort } from '../../../views/utilities/stableSort';
+import ProductModal from '../ProductModal';
+import ProductSnackBar from '../ProductSnackBar';
 
 interface IOrderTableRowProps {
   rowOrderData: IRowOrderDataProps[];
   page: number;
   rowsPerPage: number;
+  openSnackBar: (status: boolean) => void;
 }
 
 const PaymentMenu = (props: any) => {
@@ -103,13 +107,33 @@ const ProductOrderRow = ({
   rowOrderData,
   page,
   rowsPerPage,
+  openSnackBar,
 }: IOrderTableRowProps) => {
   const [order, setOrder] = useState<Order>('desc');
   const [orderBy, setOrderBy] =
     useState<keyof IRowOrderDataProps>('recipientName');
   const [selected, setSelected] = useState<Array<any>>([]);
   const [dense, setDense] = useState(false);
-  const [open, setOpen] = useState<boolean>(false);
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+  const [idSelected, setIdSelected] = useState<string>('');
+
+  const closeModalDelete = () => {
+    setIsOpenModal(false);
+  };
+
+  const deleteProduct = () => {
+    console.log('deleteProduct');
+    const index = rowOrderData.findIndex(
+      (product: any) => product.fireBaseId === idSelected,
+    );
+    rowOrderData.splice(index, 1);
+    deleteItem(ItemType.ORDERS, idSelected);
+    setIsOpenModal(false);
+    openSnackBar(true);
+    setTimeout(() => {
+      openSnackBar(false);
+    }, 3000);
+  };
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -127,76 +151,99 @@ const ProductOrderRow = ({
   };
 
   const updatePaymentOrder = (payment: string, fireBaseId: string) => {
-    const index = rowOrderData.findIndex((order) => order.fireBaseId === fireBaseId);
+    const index = rowOrderData.findIndex(
+      (order) => order.fireBaseId === fireBaseId,
+    );
     rowOrderData[index].status = payment;
     updateItem(ItemType.ORDERS, rowOrderData[index], fireBaseId);
   };
 
   return (
-    <TableBody>
-      {stableSort(rowOrderData, getSortComparator(order, orderBy))
-        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-        .map((row: IRowOrderDataProps, index: number) => {
-          const isItemSelected = isSelected(row.id);
-          const labelId = `enhanced-table-checkbox-${index}`;
-          const handleDeleleCoupon = () => {
-            setOpen(true);
-          };
-          return (
-            <TableRow
-              hover
-              onClick={() => selectProductDetail(row)}
-              role="checkbox"
-              aria-checked={isItemSelected}
-              tabIndex={-1}
-              key={row.fireBaseId}
-              selected={isItemSelected}
-              sx={{ cursor: 'pointer' }}
-            >
-              <TableCell padding="checkbox">
-                <Checkbox
-                  color="primary"
-                  checked={isItemSelected}
-                  inputProps={{
-                    'aria-labelledby': labelId,
-                  }}
-                />
-              </TableCell>
-              <TableCell component="th" id={labelId} scope="row">
-                {row ? row.recipientName : ''}
-              </TableCell>
-              <TableCell align="center" padding="none">
-                {row.address}
-              </TableCell>
-              <TableCell align="center">{row ? row.phone : ''}</TableCell>
-              <TableCell align="center">
-                {convertDateFireBase(row ? row.createOn : '')}
-              </TableCell>
-              <TableCell align="center">
-                <PaymentMenu
-                  status={row.status}
-                  updatePaymentOrder={(data: any) => updatePaymentOrder(data, row.fireBaseId)}
-                />
-              </TableCell>
-              <TableCell align="center">{row.paymentMethods}</TableCell>
-              <TableCell align="center">
-                <IconButton aria-label="delete" onClick={handleDeleleCoupon}>
-                  <IconTrash size={20} color="red" />
-                </IconButton>
-              </TableCell>
-            </TableRow>
-          );
-        })}
-      {emptyRows > 0 && (
-        <TableRow
-          style={{
-            height: (dense ? 33 : 53) * emptyRows,
-          }}
-        >
-          <TableCell colSpan={6} />
-        </TableRow>
-      )}
-    </TableBody>
+    <>
+      <TableBody>
+        {stableSort(rowOrderData, getSortComparator(order, orderBy))
+          .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+          .map((row: IRowOrderDataProps, index: number) => {
+            const isItemSelected = isSelected(row.id);
+            const labelId = `enhanced-table-checkbox-${index}`;
+            const handleDeleleCoupon = (
+              e: React.MouseEvent<HTMLButtonElement>,
+              fireBaseId: string,
+            ) => {
+              e.stopPropagation();
+              setIsOpenModal(true);
+              setIdSelected(fireBaseId);
+            };
+            return (
+              <TableRow
+                hover
+                onClick={() => selectProductDetail(row)}
+                role="checkbox"
+                aria-checked={isItemSelected}
+                tabIndex={-1}
+                key={row.fireBaseId}
+                selected={isItemSelected}
+                sx={{ cursor: 'pointer' }}
+              >
+                <TableCell padding="checkbox">
+                  <Checkbox
+                    color="primary"
+                    checked={isItemSelected}
+                    inputProps={{
+                      'aria-labelledby': labelId,
+                    }}
+                  />
+                </TableCell>
+                <TableCell component="th" id={labelId} scope="row">
+                  {row ? row.recipientName : ''}
+                </TableCell>
+                <TableCell align="center" padding="none">
+                  {row.address}
+                </TableCell>
+                <TableCell align="center">{row ? row.phone : ''}</TableCell>
+                <TableCell align="center">
+                  {convertDateFireBase(row ? row.createOn : '')}
+                </TableCell>
+                <TableCell align="center">
+                  <PaymentMenu
+                    status={row.status}
+                    updatePaymentOrder={(data: any) =>
+                      updatePaymentOrder(data, row.fireBaseId)
+                    }
+                  />
+                </TableCell>
+                <TableCell align="center">{row.paymentMethods}</TableCell>
+                <TableCell align="center">
+                  <IconButton
+                    aria-label="delete"
+                    onClick={(e) => handleDeleleCoupon(e, row.fireBaseId)}
+                  >
+                    <IconTrash size={20} color="red" />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            );
+          })}
+        {emptyRows > 0 && (
+          <TableRow
+            style={{
+              height: (dense ? 33 : 53) * emptyRows,
+            }}
+          >
+            <TableCell colSpan={6} />
+          </TableRow>
+        )}
+      </TableBody>
+      <ProductModal
+        isOpenModal={isOpenModal}
+        labelTextContent="Bạn có muốn xoá sản phẩm này không?"
+        labelTitle="Xoá sản phẩm"
+        labelCancel="Huỷ bỏ"
+        labelSucess="Xoá sản phẩm"
+        onCancel={closeModalDelete}
+        onSucess={deleteProduct}
+      />
+    </>
   );
 };
 
