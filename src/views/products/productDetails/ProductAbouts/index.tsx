@@ -4,6 +4,7 @@ import React, { SyntheticEvent, useEffect, useState } from 'react';
 
 import { ProductAboutsType } from '../../productType';
 import ProductDescriptions from './ProductDescriptions';
+
 const ProductAbouts = (props: any) => {
   const [aboutInfo, setAboutInfo] = useState<ProductAboutsType[]>([]);
   const [value, setValue] = useState<string>('1');

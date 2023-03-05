@@ -65,6 +65,7 @@ const ProductLists = () => {
     fetchData().catch(console.error);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productLists.length]);
+  console.log('product', productLists);
 
   return (
     <MainCard title="Danh sách sản phẩm">

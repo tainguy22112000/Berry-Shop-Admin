@@ -5,7 +5,7 @@ import dashboard from './dashboard';
 
 const menuItems = {
   items: [
-    dashboard,
+    // dashboard,
     application,
     // , utilities, other
   ],

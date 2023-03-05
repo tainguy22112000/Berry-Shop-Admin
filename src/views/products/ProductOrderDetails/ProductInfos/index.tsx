@@ -41,6 +41,7 @@ const ProductInfos = (props: any) => {
                     backgroundColor: blue[50],
                     minHeight: 100,
                     padding: '20px',
+                    marginTop: 4,
                   }}
                 >
                   <Stack
@@ -48,12 +49,13 @@ const ProductInfos = (props: any) => {
                     justifyContent="flex-end"
                     alignItems="flex-end"
                   >
-                    <Stack spacing={1} minWidth={200}>
+                    <Stack spacing={1} minWidth={300}>
                       <Typography variant="h5">Thành tiền : </Typography>
                       <Typography variant="h5">Mã giảm giá : </Typography>
                       <Typography variant="h5">Tổng cộng : </Typography>
                     </Stack>
-                    <Stack spacing={1} alignItems="center" minWidth={80}>
+
+                    <Stack spacing={1} alignItems="center" minWidth={100}>
                       <Typography variant="h5">
                         {productInfos?.productList?.totalOrderValue ?? ''}
                       </Typography>
