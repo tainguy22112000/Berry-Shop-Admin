@@ -22,7 +22,6 @@ import { ItemType } from '../../../api/firebase/dataType';
 import { deleteItem, updateItem } from '../../../api/firebase/handleData';
 import { PRODUCTS_PAGE_ROUTER, PRODUCTS_PATH } from '../../../constants/routes';
 import { setProductOrderDetails } from '../../../store/product/productOrder.action';
-import DeleteNotification from '../../../ui-component/DiscountCoupon/Notification';
 import {
   getColorChip,
   getPayments,
@@ -32,7 +31,6 @@ import { convertDateFireBase } from '../../../views/utilities/convertTimeStamp';
 import { getSortComparator } from '../../../views/utilities/getSortComparator';
 import { stableSort } from '../../../views/utilities/stableSort';
 import ProductModal from '../ProductModal';
-import ProductSnackBar from '../ProductSnackBar';
 
 interface IOrderTableRowProps {
   rowOrderData: IRowOrderDataProps[];
@@ -41,7 +39,12 @@ interface IOrderTableRowProps {
   openSnackBar: (status: boolean) => void;
 }
 
-const PaymentMenu = (props: any) => {
+interface IPayementMenuProps {
+  status: string;
+  updatePaymentOrder: (payment: string) => void;
+}
+
+const PaymentMenu = (props: IPayementMenuProps) => {
   const [currentPayment, setCurrentPayment] = useState(props.status);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -122,7 +125,6 @@ const ProductOrderRow = ({
   };
 
   const deleteProduct = () => {
-    console.log('deleteProduct');
     const index = rowOrderData.findIndex(
       (product: any) => product.fireBaseId === idSelected,
     );
