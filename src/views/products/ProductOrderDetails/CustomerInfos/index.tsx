@@ -12,16 +12,7 @@ import {
   QueryBuilder,
   TextSnippet,
 } from '@mui/icons-material';
-import {
-  Avatar,
-  Box,
-  Chip,
-  Divider,
-  Grid,
-  Paper,
-  Stack,
-  Typography,
-} from '@mui/material';
+import { Chip, Divider, Grid, Paper, Stack, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 
 import { convertDateFireBase } from '../../../../helper/date-utils';
@@ -29,7 +20,7 @@ import {
   getColorChip,
   getPayments,
 } from '../../../utilities/convertOrderStatus';
-convertDateFireBase;
+
 const CustomerInfos = (props: any) => {
   const [customerInfos, setCustomerInfos] = useState<any>({});
 
@@ -92,15 +83,10 @@ const CustomerInfos = (props: any) => {
             </Stack>
           </Stack>
         </Stack>
-
         <Divider />
-
-        {/* <Stack> */}
-        {/* <Grid container justifyContent="space-between"> */}
         <Stack direction="row" justifyContent="space-between">
           <Stack direction="column" spacing={2}>
             <Typography variant="h4">Phương thức thanh toán</Typography>
-
             <Stack spacing={1}>
               <Stack direction="row" spacing={1} alignItems="center">
                 <LocalAtm fontSize="small" />
@@ -112,13 +98,11 @@ const CustomerInfos = (props: any) => {
               <Stack direction="row" spacing={1} alignItems="center">
                 <AutoMode fontSize="small" />
                 <Typography variant="h5">Trạng thái: </Typography>
-                <Typography variant="body1">
-                  <Chip
-                    color={getColorChip(customerInfos.status)}
-                    label={getPayments(customerInfos.status)}
-                    size='small'
-                  />
-                </Typography>
+                <Chip
+                  color={getColorChip(customerInfos.status)}
+                  label={getPayments(customerInfos.status)}
+                  size="small"
+                />
               </Stack>
               <Stack direction="row" spacing={1} alignItems="center">
                 <TextSnippet fontSize="small" />
@@ -129,10 +113,8 @@ const CustomerInfos = (props: any) => {
               </Stack>
             </Stack>
           </Stack>
-
           <Stack direction="column" spacing={2} sx={{ minWidth: 300 }}>
             <Typography variant="h4">Thời gian nhận hàng</Typography>
-
             <Stack spacing={1}>
               <Stack direction="row" spacing={1} alignItems="center">
                 <EventNote fontSize="small" />

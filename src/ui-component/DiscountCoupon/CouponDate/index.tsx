@@ -38,7 +38,6 @@ const CouponDate = () => {
   };
 
   const handleChangeStartDate = (value: Dayjs) => {
-    console.log('value', value?.format('DD/MM/YYYY'));
     setStartDay(value);
     dispatch(
       setCouponStartDate({
@@ -49,7 +48,6 @@ const CouponDate = () => {
   };
 
   const handleChangeEndDate = (value: Dayjs) => {
-    console.log('value', value?.format('DD/MM/YYYY'));
     setEndDay(value);
     dispatch(
       setCouponEndDate({

@@ -1,7 +1,11 @@
 import {
+  Button,
   Checkbox,
   Chip,
+  Divider,
   IconButton,
+  Menu,
+  MenuItem,
   TableBody,
   TableCell,
   TableRow,
@@ -9,7 +13,7 @@ import {
 import { IconTrash } from '@tabler/icons';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { IRowOrderDataProps, Order } from '@/types';
 
@@ -19,6 +23,7 @@ import DeleteNotification from '../../../ui-component/DiscountCoupon/Notificatio
 import {
   getColorChip,
   getPayments,
+  listPaymensts,
 } from '../../../views/utilities/convertOrderStatus';
 import { convertDateFireBase } from '../../../views/utilities/convertTimeStamp';
 import { getSortComparator } from '../../../views/utilities/getSortComparator';
@@ -30,6 +35,62 @@ interface IOrderTableRowProps {
   rowsPerPage: number;
 }
 
+const BasicMenu = (props: any) => {
+  const [currentPayment, setCurrentPayment] = useState(props.status);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    setAnchorEl(e.currentTarget);
+  };
+  const handleClose = (e: React.MouseEvent<HTMLLIElement>, payment: string) => {
+    console.log(payment, 'handleClose');
+    e.stopPropagation();
+    setAnchorEl(null);
+    setCurrentPayment(payment);
+  };
+  return (
+    <>
+      <Button
+        id="basic-button"
+        aria-controls={open ? 'basic-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        onClick={(e) => {
+          handleClick(e);
+        }}
+      >
+        <Chip
+          color={getColorChip(currentPayment)}
+          variant="outlined"
+          label={getPayments(currentPayment)}
+        />
+      </Button>
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          'aria-labelledby': 'basic-button',
+        }}
+      >
+        {listPaymensts.filter((p: string) => p !== currentPayment).map((payment: string, index: number) => (
+          <MenuItem key={index} onClick={(e) => handleClose(e, payment)}>
+            <Chip
+              color={getColorChip(payment)}
+              variant="outlined"
+              label={getPayments(payment)}
+            />
+          <Divider />
+          </MenuItem>
+        ))}
+      </Menu>
+    </>
+  );
+};
+
 const ProductOrderRow = ({
   rowOrderData,
   page,
@@ -40,19 +101,17 @@ const ProductOrderRow = ({
     useState<keyof IRowOrderDataProps>('recipientName');
   const [selected, setSelected] = useState<Array<any>>([]);
   const [dense, setDense] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
+
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const isSelected = (name: string) => selected.indexOf(name) !== -1;
 
-  // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rowOrderData.length) : 0;
-  const [open, setOpen] = useState<boolean>(false);
-  console.log('row', rowOrderData);
-  const navigate = useNavigate();
 
   const selectProductDetail = (data: IRowOrderDataProps) => {
-    console.log('router', typeof data);
     dispatch(setProductOrderDetails(data));
     navigate(
       `${PRODUCTS_PAGE_ROUTER}/${PRODUCTS_PATH.ProductOrderList}/${data.fireBaseId}`,
@@ -69,11 +128,6 @@ const ProductOrderRow = ({
           const handleDeleleCoupon = () => {
             setOpen(true);
           };
-          console.log(
-            'row',
-            `${PRODUCTS_PAGE_ROUTER + PRODUCTS_PATH + row.fireBaseId}`,
-          );
-
           return (
             <TableRow
               hover
@@ -97,19 +151,15 @@ const ProductOrderRow = ({
               <TableCell component="th" id={labelId} scope="row">
                 {row ? row.recipientName : ''}
               </TableCell>
-              <TableCell align="left" padding="none">
+              <TableCell align="center" padding="none">
                 {row.address}
               </TableCell>
-              <TableCell align="left">{row ? row.phone : ''}</TableCell>
-              <TableCell align="left">
+              <TableCell align="center">{row ? row.phone : ''}</TableCell>
+              <TableCell align="center">
                 {convertDateFireBase(row ? row.createOn : '')}
               </TableCell>
               <TableCell align="center">
-                <Chip
-                  color={getColorChip(row.status)}
-                  variant="outlined"
-                  label={getPayments(row.status)}
-                />{' '}
+                <BasicMenu status={row.status} />
               </TableCell>
               <TableCell align="center">{row.paymentMethods}</TableCell>
               <TableCell align="center">
@@ -134,6 +184,3 @@ const ProductOrderRow = ({
 };
 
 export default ProductOrderRow;
-function dispatch(arg0: { type: string; data: Record<string, any> }) {
-  throw new Error('Function not implemented.');
-}

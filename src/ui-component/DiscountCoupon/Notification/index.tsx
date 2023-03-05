@@ -25,7 +25,6 @@ export default function DeleteNotification({
   notification,
 }: IAlertDialog) {
   const handleClickConfirm = () => {
-    console.log('deleteid', deleteId);
     deleteItem(ItemType.DISCOUNT, deleteId);
     setOpen(false);
     location.reload();

@@ -1,4 +1,4 @@
-import { Paper, Stack, Typography } from '@mui/material';
+import { Paper, Stack } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -76,7 +76,6 @@ const ProductOrderDetails = () => {
     fetchData();
     getCustomerDetail(orderInfos);
     getProductDetails(orderInfos);
-    console.log(orderInfos, 'orderInfos');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orderInfos]);
 

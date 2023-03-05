@@ -12,8 +12,7 @@ const ProductInfos = (props: any) => {
       setProductList(props.productInfos.productList.productList);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [productInfos]);
-  console.log('pppp123', productInfos.productList);
+  }, [props.productInfos]);
   return (
     <Paper
       sx={{
@@ -54,7 +53,6 @@ const ProductInfos = (props: any) => {
                       <Typography variant="h5">Mã giảm giá : </Typography>
                       <Typography variant="h5">Tổng cộng : </Typography>
                     </Stack>
-
                     <Stack spacing={1} alignItems="center" minWidth={80}>
                       <Typography variant="h5">
                         {productInfos?.productList?.totalOrderValue ?? ''}
