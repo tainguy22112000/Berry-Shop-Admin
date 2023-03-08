@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { ArrowBack } from '@mui/icons-material';
-import { Button, Grid, IconButton, Paper, Stack } from '@mui/material';
+import { Box, Button, Grid, IconButton, Paper, Stack } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 
@@ -143,11 +143,28 @@ const ProductDetails = () => {
           </Button>
         </Stack>
       </Stack>
+
       <Paper>
+        <Stack direction="row" justifyContent="space-between">
+          <Box sx={{ width: '500px' }}>
+            {productDetails.photo && (
+              <ProductImagesCarousel photo={productDetails.photo} />
+            )}
+          </Box>
+          <Box sx={{with}}>
+            {Object.keys(overviewProduct).length > 0 && (
+              <ProductOverview
+                overviewProduct={overviewProduct}
+                isEditMode={isEditMode}
+                updateProductOverview={updateProductOverview}
+              />
+            )}
+          </Box>
+        </Stack>
         <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           <Grid
             item
-            xs={6}
+            xs={4}
             justifyContent="center"
             alignItems="center"
             display="flex"
@@ -156,7 +173,7 @@ const ProductDetails = () => {
               <ProductImagesCarousel photo={productDetails.photo} />
             )}
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={8}>
             {Object.keys(overviewProduct).length > 0 && (
               <ProductOverview
                 overviewProduct={overviewProduct}

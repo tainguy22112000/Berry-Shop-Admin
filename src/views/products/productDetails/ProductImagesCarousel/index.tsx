@@ -1,4 +1,4 @@
-import { Paper } from '@mui/material';
+import { Box, Paper } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import Carousel from 'react-material-ui-carousel';
 
@@ -12,7 +12,7 @@ const ProductImagesCarousel = ({ photo }: Props) => {
     setPhotoArr(photo);
   }, [photo]);
   return (
-    <Paper sx={{ width: '90%' }}>
+    <Paper>
       <Carousel>
         {photoArr.length > 0 &&
           photoArr.map((photo: string, index: number) => (

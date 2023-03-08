@@ -115,10 +115,7 @@ const ProductRow = ({
                 <TableCell sx={{ fontWeight: 'bold', minWidth: '160px' }}>
                   {row.name}
                 </TableCell>
-                <TableCell
-                  align="left"
-                  sx={{ fontWeight: 'bold', maxWidth: '100px' }}
-                >
+                <TableCell align="left" sx={{ maxWidth: '100px' }}>
                   {row.group}
                 </TableCell>
 

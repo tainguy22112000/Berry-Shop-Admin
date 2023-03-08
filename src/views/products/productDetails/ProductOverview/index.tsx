@@ -39,13 +39,12 @@ const ProductOverview = (props: any) => {
 
   useEffect(() => {
     props.updateProductOverview(data);
-  }, [data])
+  }, [data]);
 
-  useEffect(() => {
-  }, [props.isEditMode]);
+  useEffect(() => {}, [props.isEditMode]);
 
   return (
-    <Paper>
+    <Paper sx={{ padding: 10 }}>
       <Stack spacing={2}>
         <Stack>
           <Typography variant="h5">ID: {data.id}</Typography>
@@ -60,14 +59,14 @@ const ProductOverview = (props: any) => {
           <Stack>
             <Typography variant="h5">Nhóm</Typography>
           </Stack>
-          <Stack sx={{paddingTop: '8px'}}>
+          <Stack sx={{ paddingTop: '8px' }}>
             {props.isEditMode ? (
               <TextField
                 label="Nhóm"
                 name="group"
                 value={data.group}
                 onChange={handleInputChange}
-                sx={{width: "98%"}}
+                sx={{ width: '98%' }}
               />
             ) : (
               data.group
@@ -79,14 +78,14 @@ const ProductOverview = (props: any) => {
           <Stack>
             <Typography variant="h5">Nguyên liệu chính</Typography>
           </Stack>
-          <Stack sx={{paddingTop: '8px'}}>
+          <Stack sx={{ paddingTop: '8px' }}>
             {props.isEditMode ? (
               <TextField
                 label="Nguyên liệu chính"
                 name="mainIngredient"
                 value={data.mainIngredient}
                 onChange={handleInputChange}
-                sx={{width: "98%"}}
+                sx={{ width: '98%' }}
               />
             ) : (
               data.mainIngredient
@@ -98,7 +97,7 @@ const ProductOverview = (props: any) => {
           <Stack>
             <Typography variant="h5">Giá</Typography>
           </Stack>
-          <Stack sx={{paddingTop: '8px'}}>
+          <Stack sx={{ paddingTop: '8px' }}>
             {props.isEditMode ? (
               <TextField
                 label="Giá"
@@ -106,7 +105,7 @@ const ProductOverview = (props: any) => {
                 value={data.price}
                 type="number"
                 onChange={handleInputChange}
-                sx={{width: "98%"}}
+                sx={{ width: '98%' }}
               />
             ) : (
               data.price
