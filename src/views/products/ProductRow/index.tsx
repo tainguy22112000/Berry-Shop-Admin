@@ -1,19 +1,18 @@
 import {
   Checkbox,
+  Chip,
   IconButton,
   TableBody,
   TableCell,
   TableRow,
 } from '@mui/material';
+import { blue, orange } from '@mui/material/colors';
 import { IconEye, IconTrash } from '@tabler/icons';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import {
-  IRowProductDataProps,
-  Order,
-} from '@/types';
+import { IRowProductDataProps, Order } from '@/types';
 
 import { ItemType } from '../../../api/firebase/dataType';
 import { deleteItem } from '../../../api/firebase/handleData';
@@ -24,14 +23,14 @@ import { stableSort } from '../../../views/utilities/stableSort';
 import ProductModal from '../ProductModal';
 
 interface IProductTableRowProps {
-  rowOrderData: IRowProductDataProps[];
+  rowProductData: IRowProductDataProps[];
   page: number;
   rowsPerPage: number;
   openSnackBar: (status: boolean) => void;
 }
 
 const ProductRow = ({
-  rowOrderData,
+  rowProductData,
   page,
   rowsPerPage,
   openSnackBar,
@@ -48,10 +47,10 @@ const ProductRow = ({
   };
 
   const deleteProduct = () => {
-    const index = rowOrderData.findIndex(
+    const index = rowProductData.findIndex(
       (product: any) => product.fireBaseId === idSelected,
     );
-    rowOrderData.splice(index, 1);
+    rowProductData.splice(index, 1);
     deleteItem(ItemType.PRODUCT, idSelected);
     setIsOpenModal(false);
     openSnackBar(true);
@@ -66,7 +65,9 @@ const ProductRow = ({
   const isSelected = (name: string) => selected.indexOf(name) !== -1;
 
   const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rowOrderData.length) : 0;
+    page > 0
+      ? Math.max(0, (1 + page) * rowsPerPage - rowProductData.length)
+      : 0;
 
   const selectProductDetail = (data: IRowProductDataProps) => {
     dispatch(setProductOrderDetails(data));
@@ -78,7 +79,7 @@ const ProductRow = ({
   return (
     <>
       <TableBody>
-        {stableSort(rowOrderData, getSortComparator(order, orderBy))
+        {stableSort(rowProductData, getSortComparator(order, orderBy))
           .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
           .map((row: IRowProductDataProps, index: number) => {
             const isItemSelected = isSelected(row.id);
@@ -112,10 +113,20 @@ const ProductRow = ({
                   />
                 </TableCell>
                 <TableCell sx={{ fontWeight: 'bold' }}>{row.name}</TableCell>
-                <TableCell align="center">{row.id}</TableCell>
-                <TableCell align="center" sx={{ minWidth: '150px' }}>
-                  {row.amount}
+
+                <TableCell align="center" sx={{ minWidth: '100px' }}>
+                  <Chip
+                    key={index}
+                    label={row.mainIngredient}
+                    sx={{
+                      backgroundColor: orange[100],
+                      color: orange[500],
+                    }}
+                  ></Chip>
                 </TableCell>
+
+                <TableCell align="center">{row.amount}</TableCell>
+                <TableCell align="center">{row.price}</TableCell>
                 <TableCell align="center">
                   <IconButton
                     aria-label="copy"

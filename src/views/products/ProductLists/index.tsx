@@ -82,7 +82,7 @@ const ProductLists = () => {
               headerContent={productTableHeader}
             />
             <ProductRow
-              rowOrderData={productLists}
+              rowProductData={productLists}
               page={page}
               rowsPerPage={rowsPerPage}
               openSnackBar={openSnackBar}

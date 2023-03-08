@@ -1,4 +1,8 @@
-import { IOrderTableHeader, IProductTableHeader, ITestTableHeader } from '@/types';
+import {
+  IOrderTableHeader,
+  IProductTableHeader,
+  ITestTableHeader,
+} from '@/types';
 
 export const testTableHeader: ITestTableHeader[] = [
   {
@@ -90,19 +94,19 @@ export const orderTableHeader: IOrderTableHeader[] = [
   },
 ];
 
-
 export const productTableHeader: IProductTableHeader[] = [
   {
     id: 'name',
-    numeric: true,
+    numeric: false,
     disablePadding: false,
-    label: 'Tên',
+    label: 'Tên sản phẩm',
   },
+
   {
-    id: 'id',
+    id: 'moreCombina',
     numeric: true,
     disablePadding: false,
-    label: 'ID',
+    label: 'Thành phần',
   },
   {
     id: 'amount',
@@ -111,9 +115,15 @@ export const productTableHeader: IProductTableHeader[] = [
     label: 'Số lượng',
   },
   {
+    id: 'price',
+    numeric: true,
+    disablePadding: false,
+    label: 'Đơn giá',
+  },
+  {
     id: '',
     numeric: true,
     disablePadding: false,
     label: 'Xem chi tiết/xoá',
   },
-]
+];
