@@ -112,9 +112,17 @@ const ProductRow = ({
                     }}
                   />
                 </TableCell>
-                <TableCell sx={{ fontWeight: 'bold' }}>{row.name}</TableCell>
+                <TableCell sx={{ fontWeight: 'bold', minWidth: '160px' }}>
+                  {row.name}
+                </TableCell>
+                <TableCell
+                  align="left"
+                  sx={{ fontWeight: 'bold', maxWidth: '100px' }}
+                >
+                  {row.group}
+                </TableCell>
 
-                <TableCell align="center" sx={{ minWidth: '100px' }}>
+                <TableCell align="center" sx={{ maxWidth: '100px' }}>
                   <Chip
                     key={index}
                     label={row.mainIngredient}

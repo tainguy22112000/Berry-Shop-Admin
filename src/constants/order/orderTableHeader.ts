@@ -101,7 +101,12 @@ export const productTableHeader: IProductTableHeader[] = [
     disablePadding: false,
     label: 'Tên sản phẩm',
   },
-
+  {
+    id: 'group',
+    numeric: false,
+    disablePadding: false,
+    label: 'Loại sản phẩm',
+  },
   {
     id: 'moreCombina',
     numeric: true,

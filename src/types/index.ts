@@ -75,6 +75,7 @@ export interface IRowProductDataProps {
   fireBaseId: string;
   name: string;
   amount: number;
+  group: string;
   mainIngredient: string;
   price: number;
   mlAndPrice: {
