@@ -1,9 +1,8 @@
 import {
   Box,
-  Card,
-  CardContent,
-  CardMedia,
+  Stack,
   TextareaAutosize,
+  TextField,
   Typography,
 } from '@mui/material';
 import React, { ChangeEvent, useEffect, useState } from 'react';
@@ -19,32 +18,29 @@ const AboutProductCard = (props: any) => {
     });
   };
   return (
-    <Card sx={{ display: 'flex', width: '100%' }}>
-      <Box sx={{ display: 'flex', flexDirection: 'column', width: '70%' }}>
-        <CardContent sx={{ flex: '1 0 auto' }}>
+    <Box sx={{ padding: '0 4rem' }}>
+      <Stack direction="row">
+        <Box>
+          <img src={props.data.photo} alt="Photo" width={400} />
+        </Box>
+        <Box sx={{ paddingLeft: 4, flexGrow: 1 }}>
           {props.isEditMode ? (
-            <TextareaAutosize
+            <TextField
               onChange={handleInputChange}
               minRows={5}
               placeholder="Mô tả sản phẩm"
-              style={{ height: '100%', padding: '10px', width: '100%' }}
               value={description}
+              multiline
+              fullWidth
             />
           ) : (
-            <Typography component="div" variant="h5">
+            <Typography component="div" variant="body1">
               {props.data.description1}
             </Typography>
           )}
-        </CardContent>
-        <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}></Box>
-      </Box>
-      <CardMedia
-        component="img"
-        sx={{ width: '30%', height: '30%' }}
-        image={props.data.photo}
-        alt="Photo Description"
-      />
-    </Card>
+        </Box>
+      </Stack>
+    </Box>
   );
 };
 
@@ -64,10 +60,8 @@ const ProductDescriptions = (props: any) => {
     setAboutProductList(props.aboutProduct);
   }, [props.aboutProduct]);
 
-
-
   return (
-    <Carousel autoPlay={false}>
+    <Carousel autoPlay={false} height={500} indicators navButtonsAlwaysVisible>
       {aboutProductList.length > 0 &&
         aboutProductList.map((item: any, index: number) => (
           <AboutProductCard

@@ -90,6 +90,8 @@ const ProductDetails = () => {
     fetchData().catch(console.error);
   }, []);
 
+  console.log('product detail', productDetails);
+
   useEffect(() => {
     if (isEditMode) {
       setLabelEditButton('Chế độ xem');
@@ -114,91 +116,72 @@ const ProductDetails = () => {
 
   return (
     <Stack spacing={2} direction="column">
-      <Stack spacing={2} direction="row" justifyContent="space-between">
-        <Stack alignItems="center" justifyContent="center">
-          <IconButton
-            color="primary"
-            sx={{ backgroundColor: 'white', width: '40px', height: '40px' }}
-            onClick={backToProductList}
-          >
-            <ArrowBack />
-          </IconButton>
-        </Stack>
-        <Stack spacing={2} direction="column">
-          <Button
-            variant="contained"
-            onClick={toggleEditMode}
-            sx={{ width: '100%' }}
-            style={stylesButton.button}
-          >
-            {labelEditButton}
-          </Button>
-          <Button
-            variant="outlined"
-            onClick={openModal}
-            sx={{ width: '100%' }}
-            disabled={!isDataChange}
-          >
-            Lưu thay đổi
-          </Button>
-        </Stack>
-      </Stack>
+      <Paper sx={{ padding: 5, height: '100%' }}>
+        <Stack spacing={4}>
+          <Stack spacing={2} direction="row" justifyContent="space-between">
+            <Stack alignItems="center" justifyContent="center">
+              <IconButton
+                color="primary"
+                sx={{ backgroundColor: 'white', width: '40px', height: '40px' }}
+                onClick={backToProductList}
+              >
+                <ArrowBack />
+              </IconButton>
+            </Stack>
+            <Stack spacing={2} direction="row">
+              <Button
+                variant="contained"
+                onClick={toggleEditMode}
+                fullWidth
+                style={stylesButton.button}
+              >
+                {labelEditButton}
+              </Button>
+              <Button
+                variant="outlined"
+                onClick={openModal}
+                disabled={!isDataChange}
+              >
+                Lưu thay đổi
+              </Button>
+            </Stack>
+          </Stack>
 
-      <Paper>
-        <Stack direction="row" justifyContent="space-between">
-          <Box sx={{ width: '500px' }}>
-            {productDetails.photo && (
-              <ProductImagesCarousel photo={productDetails.photo} />
-            )}
-          </Box>
-          <Box sx={{with}}>
-            {Object.keys(overviewProduct).length > 0 && (
-              <ProductOverview
-                overviewProduct={overviewProduct}
-                isEditMode={isEditMode}
-                updateProductOverview={updateProductOverview}
-              />
-            )}
-          </Box>
+          <Stack spacing={2}>
+            <Stack direction="row" justifyContent="space-between" flexGrow={1}>
+              <Box sx={{ width: '500px' }}>
+                {productDetails.photo && (
+                  <ProductImagesCarousel photo={productDetails.photo} />
+                )}
+              </Box>
+              <Box sx={{ with: '50%' }} flexGrow={1}>
+                {Object.keys(overviewProduct).length > 0 && (
+                  <ProductOverview
+                    overviewProduct={overviewProduct}
+                    isEditMode={isEditMode}
+                    updateProductOverview={updateProductOverview}
+                  />
+                )}
+              </Box>
+            </Stack>
+            <Box>
+              {productDetails.aboutProduct && (
+                <ProductAbouts
+                  aboutProduct={productDetails.aboutProduct}
+                  isEditMode={isEditMode}
+                  updateProductAbouts={updateProductAbouts}
+                />
+              )}
+            </Box>
+          </Stack>
         </Stack>
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          <Grid
-            item
-            xs={4}
-            justifyContent="center"
-            alignItems="center"
-            display="flex"
-          >
-            {productDetails.photo && (
-              <ProductImagesCarousel photo={productDetails.photo} />
-            )}
-          </Grid>
-          <Grid item xs={8}>
-            {Object.keys(overviewProduct).length > 0 && (
-              <ProductOverview
-                overviewProduct={overviewProduct}
-                isEditMode={isEditMode}
-                updateProductOverview={updateProductOverview}
-              />
-            )}
-          </Grid>
-          <Grid
-            item
-            xs
-            justifyContent="center"
-            alignItems="center"
-            display="flex"
-          >
-            {productDetails.aboutProduct && (
-              <ProductAbouts
-                aboutProduct={productDetails.aboutProduct}
-                isEditMode={isEditMode}
-                updateProductAbouts={updateProductAbouts}
-              />
-            )}
-          </Grid>
-        </Grid>
       </Paper>
+      <ProductSnackBar
+        isOpenSnackBar={isOpenSnackBar}
+        position={{ vertical: 'top', horizontal: 'center' }}
+        status="success"
+        message="Chỉnh sửa thành công"
+      />
       <ProductModal
         isOpenModal={isOpenModal}
         labelTextContent="Bạn có muốn lưu thay đổi của chi tiết sản phẩm này?"
@@ -207,12 +190,6 @@ const ProductDetails = () => {
         labelSucess=" Lưu thay đổi"
         onCancel={closeModal}
         onSucess={updateProductDetails}
-      />
-      <ProductSnackBar
-        isOpenSnackBar={isOpenSnackBar}
-        position={{ vertical: 'top', horizontal: 'center' }}
-        status="success"
-        message="Chỉnh sửa thành công"
       />
     </Stack>
   );

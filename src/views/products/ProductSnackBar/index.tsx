@@ -5,6 +5,7 @@ import { ProductSnackbarType } from '../productType';
 
 const ProductSnackBar = (props: ProductSnackbarType) => {
   const { position, status, message, isOpenSnackBar } = props;
+  console.log(props);
 
   return (
     <Snackbar

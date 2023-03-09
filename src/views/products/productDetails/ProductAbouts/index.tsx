@@ -23,8 +23,8 @@ const ProductAbouts = (props: any) => {
 
   useEffect(() => {
     props.updateProductAbouts(aboutInfo);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [aboutInfo])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [aboutInfo]);
 
   return (
     <Box
@@ -44,7 +44,7 @@ const ProductAbouts = (props: any) => {
             <Tab label="Thông tin khác" value="3" />
           </TabList>
         </Box>
-        <TabPanel value="1" style={{ width: '100%' }}>
+        <TabPanel value="1" style={{ width: '100%', height: '100%' }}>
           {aboutInfo && (
             <ProductDescriptions
               aboutProduct={aboutInfo}
@@ -53,8 +53,12 @@ const ProductAbouts = (props: any) => {
             />
           )}
         </TabPanel>
-        <TabPanel value="2">Nhận xét</TabPanel>
-        <TabPanel value="3">Thông tin khác</TabPanel>
+        <TabPanel value="2">
+          <Box sx={{ height: 500 }}>Nhận xét</Box>
+        </TabPanel>
+        <TabPanel value="3">
+          <Box sx={{ height: 500 }}>Thông tin khác</Box>
+        </TabPanel>
       </TabContext>
     </Box>
   );

@@ -5,8 +5,8 @@ export const stylesButton = {
     color: grey[900],
   },
   button: {
-    // marginLeft: '10px',
     height: 40,
+    width: 160,
     backgroundColor: grey[900],
     border: '1px solid',
     borderColor: grey[900],

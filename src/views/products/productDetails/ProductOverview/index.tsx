@@ -24,6 +24,7 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 
 const ProductOverview = (props: any) => {
   const [data, setData] = useState(props);
+  console.log('data', data);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -44,7 +45,7 @@ const ProductOverview = (props: any) => {
   useEffect(() => {}, [props.isEditMode]);
 
   return (
-    <Paper sx={{ padding: 10 }}>
+    <Paper sx={{ padding: '2rem 5rem' }}>
       <Stack spacing={2}>
         <Stack>
           <Typography variant="h5">ID: {data.id}</Typography>
