@@ -16,7 +16,6 @@ const CouponDescription = () => {
   const description = useSelector(
     ({ couponData }: CouponDataTypes) => couponData.couponNote,
   );
-  console.log(description);
   const handleChangeNote = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     dispatch(setCouponNote(event.target.value));
   };

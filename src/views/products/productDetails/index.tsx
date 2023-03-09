@@ -83,14 +83,16 @@ const ProductDetails = () => {
       setOverviewProduct({
         id: data.id,
         group: data.group,
+        amount: data.amount,
+        name: data.name,
+        mlAndPrice: data.mlAndPrice,
+        moreCombina: data.moreCombina,
         mainIngredient: data.mainIngredient,
         price: data.price,
       });
     };
     fetchData().catch(console.error);
   }, []);
-
-  console.log('product detail', productDetails);
 
   useEffect(() => {
     if (isEditMode) {
