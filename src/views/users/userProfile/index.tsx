@@ -49,8 +49,6 @@ export const UserTable = () => {
     fetchDiscountData().catch(console.error);
   }, []);
 
-  console.log(userData);
-
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>

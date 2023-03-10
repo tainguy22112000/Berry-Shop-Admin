@@ -37,8 +37,7 @@ const ProductOverviewRow = ({
   setData,
   // handleInputChange,
   isNumber = false,
-}: // handleInputChange,
-ProductOverviewRowProps) => {
+}: ProductOverviewRowProps) => {
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setData({
@@ -46,11 +45,6 @@ ProductOverviewRowProps) => {
       [name]: value,
     });
   };
-
-  const isListItem = typeof content === 'object';
-  console.log(isListItem);
-
-  console.log(content);
 
   useEffect(() => {}, [isEditMode]);
   return (
@@ -80,14 +74,6 @@ ProductOverviewRowProps) => {
 const ProductOverview = (props: any) => {
   const [data, setData] = useState(props);
   console.log('data', data);
-  console.log('data q12', props.overviewProduct?.moreCombina);
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setData({
-      ...data,
-      [name]: value,
-    });
-  };
 
   useEffect(() => {
     setData(props.overviewProduct);
@@ -130,28 +116,6 @@ const ProductOverview = (props: any) => {
       isEditMode: props.isEditMode,
       isNumber: true,
     },
-    // {
-    //   name: 'moreCombina',
-    //   title: 'Thành phần',
-    //   content: props.overviewProduct?.moreCombina,
-    //   isEditMode: props.isEditMode,
-    // },
-    // {
-    //   name: 'mlAndPrice',
-    //   title: 'Dung tích',
-    //   content: data?.mlAndPrice['250ml'].ml,
-    //   isEditMode: props.isEditMode,
-    // },
-    // {
-    //   title: 'Thành phần',
-    //   data: data?.moreCombina,
-    //   isEditMode: props.isEditMode,
-    // },
-    // {
-    //   title: 'Dung tích',
-    //   data: data?.mlAndPrice,
-    //   isEditMode: props.isEditMode,
-    // },
     {
       name: 'price',
       title: 'Giá',
@@ -161,129 +125,11 @@ const ProductOverview = (props: any) => {
     },
   ];
 
+  const [mockData, setMockData] = useState<any>(data.moreCombina);
+
   return (
     <Paper sx={{ padding: '0 5rem' }}>
       <Stack spacing={2}>
-        {/* <Typography variant="h5">ID: {data.id}</Typography>
-        <Stack direction="row" spacing={2} alignItems="center">
-          <Typography variant="h5">Đánh giá : </Typography>
-          <Rating name="read-only" value={5} readOnly />
-        </Stack>
-        <Stack direction="row" spacing={2} alignItems="center">
-          <Typography variant="h5">Nhóm : </Typography>
-          <Box>
-            {props.isEditMode ? (
-              <TextField
-                name="group"
-                value={data.group}
-                onChange={handleInputChange}
-                size="small"
-                fullWidth={false}
-              />
-            ) : (
-              <Typography variant="body1">{data.group} </Typography>
-            )}
-          </Box>
-        </Stack>
-        <Divider />
-        <Stack direction="column">
-          <Stack>
-            <Typography variant="h5">Nguyên liệu chính</Typography>
-          </Stack>
-          <Stack sx={{ paddingTop: '8px' }}>
-            {props.isEditMode ? (
-              <TextField
-                name="mainIngredient"
-                value={data.mainIngredient}
-                onChange={handleInputChange}
-                size="small"
-              />
-            ) : (
-              data.mainIngredient
-            )}
-          </Stack>
-        </Stack>
-        <Divider />
-
-        <Stack direction="column">
-          <Stack>
-            <Typography variant="h5">Giá</Typography>
-          </Stack>
-          <Stack sx={{ paddingTop: '8px' }}>
-            {props.isEditMode ? (
-              <TextField
-                name="price"
-                value={data.price}
-                type="number"
-                onChange={handleInputChange}
-                size="small"
-              />
-            ) : (
-              data.price
-            )}
-          </Stack>
-        </Stack>
-        <Divider />
-
-        <Stack>
-          <Stack>
-            <Typography variant="h5">Số lượng</Typography>
-          </Stack>
-          <Box sx={{ paddingTop: '8px' }}>
-            {props.isEditMode ? (
-              <TextField
-                name="price"
-                value={data.amount}
-                type="number"
-                onChange={handleInputChange}
-                size="small"
-              />
-            ) : (
-              data.amount
-            )}
-          </Box>
-        </Stack>
-        <Divider />
-
-        <Stack direction="column">
-          <Stack>
-            <Typography variant="h5">Thành phần</Typography>
-          </Stack>
-          <Stack sx={{ paddingTop: '8px' }}>
-            {props.isEditMode ? (
-              <TextField
-                name="price"
-                value={data.amount}
-                type="number"
-                onChange={handleInputChange}
-                size="small"
-              />
-            ) : (
-              data.amount
-            )}
-          </Stack>
-        </Stack>
-        <Divider />
-
-        <Stack direction="column">
-          <Stack>
-            <Typography variant="h5">Dung tích</Typography>
-          </Stack>
-          <Stack sx={{ paddingTop: '8px' }}>
-            {props.isEditMode ? (
-              <TextField
-                name="price"
-                value={data.amount}
-                type="number"
-                onChange={handleInputChange}
-                size="small"
-              />
-            ) : (
-              data.amount
-            )}
-          </Stack>
-        </Stack>
-        <Divider /> */}
         {productOverviewContent.map((row) => (
           <>
             <ProductOverviewRow
@@ -299,65 +145,212 @@ const ProductOverview = (props: any) => {
 
         <Stack direction="row" spacing={10}>
           <Typography variant="h4" width={150}>
-            Thành phần :
+            Nguyên liệu thêm :
           </Typography>
+          {/* <Stack spacing={2}>
+            {data.moreCombina !== undefined
+              ? data.moreCombina.map((item: any, index: number) => {
+                  const handleCombinaChange = (
+                    e: ChangeEvent<HTMLInputElement>,
+                  ) => {
+                    const { name, value } = e.target;
+                    const myNextData = [...data.moreCombina];
+
+                    const newData = myNextData.find((a) => a.index === index);
+
+                    // const updateList = data.moreCombina.map((item: any) => {
+                    //   if (item.index === index) {
+                    //     return {
+                    //       ...item,
+                    //       [name]: [value],
+                    //     };
+                    //   }
+                    //   return item;
+                    // });
+
+                    // newData.[name] = value;
+                    console.log('new', newData);
+                  };
+
+                  const handleEditCombina = (nextCombina: any) => {
+                    console.log('index', index);
+                    data.moreCombina.map((t: any, index: number) => {
+                      console.log(index);
+                    });
+                  };
+
+                  return (
+                    <Box key={props.id}>
+                      {props.isEditMode ? (
+                        <Stack direction="row" justifyContent="space-between">
+                          <TextField
+                            name="option"
+                            value={item.option}
+                            onChange={(e) =>
+                              handleEditCombina({
+                                ...data.more,
+                                [e.target.name]: e.target.value,
+                              })
+                            }
+                            size="small"
+                            key={props.id}
+                            sx={{ width: 300 }}
+                          />
+
+                          <TextField
+                            name="price"
+                            value={item.price}
+                            onChange={handleCombinaChange}
+                            size="small"
+                            key={props.id}
+                          />
+                        </Stack>
+                      ) : (
+                        <Stack direction="row" justifyContent="space-between">
+                          <Typography variant="body1" width={300}>
+                            {item.option} {index}
+                          </Typography>
+                          <Typography variant="body1">
+                            {item.price + ' VND'} {index}
+                          </Typography>
+                        </Stack>
+                      )}
+                    </Box>
+                  );
+                })
+              : null}
+          </Stack> */}
+
+          {/* <Stack spacing={2}>
+            {mockData.map((item: any, index: number) => {
+              const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
+                const { name, value } = e.target;
+                console.log({ name }, { value });
+
+                const myNextData = [...mockData];
+                console.log('next', myNextData);
+                const artwork = myNextData.find((a) => a.id === item.id);
+                if (name === 'price') {
+                  artwork[name] = parseInt(value);
+                } else {
+                  artwork[name] = value;
+                }
+                console.log('art', artwork);
+                setMockData(myNextData);
+              };
+
+              return (
+                <Box key={props.id}>
+                  {props.isEditMode ? (
+                    <Stack
+                      direction="row"
+                      justifyContent="space-between"
+                      spacing={2}
+                    >
+                      <TextField
+                        name="option"
+                        value={item.option}
+                        size="small"
+                        onChange={handleOnChange}
+                        key={props.id}
+                        sx={{ width: 300 }}
+                      />
+
+                      <TextField
+                        name="price"
+                        value={item.price}
+                        onChange={handleOnChange}
+                        size="small"
+                        key={props.id}
+                        type="number"
+                      />
+                    </Stack>
+                  ) : (
+                    <Stack direction="row" justifyContent="space-between">
+                      <Typography variant="body1" width={300}>
+                        {item.option}
+                      </Typography>
+                      <Typography variant="body1">
+                        {item.price + ' VND'}
+                      </Typography>
+                    </Stack>
+                  )}
+                </Box>
+              );
+            })}
+          </Stack> */}
+
           <Stack spacing={2}>
-            {props.overviewProduct?.moreCombina.map((item: any) => (
-              <Box key={props.id}>
-                {props.isEditMode ? (
-                  <TextField
-                    name="moreCombina"
-                    value={item.option}
-                    onChange={handleInputChange}
-                    sx={{ width: 400 }}
-                    size="small"
-                    key={props.id}
-                  />
-                ) : (
-                  <Typography variant="body1">{item.option}</Typography>
-                )}
-              </Box>
-            ))}
+            {data.moreCombina !== undefined
+              ? data.moreCombina.map((item: any) => {
+                  const handleChangeCombina = (
+                    e: ChangeEvent<HTMLInputElement>,
+                  ) => {
+                    const { name, value } = e.target;
+                    const myNextData = [...data.moreCombina];
+
+                    console.log('next', myNextData);
+                    const selectedInput = myNextData.find(
+                      (a) => a.id === item.id,
+                    );
+
+                    console.log('selected', selectedInput);
+
+                    const newSelectedInput = {
+                      ...selectedInput,
+                      [name]: value,
+                    };
+
+                    console.log('newSelected', newSelectedInput);
+
+                    setData({
+                      ...data,
+                      moreCombina: myNextData,
+                    });
+                  };
+
+                  return (
+                    <Box key={props.id}>
+                      {props.isEditMode ? (
+                        <Stack
+                          direction="row"
+                          justifyContent="space-between"
+                          spacing={2}
+                        >
+                          <TextField
+                            name="option"
+                            value={item.option}
+                            size="small"
+                            onChange={handleChangeCombina}
+                            key={props.id}
+                            sx={{ width: 300 }}
+                          />
+
+                          <TextField
+                            name="price"
+                            value={item.price}
+                            onChange={handleChangeCombina}
+                            size="small"
+                            key={props.id}
+                            type="number"
+                          />
+                        </Stack>
+                      ) : (
+                        <Stack direction="row" justifyContent="space-between">
+                          <Typography variant="body1" width={300}>
+                            {item.option}
+                          </Typography>
+                          <Typography variant="body1">
+                            {item.price + ' VND'}
+                          </Typography>
+                        </Stack>
+                      )}
+                    </Box>
+                  );
+                })
+              : null}
           </Stack>
         </Stack>
-
-        {/* <Stack direction="row" spacing={10}>
-          <Typography variant="h4" width={150}>
-            Dung tích :
-          </Typography>
-          <Stack spacing={2} direction="column">
-            <FormControl>
-              <RadioGroup
-                aria-labelledby="demo-radio-buttons-group-label"
-                defaultValue="female"
-                name="radio-buttons-group"
-              >
-                <Stack direction="row" spacing={3} alignItems="center">
-                  <FormControlLabel
-                    value="female"
-                    control={<Radio size="small" />}
-                    label={props.overviewProduct?.mlAndPrice['250ml'].ml}
-                  />
-                  <Typography variant="body1">Giá : </Typography>
-                  <Typography variant="body1">
-                    {props.overviewProduct?.mlAndPrice['250ml'].price} VND
-                  </Typography>
-                </Stack>
-                <Stack direction="row" spacing={3} alignItems="center">
-                  <FormControlLabel
-                    value="female"
-                    control={<Radio size="small" />}
-                    label={props.overviewProduct?.mlAndPrice['350ml'].ml}
-                  />
-                  <Typography variant="body1">Giá : </Typography>
-                  <Typography variant="body1">
-                    {props.overviewProduct?.mlAndPrice['350ml'].price} VND
-                  </Typography>
-                </Stack>
-              </RadioGroup>
-            </FormControl>
-          </Stack>
-        </Stack> */}
       </Stack>
     </Paper>
   );
