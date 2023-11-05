@@ -301,7 +301,7 @@ const ProductOverview = (props: any) => {
                       [name]: value,
                     };
 
-                    console.log('newSelected', newSelectedInput);
+                    selectedInput[name] = value;
 
                     setData({
                       ...data,

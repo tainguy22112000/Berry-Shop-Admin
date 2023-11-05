@@ -22,9 +22,9 @@ export function addItem(itemType: ItemType, data: any) {
     });
 }
 
-export function deleteItem(itemType: ItemType, id: any) {
+export async function deleteItem(itemType: ItemType, id: any) {
   const docRef = doc(db, itemType, id);
-  deleteDoc(docRef)
+  await deleteDoc(docRef)
     .then(() => {
       console.log(`${itemType} has been deleted successfully`);
     })
